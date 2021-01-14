@@ -1,24 +1,22 @@
 import React from "react";
 
-function Sidebar(){
+function Sidebar() {
   return (
-    <div className = "sidebar">
-      Sidebar
-
-      Active Servers
-      <div className = "sidebar_container">
-        server1
-        server2
-        server3
+    <div className="sidebar">
+      Running Servers
+      <div className="sidebar_container">
+        <p>server</p>
+        <p>server</p>
+        <p>server</p>
       </div>
-
-      <div className = "sidebar_container">
-        server1
-        server2
-        server3
+      Stopped Servers
+      <div className="sidebar_container">
+        <p>server</p>
+        <p>server</p>
+        <p>server</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default Sidebar;

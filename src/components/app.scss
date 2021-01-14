@@ -25,11 +25,17 @@ html, body {
     background-color: rgb(213, 255, 255)
 }
 
+.event_placeholderdiv {
+    width: 100%;
+    height: 100px;
+    outline: 2px solid darkgrey;
+    margin-top: 10px;
+}
+
 .header {
     background-color: rgb(255, 200, 200);
     width: 100%;
     height: 50px;
-    padding: 5px;
 }
 
 
@@ -47,7 +53,22 @@ html, body {
 }
 
 .serverForm {
+    display: flex;
+    flex-direction: column;
+}
 
+.serverForm_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.serverForm_input {
+    width: 60px;
+}
+
+.serverForm_button {
+    padding: 4px;
+    width: 100px;
 }
 
 .sidebar {
@@ -57,23 +78,27 @@ html, body {
 }
 
 .sidebar_container {
-    margin-left: 5px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .streamDisplay {
     background: rgb(154, 251, 251);
-    flex: 1;
+    flex: 1.5;
     padding: 5px 10px;
 }
 
-.streamDisplay__inputbox {
-    height: 400px;
-    width: 600px;
-    background-color: rgb(209, 209, 209);
+.streamDisplay_inputbox {
+    margin-top: 10px;
+    height: 300px;
+    width: 100%;
+    background-color: rgb(121, 121, 121);
 }
 
-.streamDisplay__outputbox {
-    height: 400px;
-    width: 600px;
-    background-color: rgb(209, 209, 209);
+.streamDisplay_outputbox {
+    margin-top: 10px;
+    height: 200px;
+    width: 100%;
+    background-color: rgb(124, 124, 124);
 }
