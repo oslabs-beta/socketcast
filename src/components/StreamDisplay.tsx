@@ -3,15 +3,31 @@ import React from "react";
 function StreamDisplay() {
   return (
     <div className="streamDisplay">
-      streamdisplay
-      event chat
-      <div className = "streamDisplay_outputbox">output box</div>
-      <div>
-        <button>improvised response</button>
-        <button>application/json</button>
+      <div className="streamDisplay_header">Streamdisplay event chat</div>
+      <div className="streamDisplay_container">
+        <div>Stream Input</div>
+        <br />
+        <div className="streamDisplay_outputbox">
+          <div className="code">message: 'something something something'</div>
+          <div className="code">message: 'something something something'</div>
+          <div className="code">message: 'something something something'</div>
+          <div className="code">message: 'something something something'</div>
+        </div>
+        <div>
+          <button>improvised response</button>
+          <button>application/json</button>
+        </div>
       </div>
-      <div className = "streamDisplay_inputbox">input box</div>
-      <button>emit response</button>
+      <div className="streamDisplay_container">
+        <div>Stream Output</div>
+        <br />
+        <div className="streamDisplay_inputbox">
+          <div className="code">message: 'something something something'</div>
+          <div className="code">message: 'something something something'</div>
+          <div className="code">message: 'something something something'</div>
+        </div>
+        <button>emit response</button>
+      </div>
     </div>
   );
 }

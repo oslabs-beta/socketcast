@@ -1,104 +1,170 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    min-height: 450px;
-    min-width: 800px;
+$base_teal3: rgb(33, 132, 136);
+$base_teal2: rgb(66, 143, 144);
+$base_teal1: rgb(195, 212, 212);
+$base_grey: rgb(234, 236, 238);
+$terminal_black: rgb(31, 30, 30);
+$terminal_orange: rgb(170, 132, 62);
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  min-height: 450px;
+  min-width: 800px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .app {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
+  background-color: $base_grey;
 }
 
 .app_container {
-    display: flex;
-    width: 100%;
-    height: 750px;
+  display: flex;
+  width: 100%;
+  height: 750px;
 }
+
+
+.code {
+    color: $terminal_orange;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
 
 .eventConfig {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(213, 255, 255)
+  border-radius: 3px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  flex: 1;
 }
 
-.event_placeholderdiv {
-    width: 100%;
-    height: 100px;
-    outline: 2px solid darkgrey;
-    margin-top: 10px;
+.event {
+  width: 100%;
+  height: 100px;
+
+  background-color: $terminal_black;
+}
+
+.event_container {
+  margin-top: 10px;
+}
+
+
+.event_button {
+  background-color: none;
+  color: $terminal_black;
+  border: 2px $terminal_black solid;
 }
 
 .header {
-    background-color: #ffdbdb;
-    width: 100%;
-    height: 50px;
+  background-color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 50px;
 }
 
-
-
 .mainContainer {
-    background-color: rgb(200, 200, 255);
-    flex: 2;
-    display: flex;
+  flex: 2;
+  display: flex;
 }
 
 .serverConfig {
-    background-color: rgb(199, 199, 255);
-    flex: 1;
-    padding: 5px 10px;
+  background-color: $base_grey;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
 }
 
 .serverForm {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  border-radius: 3px;
+  flex: .75;
+}
+
+.serverForm_container {
+  margin-top: 5px;
 }
 
 .serverForm_form {
-    display: flex;
-    flex-direction: column;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: white;
 }
 
 .serverForm_input {
-    width: 60px;
+  width: 95%;
 }
 
 .serverForm_button {
-    padding: 4px;
-    width: 100px;
+  padding: 4px;
+  width: 100px;
 }
 
 .sidebar {
-    background-color: rgb(255, 247, 233);
-    flex: .3;
-    padding: 5px 10px;
+  // background-color: rgb(255, 247, 233);
+  background-color: $base_teal3;
+  color: $base_teal1;
+  flex: 0.3;
+  padding: 5px 10px;
+  margin-top: 5px;
 }
 
 .sidebar_container {
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_server {
+  color: $base_teal2;
 }
 
 .streamDisplay {
-    background: rgb(211, 255, 255);
-    flex: 1.5;
-    padding: 5px 10px;
+  background-color: $base_grey;
+  flex: 1.5;
+  padding: 5px 10px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.streamDisplay_header {
+    background-color: white;
+    border-radius: 3px;
+    
+    padding: 10px;
+    flex: 1;
+}
+
+.streamDisplay_container {
+  background-color: white;
+  border-radius: 3px;
+  margin-top: 10px;
+  padding: 10px;
+  flex: 1;
 }
 
 .streamDisplay_inputbox {
-    margin-top: 10px;
-    height: 300px;
-    width: 100%;
-    background-color: rgb(121, 121, 121);
+  margin-top: 10px;
+  height: 300px;
+  width: 100%;
+  
+  background-color: rgb(31, 30, 30);
 }
 
 .streamDisplay_outputbox {
-    margin-top: 10px;
-    height: 200px;
-    width: 100%;
-    background-color: rgb(124, 124, 124);
+  margin-top: 10px;
+  height: 200px;
+  width: 100%;
+ 
+  background-color: rgb(31, 30, 30);
 }
