@@ -1,0 +1,57 @@
+/**
+ * @description Reducer for server data
+ */
+
+import * as types from '../constants/actionTypes';
+// TODO: Import Server Manager (SM) here and update cases
+
+const initialState = {
+  servers: {},
+  serverName: '',
+  serverEndpoint: '',
+  serverPort: ''
+}
+
+const serversReducer = (state = initialState, action: any) => {
+  switch (action.type) {
+    case types.CREATE_SERVER: {
+      const config = action.payload;
+      // invoke SM here
+      console.log('Create Server');
+      return;
+    }
+    case types.GET_SERVER: {
+      const id = action.payload;
+      // invoke SM here
+      console.log('Get Server');
+      return;
+    }
+    case types.GET_SERVERS: {
+      // invoke SM here
+      console.log('Get Servers');
+      return;
+    }
+    case types.MODIFY_SERVER: {
+      const { id, config } = action.payload;
+      // invoke SM here
+      console.log('Modify Server');
+      return;
+    }
+    case types.STOP_ALL: {
+      // invoke SM here
+      console.log('Stop All');
+      return;
+    }
+    case types.STOP_AND_REMOVE_SERVER: {
+      const id = action.payload;
+      // invoke SM here
+      console.log('Stop & Remove Server');
+      return;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export default serversReducer;
