@@ -1,3 +1,104 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    min-height: 450px;
+    min-width: 800px;
+}
+
 .app {
-    background-color: lightgray;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+}
+
+.app_container {
+    display: flex;
+    width: 100%;
+    height: 750px;
+}
+
+.eventConfig {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(213, 255, 255)
+}
+
+.event_placeholderdiv {
+    width: 100%;
+    height: 100px;
+    outline: 2px solid darkgrey;
+    margin-top: 10px;
+}
+
+.header {
+    background-color: #ffdbdb;
+    width: 100%;
+    height: 50px;
+}
+
+
+
+.mainContainer {
+    background-color: rgb(200, 200, 255);
+    flex: 2;
+    display: flex;
+}
+
+.serverConfig {
+    background-color: rgb(199, 199, 255);
+    flex: 1;
+    padding: 5px 10px;
+}
+
+.serverForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.serverForm_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.serverForm_input {
+    width: 60px;
+}
+
+.serverForm_button {
+    padding: 4px;
+    width: 100px;
+}
+
+.sidebar {
+    background-color: rgb(255, 247, 233);
+    flex: .3;
+    padding: 5px 10px;
+}
+
+.sidebar_container {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.streamDisplay {
+    background: rgb(211, 255, 255);
+    flex: 1.5;
+    padding: 5px 10px;
+}
+
+.streamDisplay_inputbox {
+    margin-top: 10px;
+    height: 300px;
+    width: 100%;
+    background-color: rgb(121, 121, 121);
+}
+
+.streamDisplay_outputbox {
+    margin-top: 10px;
+    height: 200px;
+    width: 100%;
+    background-color: rgb(124, 124, 124);
 }
