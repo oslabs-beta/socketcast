@@ -7,7 +7,7 @@ let mainWindow: Electron.BrowserWindow | null;
 //create window function (specify type of arguments)
 const createWindow = (): void => {
   mainWindow = new BrowserWindow({
-    width: 1600,
+    width: 1400,
     height: 900,
     webPreferences: {
 
