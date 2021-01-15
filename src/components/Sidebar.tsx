@@ -15,9 +15,9 @@ function Sidebar() {
       <b>Running Servers</b>
       <div className="sidebar_container">
         {servers.map((server) => (
-          <p className="sidebar_server">
+          <div className="sidebar_server" id = 'server.name'>
             <b>{server.name}</b>
-          </p>
+          </div>
         ))}
       </div>
 
@@ -26,9 +26,9 @@ function Sidebar() {
       <div className="sidebar_container">
         {servers.map((server) => {
           return (
-            <p className="sidebar_server">
+            <div className="sidebar_server" id = 'server.name'>
               <b>{server.name}</b>
-            </p>
+            </div>
           );
         })}
       </div>

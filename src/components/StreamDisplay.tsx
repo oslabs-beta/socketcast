@@ -14,8 +14,8 @@ function StreamDisplay() {
           <div className="code">message: 'something something something'</div>
         </div>
         <div>
-          <button>improvised response</button>
-          <button>application/json</button>
+          <button className = 'streamDisplay_button'>improvised response</button>
+          <button className = 'streamDisplay_button'>application/json</button>
         </div>
       </div>
       <div className="streamDisplay_container">
@@ -26,7 +26,7 @@ function StreamDisplay() {
           <div className="code">message: 'something something something'</div>
           <div className="code">message: 'something something something'</div>
         </div>
-        <button>emit response</button>
+        <button className = 'streamDisplay_button'>emit response</button>
       </div>
     </div>
   );
