@@ -11,7 +11,7 @@ function EventConfig() {
       <div>Events</div>
       <br/>
       {events.map((event) => (
-        <div className="event_container">
+        <div className="event_container" key = {event.name}>
           <button className="event_button">
             {" "}
             {event.name}

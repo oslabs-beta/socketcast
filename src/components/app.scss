@@ -1,9 +1,10 @@
 $base_teal3: rgb(33, 132, 136);
-$base_teal2: rgb(66, 143, 144);
+$base_teal2: rgb(97, 155, 156);
 $base_teal1: rgb(195, 212, 212);
 $base_grey: rgb(234, 236, 238);
-$terminal_black: rgb(31, 30, 30);
+$terminal_black: rgb(226, 226, 226);
 $terminal_orange: rgb(170, 132, 62);
+$terminal_black2:  rgb(31, 30, 30);
 
 html,
 body {
@@ -33,7 +34,7 @@ body {
 
 .eventConfig {
   border-radius: 3px;
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -44,19 +45,22 @@ body {
 .event {
   width: 100%;
   height: 100px;
-
+  border-radius: 0px 3px 3px 3px;
+  border: 2px $base_teal3 solid;
   background-color: $terminal_black;
 }
 
 .event_container {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 
 .event_button {
-  background-color: none;
-  color: $terminal_black;
-  border: 2px $terminal_black solid;
+  background-color: $base_teal3;
+  color: white;
+  border-radius: 3px 3px 0px 0px;
+  border: none;
+  font-weight: bold;
 }
 
 .header {
@@ -105,8 +109,13 @@ body {
 }
 
 .serverForm_button {
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: $base_teal3;
   padding: 4px;
   width: 100px;
+  border: none;
 }
 
 .sidebar {
@@ -148,7 +157,7 @@ body {
 .streamDisplay_container {
   background-color: white;
   border-radius: 3px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 10px;
   flex: 1;
 }
@@ -157,14 +166,26 @@ body {
   margin-top: 10px;
   height: 300px;
   width: 100%;
+  border-radius: 3px 3px 3px 0px;
+  border: 2px $base_teal3 solid;
   
-  background-color: rgb(31, 30, 30);
+  background-color: $terminal_black;
 }
 
 .streamDisplay_outputbox {
   margin-top: 10px;
   height: 200px;
   width: 100%;
+  border-radius: 3px 3px 3px 0px;
+  border: 2px $base_teal3 solid;
  
-  background-color: rgb(31, 30, 30);
+  background-color: $terminal_black;
+}
+
+.streamDisplay_button {
+  background-color: $base_teal3;
+  color: white;
+  border-radius: 0px 0px 3px 3px;
+  border: 2px $base_teal3 solid;
+  font-weight: bold;
 }
