@@ -3,18 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Header from '../components/Header';
 import ServersContainer from './ServersContainer';
+import Sidebar from '../components/Sidebar';
 import StreamDisplay from '../components/StreamDisplay';
-import * as actions from '../actions/actions';
-
-const mapStateToProps = (state: any) => ({
-  servers: state.servers.servers
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  getServers: () => dispatch(actions.getServers()),
-});
 
 class MainContainer extends Component {
   constructor(props: any) {
@@ -23,12 +15,16 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <div>
-        <ServersContainer servers={this.props.servers} />
-        <StreamDisplay />
+      <div className="app">
+        <Header />
+        <div className="app_container">
+          <Sidebar />
+          <ServersContainer />
+          <StreamDisplay />
+        </div>
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default MainContainer;
