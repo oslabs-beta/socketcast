@@ -71,7 +71,7 @@ class ServerManager {
         return new Promise((resolve, reject) => {
             server.listen(port || 3000, () => {
                 console.log(`Server ${id} created on ${port}`);
-                resolve();
+                resolve(id);
             });
         });
 
