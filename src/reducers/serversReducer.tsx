@@ -18,35 +18,35 @@ const serversReducer = (state = initialState, action: any) => {
       const config = action.payload;
       // invoke SM here
       console.log('Create Server');
-      return;
+      return state;
     }
     case types.GET_SERVER: {
       const id = action.payload;
       // invoke SM here
       console.log('Get Server');
-      return;
+      return state;
     }
     case types.GET_SERVERS: {
       // invoke SM here
       console.log('Get Servers');
-      return;
+      return state;
     }
     case types.MODIFY_SERVER: {
       const { id, config } = action.payload;
       // invoke SM here
       console.log('Modify Server');
-      return;
+      return state;
     }
     case types.STOP_ALL: {
       // invoke SM here
       console.log('Stop All');
-      return;
+      return state;
     }
     case types.STOP_AND_REMOVE_SERVER: {
       const id = action.payload;
       // invoke SM here
       console.log('Stop & Remove Server');
-      return;
+      return state;
     }
     default: {
       return state;
