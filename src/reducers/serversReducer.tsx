@@ -3,9 +3,12 @@
  */
 
 import * as types from '../constants/actionTypes';
+const serverManager = require('../ServerManager/ServerManager.ts')
+// import ServerManager from '../ServerManager/ServerManager.js'
 // TODO: Import Server Manager (SM) here and update cases
 
 const initialState = {
+  serverManager: {},
   servers: {},
   serverName: '',
   serverEndpoint: '',
