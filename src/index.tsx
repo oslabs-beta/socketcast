@@ -1,5 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app';
+/**
+ * @description Entry point for application
+ */
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/app';
+import store from './store';
+
+const root = document.getElementById('root')
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  root
+);
