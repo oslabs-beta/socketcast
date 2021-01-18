@@ -1,6 +1,7 @@
 import http from 'http';
 import express from 'express';
-import WebSocket from 'ws';
+// import WebSocket from 'ws';
+const WebSocket = require('ws')
 import { v4 as uuidv4 } from 'uuid';
 import cors from 'cors';
 
@@ -8,7 +9,7 @@ import cors from 'cors';
 // const SocketEvent = require('./SocketEvent');
 
 
-// import ServerAbstract from './ServerAbstract';
+import ServerAbstract from './ServerAbstract';
 
 class ServerManager {
     _servers: {[id: string]: {server: object}}
@@ -44,6 +45,7 @@ class ServerManager {
     /**
      * 
      * @param {Object} config - Configuration object for socket.io server
+    
      * @param {Integer} config.port - Port to run the socket.io server on
      * @param {Array[SocketEvent]} config.events - List of SocketEvent that are exposed for client/server to communicate on. Events should be of type SocketEvent
      * @param {Function} config.onConnection - Callback for when a client connects to the server
@@ -52,41 +54,40 @@ class ServerManager {
      * @returns {Promise} - The promise 
      */
 
+     //events implentation for later
     createServer = (config: any = {}) => {
         const { port, onConnection, onMessage, events } = config;
-
-        // const app = express();
-        // const server = new http.Server(app);
-        // const wss = new WebSocket.Server({ server })
+        const app = express();
+        const server = new http.Server(app);
         const id = uuidv4();
+         app.use(cors());
 
-        // app.use(cors());
+        
+        const wss = new WebSocket.Server({ server })
 
-        // wss.on('connection', (ws, req) => {
-        //     if (onConnection) onConnection();
-        //     ws.on('message', (msg) => {
-        //         console.log(`server ${id} received message: msg`);
-        //         if(onMessage) onMessage(msg);
-        //     })
+        wss.on('connection', (ws: any, req: object) => {
+            if (onConnection) onConnection();
+            ws.on('message', (msg: string) => {
+                console.log(`server ${id} received message: msg`);
+                if(onMessage) onMessage(msg);
+            })
 
-        // });
+        });
 
-        // const broadcast = (message: any) => {
-        //     for(let client of wss.clients) {
-        //         client.send(message);
-        //     }
-        // }
+        const broadcast = (message: any) => {
+            for(let client of wss.clients) {
+                client.send(message);
+            }
+        }
 
-        // this._servers[id] = new ServerAbstract(wss, { broadcast });
+        this._servers[id] = new ServerAbstract(wss, { broadcast }, "hard coded name");
 
-        // return new Promise((resolve, reject) => {
-        //     server.listen(port || 3000, () => {
-        //         console.log(`Server ${id} created on ${port}`);
-        //         resolve();
-        //     });
-        // });
-
-
+        return new Promise((resolve: any, reject) => {
+            server.listen(port || 3000, () => {
+                console.log(`Server ${id} created on ${port}`);
+                resolve();
+            });
+        });
     }
 
     // /**
@@ -135,6 +136,8 @@ class ServerManager {
 
     // }
 }
+
+
 
 export default ServerManager;
 // module.exports = new ServerManager(); // Singleton, there should only be one ServerManager running in our app

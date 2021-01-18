@@ -1,11 +1,15 @@
 class ServerAbstract {
+   
     server: any
     broadcast: any
+    name: string
 
 
-    constructor(server: any, { broadcast }: {broadcast: any}) {
+    constructor(server: any, { broadcast }: {broadcast: any}, name: string) {
+        
         this.server = server;
         this.broadcast = broadcast;
+        this.name = name
     }
 
     broadcastToAll = (message: any) => {

@@ -8,6 +8,9 @@ import ServersContainer from './ServersContainer';
 import Sidebar from '../components/Sidebar';
 import StreamDisplay from '../components/StreamDisplay';
 
+
+
+
 class MainContainer extends Component {
   constructor(props: any) {
     super(props);
@@ -16,6 +19,7 @@ class MainContainer extends Component {
   render() {
     return (
       <div className="app">
+        
         <Header />
         <div className="app_container">
           <Sidebar />
