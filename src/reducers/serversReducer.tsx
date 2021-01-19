@@ -3,7 +3,8 @@
  */
 
 import * as types from "../constants/actionTypes";
-import ServerManager from "../ServerManager/ServerManager";
+const ServerManager = require('@/ServerManager/ServerManager')
+// import ServerManager from "../ServerManager/ServerManager";
 // TODO: Import Server Manager (SM) here and update cases
 
 const initialState = {
@@ -20,16 +21,16 @@ const serversReducer = (state = initialState, action: any) => {
     case types.CREATE_SERVER: {
       
       let config: Config = action.payload
-      state.serverManager.createServer(config);
+      // state.serverManager.createServer(config);
 
       console.log("Create Server");
-      return state;
+      return {...state}
     }
     case types.GET_SERVER: {
       const id = action.payload;
       // invoke SM here
       console.log("Get Server");
-      return state;
+      return {...state}
     }
     case types.GET_SERVERS: {
       // invoke SM here

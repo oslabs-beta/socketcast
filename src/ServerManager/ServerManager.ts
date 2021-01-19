@@ -84,7 +84,7 @@ class ServerManager {
         return new Promise((resolve: any, reject) => {
             server.listen(port || 3000, () => {
                 console.log(`Server ${id} created on ${port}`);
-                resolve();
+                resolve(id);
             });
         });
     }
@@ -138,5 +138,5 @@ class ServerManager {
 
 
 
-export default ServerManager;
-// module.exports = new ServerManager(); // Singleton, there should only be one ServerManager running in our app
+// export default ServerManager;
+module.exports = new ServerManager(); // Singleton, there should only be one ServerManager running in our app
