@@ -22,7 +22,14 @@ interface Config {
     onConnection?: any,
     onMessage?: any
 }
+
+interface ServerAbstract {
+  name: string,
+  broadcastToAll: function,
+  server: Server
+}
+
 interface Servers {
-    [id: string]: {server: object}
+    [id: string]: {server: object | ServerAbstract }
 }
 

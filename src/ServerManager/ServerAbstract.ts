@@ -4,7 +4,6 @@ class ServerAbstract {
     broadcast: any
     name: string
 
-
     constructor(server: any, { broadcast }: {broadcast: any}, name: string) {
         
         this.server = server;
@@ -13,6 +12,7 @@ class ServerAbstract {
     }
 
     broadcastToAll = (message: any) => {
+        console.log(`in ServerAbstract`)
         return this.broadcast(message);
     }
     

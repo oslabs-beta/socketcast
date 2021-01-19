@@ -25,7 +25,7 @@ class ServerManager {
     getServers = () => {
         return this._servers;
     }
-    
+
 
     // TODO
     /**
@@ -49,17 +49,15 @@ class ServerManager {
      * @param {Function} config.onMessage
      * @returns {Promise} - The promise 
      */
-
-    
-    createServer = (config: Config ) => {
+    createServer = (config: Config) => {
         //events implentation for later
         const { name, port, onConnection, onMessage, events } = config;
         const app = express();
         const server = new http.Server(app);
         const id = uuidv4();
-         app.use(cors());
+        app.use(cors());
 
-        
+
         const wss = new WebSocket.Server({ server })
 
         //what is type of ws?
@@ -67,14 +65,17 @@ class ServerManager {
             if (onConnection) onConnection();
             ws.on('message', (msg: string) => {
                 console.log(`server ${id} received message: msg`);
-                if(onMessage) onMessage(msg);
+                if (onMessage) onMessage(msg);
             })
 
         });
 
-        //what is shape of message?
-        const broadcast = (message: object) => {
-            for(let client of wss.clients) {
+        // TODO Promisify this somehow. The complication is promisifying it is that we need to wait messages to be sent to ALL clients
+        // If we don't do this, we assume that the message is always successfully emitted at the time it displays on the UI (which may not be true)
+        const broadcast = (message: string) => {
+            console.log(`in servermanager broadcast`)
+            for (let client of wss.clients) {
+                console.log('attempting to send to client')
                 client.send(message);
             }
         }
@@ -86,13 +87,20 @@ class ServerManager {
                 console.log(`Server ${id} created on ${port}`);
                 resolve({
                     id,
+                    name,
                     status: 'RUNNING'
                 });
             });
         });
     }
 
-   
+    //
+    broadcastToClients = (id: string, message: string) => {
+        console.log(`emitting '${message}' to ${id}`);
+        // @ts-ignore
+        this._servers[id].broadcastToAll(message);
+    }
+
 
     // /**
     //  * Modify a server currently running. This will effectively stop the server and create a new one with the new config, but with the same id.

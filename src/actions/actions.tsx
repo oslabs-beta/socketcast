@@ -3,6 +3,7 @@
  */
 
 const ServerManager = require('@/ServerManager/ServerManager');
+import { stringify } from 'uuid';
 import * as types from '../constants/actionTypes';
 
 export const createServer = (data: any) => ({
@@ -44,6 +45,17 @@ export const serverManagerCreateServer = (config: Config) => {
         console.log(err)
       });
   }
+}
+
+export const serverManagerEmitMessage = (id: string, message: string) => {
+    return (dispatch: any) => {
+      ServerManager.broadcastToClients(id, message)
+      // .then(message => {
+        
+      // }).catch((err: any) => {
+      //   console.log(err);
+      // });
+    }
 }
 
 // export const serverManagerGetServer = (id: String) => {

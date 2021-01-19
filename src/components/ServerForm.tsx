@@ -1,8 +1,15 @@
+import { serverManagerEmitMessage } from "@/actions/actions";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function ServerForm(props: any) {
   const [port, updatePort] = useState("3000");
   const [name, updateName] = useState("server1");
+  // START This code is for Emit POC only
+  const dispatch = useDispatch();
+  // @ts-ignore
+  const servers = useSelector(store => store.servers.servers);
+  // END
 
   return (
     <div className="serverForm">
@@ -17,6 +24,9 @@ function ServerForm(props: any) {
           }}
         >
           Create Server
+        </button>
+        <button onClick={() => {dispatch(serverManagerEmitMessage(Object.keys(servers)[0], 'TEST!!!!'))}} className="serverForm_button">
+          EMIT MESSAGE to {Object.keys(servers)[0]}
         </button>
         <button onClick={props.getServers} className="serverForm_button">
           Get Servers

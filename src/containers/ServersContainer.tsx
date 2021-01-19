@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 //these interfaces come from type.d.ts!
-class ServersContainer extends Component <ServersContainerProps, ServersContainerState> {
+class ServersContainer extends Component<ServersContainerProps, ServersContainerState> {
   constructor(props: any) {
     super(props);
   }
