@@ -3,15 +3,18 @@
  */
 
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import Header from '../components/Header';
 import ServersContainer from './ServersContainer';
 import Sidebar from '../components/Sidebar';
 import StreamDisplay from '../components/StreamDisplay';
 
 
+const mapStateToProps = (state: any) => ({
+  servers: state.servers.servers
+});
 
-
-class MainContainer extends Component {
+class MainContainer extends Component<MainContainerProps, MainContainerState> {
   constructor(props: any) {
     super(props);
   }
@@ -22,7 +25,7 @@ class MainContainer extends Component {
         
         <Header />
         <div className="app_container">
-          <Sidebar />
+          <Sidebar servers = {this.props.servers} />
           <ServersContainer />
           <StreamDisplay />
         </div>
@@ -31,4 +34,4 @@ class MainContainer extends Component {
   }
 }
 
-export default MainContainer;
+export default connect(mapStateToProps)(MainContainer);

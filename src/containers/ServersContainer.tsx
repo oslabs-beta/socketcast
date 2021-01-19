@@ -25,23 +25,8 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(actions.stopAndRemoveServer(id)),
 });
 
-interface ServersContainerProps {
-  servers?: object;
-  getServers?: any;
-  createServer?: any;
-  serverName?: string;
-}
-interface ServersContainerState {
-  servers?: object;
-  serverName?: string;
-}
-
-
-
-class ServersContainer extends Component<
-  ServersContainerProps,
-  ServersContainerState
-> {
+//these interfaces come from type.d.ts!
+class ServersContainer extends Component <ServersContainerProps, ServersContainerState> {
   constructor(props: any) {
     super(props);
   }

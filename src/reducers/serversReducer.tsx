@@ -19,8 +19,7 @@ const serversReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case types.CREATE_SERVER: {
       
-      let config = action.payload
-
+      let config: Config = action.payload
       state.serverManager.createServer(config);
 
       console.log("Create Server");
@@ -34,9 +33,11 @@ const serversReducer = (state = initialState, action: any) => {
     }
     case types.GET_SERVERS: {
       // invoke SM here
-      console.log('SERVERS>', state.serverManager.getServers())
+      const serversTemp = state.serverManager.getServers()
+      console.log('SERVERS>', serversTemp)
+      
       console.log("Get Servers");
-      return state;
+      return {...state, servers: serversTemp}
     }
     case types.MODIFY_SERVER: {
       const { id, config } = action.payload;

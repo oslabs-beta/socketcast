@@ -1,6 +1,5 @@
 import http from 'http';
 import express from 'express';
-// import WebSocket from 'ws';
 const WebSocket = require('ws')
 import { v4 as uuidv4 } from 'uuid';
 import cors from 'cors';
@@ -12,10 +11,8 @@ import cors from 'cors';
 import ServerAbstract from './ServerAbstract';
 
 class ServerManager {
-    _servers: {[id: string]: {server: object}}
-    broadcast: any
-    app: any
-    
+    //define interfaces (from type.d.ts)
+    _servers: Servers
 
     constructor() {
         // Denoted with _ because this should not be modified directly. 
@@ -45,18 +42,18 @@ class ServerManager {
     /**
      * 
      * @param {Object} config - Configuration object for socket.io server
-    
+     * @param {String} config.name - Configuration object for socket.io server
      * @param {Integer} config.port - Port to run the socket.io server on
      * @param {Array[SocketEvent]} config.events - List of SocketEvent that are exposed for client/server to communicate on. Events should be of type SocketEvent
      * @param {Function} config.onConnection - Callback for when a client connects to the server
      * @param {Function} config.onMessage
-     * 
      * @returns {Promise} - The promise 
      */
 
-     //events implentation for later
-    createServer = (config: any = {}) => {
-        const { port, onConnection, onMessage, events } = config;
+    
+    createServer = (config: Config ) => {
+        //events implentation for later
+        const { name, port, onConnection, onMessage, events } = config;
         const app = express();
         const server = new http.Server(app);
         const id = uuidv4();
@@ -65,6 +62,7 @@ class ServerManager {
         
         const wss = new WebSocket.Server({ server })
 
+        //what is type of ws?
         wss.on('connection', (ws: any, req: object) => {
             if (onConnection) onConnection();
             ws.on('message', (msg: string) => {
@@ -74,13 +72,14 @@ class ServerManager {
 
         });
 
-        const broadcast = (message: any) => {
+        //what is shape of message?
+        const broadcast = (message: object) => {
             for(let client of wss.clients) {
                 client.send(message);
             }
         }
 
-        this._servers[id] = new ServerAbstract(wss, { broadcast }, "hard coded name");
+        this._servers[id] = new ServerAbstract(wss, { broadcast }, name);
 
         return new Promise((resolve: any, reject) => {
             server.listen(port || 3000, () => {
