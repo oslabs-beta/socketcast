@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 
-function Sidebar() {
+function Sidebar(props: any) {
   let onlineServers = [{ name: "Server1" }, { name: "Server2" }];
+
   let offlineServers = [
     { name: "Server3" },
     { name: "Server4" },
@@ -10,6 +11,8 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
+      {/* how can i get this to update? use effect? */}
+      {Object.values(props.servers).map((item: any) => (<div key = {item.name}>{JSON.stringify(item.name)}</div>))}
       <b>Running Servers</b>
       <div className="sidebar_container">
         {onlineServers.map((server) => (
@@ -27,6 +30,7 @@ function Sidebar() {
           </div>
         ))}
       </div>
+      <button onClick = {()=>{console.log(props.servers)}} >Log Servers</button>
     </div>
   );
 }

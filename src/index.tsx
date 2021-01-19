@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import App from './components/app';
 import store from './store';
 
+
+
 const root = document.getElementById('root')
 
 render(

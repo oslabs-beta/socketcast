@@ -51,6 +51,7 @@ const reactConfiguration = {
       alias: {
         ['@']: path.resolve(__dirname, 'src')
       },
+      mainFields: ['main', 'browser'],
       extensions: ['.tsx', '.ts', '.js'],
     },
 
@@ -62,6 +63,12 @@ const reactConfiguration = {
           test: /\.ts(x?)$/,
           include: /src/,
           use: [{ loader: 'ts-loader' }]
+        },
+        {
+          test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
+          resolve: {
+            aliasFields: ['main']
+          }
         },
         //css+sass loaders
         {
