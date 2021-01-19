@@ -15,7 +15,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  createServer: (config: Object) => dispatch(actions.createServer(config)),
+  createServer: (config: Config) => dispatch(actions.serverManagerCreateServer(config)),
   getServer: (id: Number) => dispatch(actions.getServer(id)),
   getServers: () => dispatch(actions.getServers()),
   modifyServer: (id: Number, config: Object) =>

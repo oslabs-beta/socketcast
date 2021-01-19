@@ -20,6 +20,7 @@ class MainContainer extends Component<MainContainerProps, MainContainerState> {
   }
 
   render() {
+    console.log('state.servers.servers changed')
     return (
       <div className="app">
         

@@ -8,7 +8,7 @@ const ServerManager = require('@/ServerManager/ServerManager')
 // TODO: Import Server Manager (SM) here and update cases
 
 const initialState = {
-  serverManager: new ServerManager(),
+  // serverManager: new ServerManager(),
   servers: {},
   serverName: "",
   serverEndpoint: "",
@@ -19,26 +19,31 @@ const initialState = {
 const serversReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case types.CREATE_SERVER: {
-      
-      let config: Config = action.payload
-      // state.serverManager.createServer(config);
-
-      console.log("Create Server");
-      return {...state}
+      console.log(JSON.stringify({
+        ...state.servers,
+        [action.payload.id]: { ...action.payload }
+      }))
+      return {
+        ...state,
+        servers: {
+          ...state.servers,
+          [action.payload.id]: { ...action.payload }
+        }
+      }
     }
     case types.GET_SERVER: {
       const id = action.payload;
       // invoke SM here
       console.log("Get Server");
-      return {...state}
+      return { ...state }
     }
     case types.GET_SERVERS: {
       // invoke SM here
-      const serversTemp = state.serverManager.getServers()
-      console.log('SERVERS>', serversTemp)
-      
+      // const serversTemp = state.serverManager.getServers()
+      // console.log('SERVERS>', serversTemp)
+
       console.log("Get Servers");
-      return {...state, servers: serversTemp}
+      return { ...state }
     }
     case types.MODIFY_SERVER: {
       const { id, config } = action.payload;

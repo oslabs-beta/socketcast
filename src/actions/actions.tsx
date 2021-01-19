@@ -2,12 +2,12 @@
  * @description Action Creators
  */
 
-const ServerManager = require('@/ServerManager/ServerManager')
+const ServerManager = require('@/ServerManager/ServerManager');
 import * as types from '../constants/actionTypes';
 
-export const createServer = (id: string) => ({
+export const createServer = (data: any) => ({
   type: types.CREATE_SERVER,
-  payload: id,
+  payload: data,
 });
 
 export const getServer = (id: Number) => ({
@@ -35,6 +35,23 @@ export const stopAndRemoveServer = (id: Number) => ({
   payload: id,
 })
 
-export const SMCreateServer = (config: Config) => {return (dispatch: any) => {
-  ServerManager.createServer(config).then((data :any)=> dispatch(createServer(data))).catch((err:any)=> console.log(err))
-}}
+export const serverManagerCreateServer = (config: Config) => {
+  return (dispatch: any) => {
+    ServerManager.createServer(config)
+      .then((data: any) => {
+        dispatch(createServer(data))
+      }).catch((err: any) => {
+        console.log(err)
+      });
+  }
+}
+
+// export const serverManagerGetServer = (id: String) => {
+//   return (dispatch: any) => {
+//     ServerManager.getServer(id).then((serverStatus: any) => {
+//       dispatch(serverStatus);
+//     }).catch((error: any) => {
+//       console.log(error);
+//     });
+//   }
+// }

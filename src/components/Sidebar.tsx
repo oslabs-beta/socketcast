@@ -14,7 +14,9 @@ function Sidebar(props: any) {
       {/* how can i get this to update? use effect? */}
 
       
-      {Object.values(props.servers).map((item: any) => (<div key = {item.name}>{JSON.stringify(item.name)}</div>))}
+      {
+      Object.values(props.servers).map((item: any) => (<div key = {item.name}>{JSON.stringify(item)}</div>))
+      }
 
 
 

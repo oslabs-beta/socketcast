@@ -84,10 +84,15 @@ class ServerManager {
         return new Promise((resolve: any, reject) => {
             server.listen(port || 3000, () => {
                 console.log(`Server ${id} created on ${port}`);
-                resolve(id);
+                resolve({
+                    id,
+                    status: 'RUNNING'
+                });
             });
         });
     }
+
+   
 
     // /**
     //  * Modify a server currently running. This will effectively stop the server and create a new one with the new config, but with the same id.
@@ -138,5 +143,4 @@ class ServerManager {
 
 
 
-// export default ServerManager;
 module.exports = new ServerManager(); // Singleton, there should only be one ServerManager running in our app
