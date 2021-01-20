@@ -1,13 +1,12 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentServerId } from "@/actions/actions";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentServerId } from '@/store/actions';
 
 function Sidebar() {
   const dispatch = useDispatch();
 
   // @ts-ignore
   const servers = useSelector((store) => store.serversReducer.servers);
-  //END
 
   return (
     <div className="sidebar">

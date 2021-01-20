@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { serverManagerCreateServer, getServers } from "@/actions/actions";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { serverManagerCreateServer, getServers } from '@/store/actions';
 
 function ServerForm() {
-  const [port, updatePort] = useState("3000");
-  const [name, updateName] = useState("server1");
+  const [port, updatePort] = useState('3000');
+  const [name, updateName] = useState('server1');
   const dispatch = useDispatch();
 
   return (
@@ -16,17 +16,19 @@ function ServerForm() {
         <button
           className="serverForm_button"
           onClick={() => {
-            dispatch(serverManagerCreateServer({ port: +port, name: name }));
+            dispatch(serverManagerCreateServer({ port: +port, name }));
           }}
+          type="button"
         >
           Create Server
         </button>
-        <button className="serverForm_button">Stop Server</button>
+        <button className="serverForm_button" type="button">Stop Server</button>
         <button
           onClick={() => {
             console.log(dispatch(getServers()));
           }}
           className="serverForm_button"
+          type="button"
         >
           Log Servers
         </button>
@@ -35,26 +37,32 @@ function ServerForm() {
       {/* FORM */}
       <form className="serverForm_form">
         <div className="serverForm_container">
-          Name:{" "}
+          Name:
+          {' '}
           <input
             value={name}
             onChange={(e) => updateName(e.target.value)}
             className="serverForm_input"
-          ></input>
+          />
         </div>
         <div className="serverForm_container">
-          Endpoint: <input className="serverForm_input"></input>
+          Endpoint:
+          {' '}
+          <input className="serverForm_input" />
         </div>
         <div className="serverForm_container">
-          Port:{" "}
+          Port:
+          {' '}
           <input
             value={port}
             onChange={(e) => updatePort(e.target.value)}
             className="serverForm_input"
-          ></input>
+          />
         </div>
         <div className="serverForm_container">
-          Protocol: <button className="serverForm_button">X</button>
+          Protocol:
+          {' '}
+          <button className="serverForm_button" type="button">X</button>
         </div>
       </form>
     </div>
