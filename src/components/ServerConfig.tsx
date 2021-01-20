@@ -1,6 +1,6 @@
-import React from "react";
-import ServerForm from "./ServerForm";
-import EventConfig from "./EventConfig";
+import React from 'react';
+import ServerForm from './ServerForm';
+import EventConfig from './EventConfig';
 
 function ServerConfig() {
   return (

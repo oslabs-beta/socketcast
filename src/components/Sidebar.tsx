@@ -7,7 +7,6 @@ function Sidebar() {
 
   // @ts-ignore
   const servers = useSelector((store) => store.serversReducer.servers);
-  //END
 
   return (
     <div className="sidebar">

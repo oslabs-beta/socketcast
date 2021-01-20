@@ -2,9 +2,9 @@
  * @description Action Creators
  */
 
-import ServerManager from '../ServerManager/ServerManager';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
+import ServerManager from '../ServerManager/ServerManager';
 import { RootState } from '../reducers';
 import * as types from '../constants/actionTypes';
 
@@ -30,8 +30,8 @@ export const modifyServer = (id: Number, config: Object) => ({
 
 export const setCurrentServerId = (id: string) => ({
   type: types.SET_CURRENT_SERVER_ID,
-  payload: id
-})
+  payload: id,
+});
 
 export const stopAll = () => ({
   type: types.STOP_ALL,
@@ -41,30 +41,28 @@ export const stopAll = () => ({
 export const stopAndRemoveServer = (id: Number) => ({
   type: types.STOP_AND_REMOVE_SERVER,
   payload: id,
-})
+});
 
-export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => {
-  return dispatch => {
-    ServerManager.createServer(config)
-      .then((data: any) => {
-        dispatch(createServer(data))
-      }).catch((err: any) => {
-        console.log(err)
-      });
-  }
-}
+// eslint-disable-next-line max-len
+export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+  ServerManager.createServer(config)
+    .then((data: any) => {
+      dispatch(createServer(data));
+    }).catch((err: any) => {
+      console.log(err);
+    });
+};
 
-export const serverManagerBroadcastAll = (id: string, message: string): ThunkAction<void, RootState, unknown, Action<string>> => {
-  return dispatch => {
-    /**
+// eslint-disable-next-line max-len
+export const serverManagerBroadcastAll = (id: string, message: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+  /**
      * The following method, broadcastToAll() is not "promisified" yet.
      * However, it is an asynchronous action and Redux will "complain" if we do not
      * write this in thunk format.
      */
-    ServerManager.broadcastToAll(id, message);
-    /**
-     * After calling the above broadcastToAll() method, dispatch some action 
+  ServerManager.broadcastToAll(id, message);
+  /**
+     * After calling the above broadcastToAll() method, dispatch some action
      * that adds to our store's state that keeps track of messages.
      */
-  }
-}
+};
