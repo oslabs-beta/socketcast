@@ -21,7 +21,6 @@
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "save-dev": "0.0.1-security",
     "uuid": "^8.3.2",
     "ws": "^7.4.2"
   },
