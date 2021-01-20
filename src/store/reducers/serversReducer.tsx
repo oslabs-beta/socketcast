@@ -2,7 +2,7 @@
  * @description Reducer for server data
  */
 
-import * as types from '../constants/actionTypes';
+import * as types from '../actions/actionTypes';
 
 const initialState = {
   servers: {},

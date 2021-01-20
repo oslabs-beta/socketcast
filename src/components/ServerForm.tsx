@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { serverManagerCreateServer, getServers } from '@/actions/actions';
+import { serverManagerCreateServer, getServers } from '@/store/actions';
 
 function ServerForm() {
   const [port, updatePort] = useState('3000');

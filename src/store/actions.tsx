@@ -5,8 +5,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 import ServerManager from '../ServerManager/ServerManager';
-import { RootState } from '../reducers';
-import * as types from '../constants/actionTypes';
+import { RootState } from './reducers';
+import * as types from './actions/actionTypes';
 
 export const createServer = (data: any) => ({
   type: types.CREATE_SERVER,
