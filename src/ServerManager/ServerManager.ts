@@ -20,7 +20,7 @@ class ServerManager {
 
     /**
      * Returns an object containing our servers. The keys are the the ID of the server within ServerManager.
-     * @returns {Object.<string, ServerRecord}
+     * @returns {Array.<ServerRecord>}
      */
     getServers = () => {
         return Object.keys(this._servers).map((currentKey: string) => ({
