@@ -4,32 +4,31 @@ interface ServersContainerProps {
   createServer?: any;
   serverName?: string;
 }
+
 interface ServersContainerState {
   servers?: object;
   serverName?: string;
 }
+
 interface MainContainerProps {
     servers?: object
 }
+
 interface MainContainerState {
     servers?: object
 }
-interface Config {
+
+interface ServerConfig {
     name: string,
     port: number,
-    events?: any,
-    // events: event[]
-    onConnection?: any,
-    onMessage?: any
+    onConnection?: Function,
+    onMessage?: Function
+    onError?: Function
 }
 
-interface ServerAbstract {
+interface ServerRecord {
+  id: string,
   name: string,
-  broadcastToAll: function,
-  server: Server
-}
-
-interface Servers {
-    [id: string]: {server: object | ServerAbstract }
+  status: string
 }
 
