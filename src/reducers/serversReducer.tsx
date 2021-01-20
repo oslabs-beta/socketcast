@@ -3,16 +3,11 @@
  */
 
 import * as types from "../constants/actionTypes";
-const ServerManager = require('@/ServerManager/ServerManager')
-// import ServerManager from "../ServerManager/ServerManager";
-// TODO: Import Server Manager (SM) here and update cases
 
 const initialState = {
-  // serverManager: new ServerManager(),
   servers: {},
-  serverName: "",
-  serverEndpoint: "",
-  serverPort: "",
+  currentServerId: '',
+  currentEventId: '',
 };
 
 
@@ -50,6 +45,11 @@ const serversReducer = (state = initialState, action: any) => {
       // invoke SM here
       console.log("Modify Server");
       return state;
+    }
+    case types.SET_CURRENT_SERVER_ID: {
+      const currentServerId = action.payload
+      console.log('Set Current Server Id', currentServerId)
+      return {...state, currentServerId};
     }
     case types.STOP_ALL: {
       // invoke SM here

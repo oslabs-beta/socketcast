@@ -126,21 +126,28 @@ body {
   flex: 0.3;
   padding: 5px 10px;
   margin-top: 5px;
+  margin-right: 10px;
 }
 
 .sidebar_container {
   margin-left: 15px;
   display: flex;
   flex-direction: column;
+  font-weight: bold;
 }
 
 .sidebar_server {
   color: $base_teal2;
 }
 
+.sidebar_server:hover {
+  color: $base_teal1;
+  cursor: pointer;
+}
+
 .streamDisplay {
   background-color: $base_grey;
-  flex: 1.5;
+  flex: 2;
   padding: 5px 10px;
   border-radius: 3px;
   display: flex;
@@ -150,22 +157,27 @@ body {
 .streamDisplay_header {
     background-color: white;
     border-radius: 3px;
-    
     padding: 10px;
-    flex: 1;
 }
 
 .streamDisplay_container {
   background-color: white;
   border-radius: 3px;
-  margin-top: 5px;
+  
   padding: 10px;
-  flex: 1;
+}
+
+.streamDisplay_outputContainer {
+  margin-top: 5px;
+  flex: 1
+}
+.streamDisplay_inputContainer {
+  flex: .2
 }
 
 .streamDisplay_inputbox {
   margin-top: 10px;
-  height: 300px;
+  height: 100px;
   width: 100%;
   border-radius: 3px 3px 3px 0px;
   border: 2px $base_teal3 solid;
@@ -175,7 +187,7 @@ body {
 
 .streamDisplay_outputbox {
   margin-top: 10px;
-  height: 200px;
+  height: 431px;
   width: 100%;
   border-radius: 3px 3px 3px 0px;
   border: 2px $base_teal3 solid;

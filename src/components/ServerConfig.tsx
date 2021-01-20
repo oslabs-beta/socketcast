@@ -2,15 +2,10 @@ import React from "react";
 import ServerForm from "./ServerForm";
 import EventConfig from "./EventConfig";
 
-function ServerConfig(props: any) {
+function ServerConfig() {
   return (
     <div className="serverConfig">
-      <ServerForm
-        createServer={props.createServer}
-        servers={props.servers}
-        getServers={props.getServers}
-      />
-
+      <ServerForm />
       {/* map over something and make EventConfig instances */}
       <EventConfig />
     </div>
