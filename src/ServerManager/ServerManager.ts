@@ -86,6 +86,7 @@ class ServerManager {
                 console.log(`Server ${id} created on ${port}`);
                 resolve({
                     id,
+                    name,
                     status: 'RUNNING'
                 });
             });

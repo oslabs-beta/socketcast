@@ -14,33 +14,31 @@ function StreamDisplay() {
 
   return (
     <div className="streamDisplay">
-      <div className="streamDisplay_header">Streamdisplay event chat</div>
-      <div className="streamDisplay_container">
+      <div className="streamDisplay_container streamDisplay_inputContainer">
         <div>Stream Input</div>
         <br />
-        <div className="streamDisplay_outputbox">
-          {inputStream.map((code) => (
-            <div className="code" key={code.id}>
-              message: 'something something something'
-            </div>
-          ))}
+        <div className="streamDisplay_inputbox">
+          <div className="code">
+            message: 'this is a message you can define'
+          </div>
         </div>
         <div>
-          <button className="streamDisplay_button">improvised response</button>
-          <button className="streamDisplay_button">application/json</button>
+          <button className="streamDisplay_button">
+            emit improvised response
+          </button>
+          <button className="streamDisplay_button">plan a response</button>
         </div>
       </div>
-      <div className="streamDisplay_container">
+      <div className="streamDisplay_container streamDisplay_outputContainer">
         <div>Stream Output</div>
         <br />
-        <div className="streamDisplay_inputbox">
+        <div className="streamDisplay_outputbox">
           {outputStream.map((code) => (
             <div className="code" key={code.id}>
               message: 'something something something'
             </div>
           ))}
         </div>
-        <button className="streamDisplay_button">emit response</button>
       </div>
     </div>
   );

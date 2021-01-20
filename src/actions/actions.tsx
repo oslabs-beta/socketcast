@@ -25,6 +25,11 @@ export const modifyServer = (id: Number, config: Object) => ({
   payload: { id, config },
 });
 
+export const setCurrentServerId = (id: string) => ({
+  type: types.SET_CURRENT_SERVER_ID,
+  payload: id 
+})
+
 export const stopAll = () => ({
   type: types.STOP_ALL,
   payload: null,
