@@ -4,8 +4,10 @@ class ServerAbstract {
     server: any
     broadcast: any
     name: string
+    id: string
 
-    constructor(server: WebSocket.Server, { broadcast }: { broadcast: any }, name: string) {
+    constructor(server: WebSocket.Server, { broadcast }: { broadcast: any }, name: string, id: string) {
+        this.id = id;
         this.server = server;
         this.broadcast = broadcast;
         this.name = name

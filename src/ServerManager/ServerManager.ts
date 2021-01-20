@@ -12,24 +12,28 @@ enum ServerStatus {
 }
 
 class ServerManager {
-    //define interfaces (from type.d.ts)
-    private _servers: { [index: string]: ServerAbstract }
+    private _servers: { [index: string]: ServerAbstract };
 
     constructor() {
-        // Denoted with _ because this should not be modified directly. 
         this._servers = {};
     }
 
     /**
      * Returns an object containing our servers. The keys are the the ID of the server within ServerManager.
+     * @returns {Object.<string, ServerRecord}
      */
     getServers = () => {
-        return this._servers;
+        return Object.keys(this._servers).map((currentKey: string) => ({
+            id: this._servers[currentKey].id,
+            name: this._servers[currentKey].name,
+            status: this._servers[currentKey].isListening() ? ServerStatus.RUNNING : ServerStatus.STOPPED
+        }));
     }
 
     /**
      * Get an individual ServerAbstract by the id of the server. This returns an object that contains a reference the WebSocket server itself.
      * @param {string} id
+     * @
      */
     getServerAbstract = (id: string) => {
         return this._servers[id];
@@ -78,7 +82,7 @@ class ServerManager {
         /**
          * TODO Promisify this somehow. The complication is promisifying it is that we need to wait messages to be sent to ALL clients
          *  If we don't do this, we assume that the message is always successfully emitted at the time it displays on the UI (which may not be true)
-         */ 
+         */
         const broadcast = (message: string) => {
             wss.clients.forEach((client: any) => {
                 client.send(message);
@@ -86,7 +90,7 @@ class ServerManager {
 
         }
 
-        this._servers[id] = new ServerAbstract(wss, { broadcast }, name);
+        this._servers[id] = new ServerAbstract(wss, { broadcast }, name, id);
 
         /**
          * We return a promise, but we _cannot_ ever reject this promise because any errors that would happen when calling
