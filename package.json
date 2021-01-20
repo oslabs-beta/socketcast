@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack",
     "start": "npm run build && electron dist/main.js",
-    "test": "jest"
+    "test": "jest",
+    "eslint" : "npx eslint ./src --ext .js,.jsx,.ts,.tsx"
   },
   "keywords": [],
   "author": "",
