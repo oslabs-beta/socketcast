@@ -40,7 +40,7 @@ export const stopAndRemoveServer = (id: Number) => ({
   payload: id,
 })
 
-export const serverManagerCreateServer = (config: Config) => {
+export const serverManagerCreateServer = (config: ServerConfig) => {
   return (dispatch: any) => {
     ServerManager.createServer(config)
       .then((data: any) => {

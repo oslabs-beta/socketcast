@@ -1,18 +1,19 @@
-import http from 'http';
+import http, { Server } from 'http';
 import express from 'express';
-const WebSocket = require('ws')
 import { v4 as uuidv4 } from 'uuid';
 import cors from 'cors';
-
-
-// const SocketEvent = require('./SocketEvent');
-
+import * as WebSocket from 'ws';
 
 import ServerAbstract from './ServerAbstract';
 
+enum ServerStatus {
+    RUNNING = 'RUNNING',
+    STOPPED = 'STOPPED'
+}
+
 class ServerManager {
     //define interfaces (from type.d.ts)
-    _servers: Servers
+    private _servers: { [index: string]: ServerAbstract }
 
     constructor() {
         // Denoted with _ because this should not be modified directly. 
@@ -20,126 +21,113 @@ class ServerManager {
     }
 
     /**
-     * Returns an object containing our servers
+     * Returns an object containing our servers. The keys are the the ID of the server within ServerManager.
      */
     getServers = () => {
         return this._servers;
     }
-    
 
-    // TODO
     /**
-     * getServer
-     * Get an individual ServerAbstract by the id of the server
-     * @param {*} id 
+     * Get an individual ServerAbstract by the id of the server. This returns an object that contains a reference the WebSocket server itself.
+     * @param {string} id
      */
-    getServer = (id: string) => {
+    getServerAbstract = (id: string) => {
         return this._servers[id];
     }
 
-    // // TODO Create listeners to listen on close of a server. When a server is closed, we should remove it from _servers. We may also want to execute a callback provided by the user.
+    /**
+     * Get an individual server's ServerRecord
+     * @param {string} id
+     */
+    getServer = (id: string) => {
+        const { name } = this._servers[id];
+        return {
+            id,
+            name,
+            status: this._servers[id].isListening() ? ServerStatus.RUNNING : ServerStatus.STOPPED
+        };
+    }
 
     /**
-     * 
-     * @param {Object} config - Configuration object for socket.io server
-     * @param {String} config.name - Configuration object for socket.io server
+     * Create a new WebSocket server based on configuration.
+     * @param {ServerConfig} config - Configuration object for socket.io server
+     * @param {string} config.name - Configuration object for socket.io server
      * @param {Integer} config.port - Port to run the socket.io server on
-     * @param {Array[SocketEvent]} config.events - List of SocketEvent that are exposed for client/server to communicate on. Events should be of type SocketEvent
-     * @param {Function} config.onConnection - Callback for when a client connects to the server
-     * @param {Function} config.onMessage
-     * @returns {Promise} - The promise 
+     * @param {Function} config.onConnection - Callback for when a client successfully connects to the server
+     * @param {Function} config.onMessage - Callback for when a message is sent to our server by a client
+     * @param {Function} config.onError - Callback for when an error happens on the server. The error will be the only parameter of the callback.
+     * @returns {Promise}
      */
-
-    
-    createServer = (config: Config ) => {
-        //events implentation for later
-        const { name, port, onConnection, onMessage, events } = config;
+    createServer = (config: ServerConfig): Promise<ServerRecord | Error> => {
+        const { name, port, onConnection, onMessage, onError } = config;
         const app = express();
         const server = new http.Server(app);
         const id = uuidv4();
-         app.use(cors());
+        app.use(cors());
 
-        
-        const wss = new WebSocket.Server({ server })
+        const wss = new WebSocket.Server({ server });
 
-        //what is type of ws?
         wss.on('connection', (ws: any, req: object) => {
             if (onConnection) onConnection();
             ws.on('message', (msg: string) => {
-                console.log(`server ${id} received message: msg`);
-                if(onMessage) onMessage(msg);
+                if (onMessage) onMessage(msg);
             })
 
         });
 
-        //what is shape of message?
-        const broadcast = (message: object) => {
-            for(let client of wss.clients) {
+        /**
+         * TODO Promisify this somehow. The complication is promisifying it is that we need to wait messages to be sent to ALL clients
+         *  If we don't do this, we assume that the message is always successfully emitted at the time it displays on the UI (which may not be true)
+         */ 
+        const broadcast = (message: string) => {
+            wss.clients.forEach((client: any) => {
                 client.send(message);
-            }
+            });
+
         }
 
         this._servers[id] = new ServerAbstract(wss, { broadcast }, name);
 
-        return new Promise((resolve: any, reject) => {
+        /**
+         * We return a promise, but we _cannot_ ever reject this promise because any errors that would happen when calling
+         * server.listen() will be a Node Event. We choose to use a promise, however, because we want to tell our consumers
+         * when our server is able to listen to an event.
+         * https://github.com/expressjs/express/issues/2856
+         */
+        return new Promise((resolve: Function, reject) => {
             server.listen(port || 3000, () => {
-                console.log(`Server ${id} created on ${port}`);
-                resolve({
+                return resolve({
                     id,
                     name,
-                    status: 'RUNNING'
+                    status: ServerStatus.RUNNING
                 });
             });
         });
     }
 
-   
+    // TODO Promisify this.
+    /**
+     * Broadcast a message to all the clients that are connected to the socket
+     * @param {string} id - The id of the server who's clients you want to send messages to
+     * @param {string} message - stringified message
+     * @returns {Promise}
+     */
+    broadcastToAll = (id: string, message: string) => {
+        this._servers[id].broadcastToAll(message);
+    }
 
-    // /**
-    //  * Modify a server currently running. This will effectively stop the server and create a new one with the new config, but with the same id.
-    //  * @param {*} id 
-    //  * @param {*} config 
-    //  */
-    // modifyServer = async (id, config) => {
-    //     try {
-    //         await this.stopAndRemoveServer(id);
-    //         await this.createServer(config); // TODO If I want to await this, createServer needs to return a Promise
-    //     } catch (error) {
-    //         throw new Error(error); // TODO Something feels off about this line
-    //     }
-    // }
+    // TODO Complete this.
+    /**
+     * Disconnect all the connections to the socket and close the server from listening to new connections.
+     * @param id 
+     * @returns {Promise}
+     */
+    stopServer = (id: string) => {
+        // Close all connections to the sockets
+        // call server.stop()
+        this._servers[id].server.stop()
+    }
 
-    // /**
-    //  * Stop a server and remove it from our server manager
-    //  * @param {Integer} id 
-    //  */
-    // stopAndRemoveServer = (id) => {
-    //     return new Promise((resolve, reject) => {
-    //         if (this._servers[id]) {
-    //             this._servers[id].close(() => {
-    //                 delete this._servers[id];
-    //                 resolve();
-    //             })
-    //         } else {
-    //             reject(new Error(`Cannot find server ${id}`));
-    //         }
-    //     })
-
-    // }
-
-    // stopAll = () => {
-    //     return new Promise((resolve, reject) => {
-    //         for (let server of this._servers) {
-    //             try {
-    //                 server.close(); // TODO can we do an await in a for loop?
-    //             } catch (error) {
-    //                 reject(error);
-    //             }
-    //         }
-    //         resolve();
-    //     })
-
-    // }
 }
 
 
