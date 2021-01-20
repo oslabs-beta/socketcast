@@ -1,5 +1,8 @@
 import { app, BrowserWindow } from 'electron';
-import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+// import installExtension, {
+//   REDUX_DEVTOOLS,
+//   REACT_DEVELOPER_TOOLS,
+// } from 'electron-devtools-installer';
 
 // make mainWindow var (specify types: alive or dead)
 let mainWindow: Electron.BrowserWindow | null;
