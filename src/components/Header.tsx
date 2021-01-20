@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function Header() {
-    return (
-        <div className = 'header'>
-            Socketcast
-        </div>
-    )
+  return (
+    <div className="header">
+      Socketcast
+    </div>
+  );
 }
 
 export default Header;

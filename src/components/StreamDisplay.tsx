@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 function StreamDisplay() {
-  let inputStream = [
-    { message: "something something", id: 1 },
-    { message: "something something", id: 2 },
-    { message: "something something", id: 3 },
+  const inputStream = [
+    { message: 'something something', id: 1 },
+    { message: 'something something', id: 2 },
+    { message: 'something something', id: 3 },
   ];
-  let outputStream = [
-    { message: "something something", id: 1 },
-    { message: "something something", id: 2 },
-    { message: "something something", id: 3 },
+  const outputStream = [
+    { message: 'something something', id: 1 },
+    { message: 'something something', id: 2 },
+    { message: 'something something', id: 3 },
   ];
 
   return (
@@ -23,10 +23,10 @@ function StreamDisplay() {
           </div>
         </div>
         <div>
-          <button className="streamDisplay_button">
+          <button className="streamDisplay_button" type="button">
             emit improvised response
           </button>
-          <button className="streamDisplay_button">plan a response</button>
+          <button className="streamDisplay_button" type="button">plan a response</button>
         </div>
       </div>
       <div className="streamDisplay_container streamDisplay_outputContainer">

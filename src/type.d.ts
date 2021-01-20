@@ -11,19 +11,19 @@ interface ServersContainerState {
 }
 
 interface MainContainerProps {
-    servers?: object
+  servers?: object
 }
 
 interface MainContainerState {
-    servers?: object
+  servers?: object
 }
 
 interface ServerConfig {
-    name: string,
-    port: number,
-    onConnection?: Function,
-    onMessage?: Function
-    onError?: Function
+  name: string,
+  port: number,
+  onConnection?: Function,
+  onMessage?: Function
+  onError?: Function
 }
 
 interface ServerRecord {

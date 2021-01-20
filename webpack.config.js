@@ -58,19 +58,30 @@ const reactConfiguration = {
 
     module: {
       rules: [
-          //typescript loaders
+        /**
+         * TypeScript loaders
+         */
         {
           test: /\.ts(x?)$/,
           include: /src/,
           use: [{ loader: 'ts-loader' }]
         },
+        /**
+         * TODO
+         * This following rule was added because we encountered a webpack error on
+         * startup of the electron application. This was a fix identified by 
+         * Chance, but it is worth re-visiting what exactly this does and breakdown the regex
+         * to git our specific use case.
+         */
         {
           test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
           resolve: {
             aliasFields: ['main']
           }
         },
-        //css+sass loaders
+        /**
+         * CSS / Sass Loaders
+         */
         {
             test: /\.s[ac]ss$/i,
             use: [
