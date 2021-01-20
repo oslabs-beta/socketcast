@@ -8,13 +8,11 @@ import { Provider } from 'react-redux';
 import App from './components/app';
 import store from './store';
 
-
-
-const root = document.getElementById('root')
+const root = document.getElementById('root');
 
 render(
   <Provider store={store}>
     <App />
   </Provider>,
-  root
+  root,
 );
