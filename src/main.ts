@@ -1,35 +1,5 @@
 import { app, BrowserWindow } from 'electron';
 
-
-
-// import test from './ServerManager/ServerManager_test'
-// const app2 = test
-
-
-// let testWindow: Electron.BrowserWindow | null;
-// const createTestWindow = (): void => {
-//   testWindow = new BrowserWindow({
-//     width: 1400,
-//     height: 900,
-//     webPreferences: {
-
-//         //allows us to actually do stuff from this file
-//       nodeIntegration: true
-//     }
-//   });
-
-//   //load html entry (hang react app off this file)
-//   testWindow.loadFile('../src/test.html');
-
-//   //when you close mainWindow, process ends in your terminal
-//   testWindow.on('closed', () => {
-//     mainWindow = null;
-//   });
-// }
-
-
-
-
 //make mainWindow var (specify types: alive or dead)
 let mainWindow: Electron.BrowserWindow | null;
 

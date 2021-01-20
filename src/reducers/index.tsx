@@ -7,7 +7,7 @@ import serversReducer from './serversReducer';
 
 
 const reducers = combineReducers({
-  servers: serversReducer,
+  serversReducer: serversReducer,
 });
 
 export default reducers;

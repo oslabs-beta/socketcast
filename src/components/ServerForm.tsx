@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { serverManagerCreateServer, getServers } from "@/actions/actions";
 
-function ServerForm(props: any) {
+function ServerForm() {
   const [port, updatePort] = useState("3000");
   const [name, updateName] = useState("server1");
+  const dispatch = useDispatch();
 
   return (
     <div className="serverForm">
@@ -13,16 +16,20 @@ function ServerForm(props: any) {
         <button
           className="serverForm_button"
           onClick={() => {
-            props.createServer({ port: port, name: name });
+            dispatch(serverManagerCreateServer({ port: +port, name: name }));
           }}
         >
           Create Server
         </button>
-        <button onClick={props.getServers} className="serverForm_button">
-          Get Servers
-        </button>
         <button className="serverForm_button">Stop Server</button>
-        <button onClick = {()=>{ console.log(props.servers)}}className="serverForm_button">Log Servers</button>
+        <button
+          onClick={() => {
+            console.log(dispatch(getServers()));
+          }}
+          className="serverForm_button"
+        >
+          Log Servers
+        </button>
       </div>
 
       {/* FORM */}
