@@ -2,7 +2,10 @@
  * @description Action Creators
  */
 
-const ServerManager = require('@/ServerManager/ServerManager');
+import ServerManager from '../ServerManager/ServerManager';
+import { ThunkAction } from 'redux-thunk';
+import { Action } from 'redux';
+import { RootState } from '../reducers';
 import * as types from '../constants/actionTypes';
 
 export const createServer = (data: any) => ({
@@ -27,7 +30,7 @@ export const modifyServer = (id: Number, config: Object) => ({
 
 export const setCurrentServerId = (id: string) => ({
   type: types.SET_CURRENT_SERVER_ID,
-  payload: id 
+  payload: id
 })
 
 export const stopAll = () => ({
@@ -40,8 +43,8 @@ export const stopAndRemoveServer = (id: Number) => ({
   payload: id,
 })
 
-export const serverManagerCreateServer = (config: ServerConfig) => {
-  return (dispatch: any) => {
+export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => {
+  return dispatch => {
     ServerManager.createServer(config)
       .then((data: any) => {
         dispatch(createServer(data))
@@ -51,12 +54,17 @@ export const serverManagerCreateServer = (config: ServerConfig) => {
   }
 }
 
-// export const serverManagerGetServer = (id: String) => {
-//   return (dispatch: any) => {
-//     ServerManager.getServer(id).then((serverStatus: any) => {
-//       dispatch(serverStatus);
-//     }).catch((error: any) => {
-//       console.log(error);
-//     });
-//   }
-// }
+export const serverManagerBroadcastAll = (id: string, message: string): ThunkAction<void, RootState, unknown, Action<string>> => {
+  return dispatch => {
+    /**
+     * The following method, broadcastToAll() is not "promisified" yet.
+     * However, it is an asynchronous action and Redux will "complain" if we do not
+     * write this in thunk format.
+     */
+    ServerManager.broadcastToAll(id, message);
+    /**
+     * After calling the above broadcastToAll() method, dispatch some action 
+     * that adds to our store's state that keeps track of messages.
+     */
+  }
+}

@@ -136,4 +136,4 @@ class ServerManager {
 
 
 
-module.exports = new ServerManager(); // Singleton, there should only be one ServerManager running in our app
+export default new ServerManager(); // Singleton, there should only be one ServerManager running in our app
