@@ -26,6 +26,9 @@
     "ws": "^7.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
     "@types/cors": "^2.8.9",
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/express": "^4.17.11",
@@ -37,6 +40,7 @@
     "@types/ws": "^7.4.0",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
+    "babel-jest": "^26.6.3",
     "css-loader": "^5.0.1",
     "electron-devtools-installer": "^3.1.1",
     "eslint": "^7.18.0",
