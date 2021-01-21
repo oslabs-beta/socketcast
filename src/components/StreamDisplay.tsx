@@ -4,12 +4,15 @@ import StreamInput from './StreamInput';
 import { useSelector } from 'react-redux';
 
 function StreamDisplay() {
-  const outputStream = [
-    { message: 'something something', id: 1 },
-    { message: 'something something', id: 2 },
-    { message: 'something something', id: 3 },
-  ];
 
+
+  //we should figure out how to fix this work-around
+  // @ts-ignore
+  const currentServerId = useSelector(store => store.serversReducer.currentServerId)
+  // @ts-ignore
+  const outputStream = useSelector(store => store.dataReducer.streams);
+  
+  let counter = 0
 
 
   return (
@@ -19,10 +22,13 @@ function StreamDisplay() {
         <div>Stream Output</div>
         <br />
         <div className="streamDisplay_outputbox">
-          {outputStream.map((code) => (
-            <div className="code" key={code.id}>
-              message: 'something something something'
+
+          {currentServerId && outputStream[currentServerId].map((code: string) => (
+            <div className="code" key={counter++}>
+              {code}
             </div>
+
+
           ))}
         </div>
       </div>

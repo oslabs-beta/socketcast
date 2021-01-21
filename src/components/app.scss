@@ -120,12 +120,10 @@ body {
 }
 
 .sidebar {
-  // background-color: rgb(255, 247, 233);
   background-color: $base_teal3;
   color: $base_teal1;
   flex: 0.3;
   padding: 5px 10px;
-  margin-top: 5px;
   margin-right: 10px;
 }
 
@@ -186,7 +184,7 @@ body {
 
 .streamDisplay_outputbox {
   margin-top: 10px;
-  height: 431px;
+  height: 90%;
   width: 100%;
   border-radius: 3px 3px 3px 0px;
   border: 2px $base_teal3 solid;

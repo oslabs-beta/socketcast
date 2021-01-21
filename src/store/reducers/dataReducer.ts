@@ -25,14 +25,15 @@ const dataReducer = (state = initialState, action: any) => {
     case types.LOG_MESSAGE: {
         const {id, message} = action.payload
      
+        
         //grab the stream array of messages to corresponding server_id
         const stream = state.streams[id]
         
         //push message into correct stream
         stream.push(message)
-        console.log('MESSAGE:', message, ' PUSHED INTO: ', stream)
+        console.log('MESSAGE:', message, ' CURRENT STATE: ', state)
 
-      return {...state}
+      return {...state, streams: {...state.streams, [id]: stream}}
     }
     default: {
       return state;
