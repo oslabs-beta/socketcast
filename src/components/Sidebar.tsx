@@ -1,3 +1,7 @@
+/**
+ * @description Left pane of application. Displays list of active/inactive servers and holds functionality to set active server in state 
+ */
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentServerId } from "@/store/actions";

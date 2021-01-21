@@ -1,3 +1,7 @@
+/**
+ * @description Center pane of application
+ */
+
 import React from 'react';
 import ServerForm from './ServerForm';
 import EventConfig from './EventConfig';

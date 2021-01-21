@@ -1,3 +1,7 @@
+/**
+ * @description Main container for all components
+ */
+
 import React from 'react';
 import './app.scss';
 
