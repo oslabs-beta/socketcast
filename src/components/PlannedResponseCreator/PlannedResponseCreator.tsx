@@ -13,6 +13,8 @@ const PlannedResponseCreator = () => {
     setPlannedResponse([...plannedResponse, { type: PlannedResponseUnitType.MESSAGE, message }]);
   };
 
+  const resetPlannedResponse = () => setPlannedResponse([]);
+
   return (
     <div className="planned-response-container">
       {
@@ -21,6 +23,7 @@ const PlannedResponseCreator = () => {
       <div>
         <button type="button" onClick={() => addMessageHandler('Test message')}>Add Message</button>
         <button type="button" onClick={() => addDelayHandler(2000)}>Add 2 Second Delay</button>
+        <button type="button" onClick={resetPlannedResponse}>Reset Configuration</button>
         <button type="button" onClick={() => playbackResponseUnits(plannedResponse, { onMessage: (msg: string) => { console.log(`${msg} is being emitted`); } })}>Play Back</button>
         <button type="button" onClick={examplePlayback}>Play Example (see console)</button>
       </div>
