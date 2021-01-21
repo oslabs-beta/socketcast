@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { examplePlayback, playbackResponseUnits } from './utils';
 import { PlannedResponseUnit, PlannedResponseUnitType } from './type';
+import PRUnit from './PRUnit';
 
 const PlannedResponseCreator = () => {
   const [plannedResponse, setPlannedResponse] = useState<PlannedResponseUnit[]>([]);
@@ -18,7 +19,7 @@ const PlannedResponseCreator = () => {
   return (
     <div className="planned-response-container">
       {
-        plannedResponse.map((curr) => <p>{JSON.stringify(curr)}</p>)
+        plannedResponse.map((curr) => <PRUnit index={1} pru={curr} onMoveDown={() => {}} onMoveUp={() => {}} onRemove={() => {}} />)
       }
       <div>
         <button type="button" onClick={() => addMessageHandler('Test message')}>Add Message</button>
