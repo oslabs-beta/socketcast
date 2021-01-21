@@ -93,7 +93,7 @@ class ServerManager {
       });
     };
 
-    this.servers[id] = new ServerAbstract(wss, { broadcast }, name, id);
+    this.servers[id] = new ServerAbstract(wss, { broadcast }, name, id, port);
 
     /**
              * We return a promise, but we _cannot_ ever reject this promise because any errors
@@ -106,6 +106,7 @@ class ServerManager {
       server.listen(port || 3000, () => resolve({
         id,
         name,
+        port,
         status: ServerStatus.RUNNING,
       }));
     });

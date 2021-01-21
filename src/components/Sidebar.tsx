@@ -27,6 +27,9 @@ function Sidebar() {
           </div>
         ))}
       </div>
+      <div className = "sidebar_server" onClick = {()=> {
+        dispatch(setCurrentServerId(''))
+      }} >+New Server</div>
     </div>
   );
 }
