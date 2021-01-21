@@ -4,7 +4,7 @@ $base_teal1: rgb(195, 212, 212);
 $base_grey: rgb(234, 236, 238);
 $terminal_black: rgb(226, 226, 226);
 $terminal_orange: rgb(170, 132, 62);
-$terminal_black2:  rgb(31, 30, 30);
+$terminal_black2: rgb(31, 30, 30);
 
 html,
 body {
@@ -27,10 +27,10 @@ body {
 
 
 .code {
-    color: $terminal_orange;
-    margin-bottom: 5px;
-    margin-left: 10px;
-  }
+  color: $terminal_orange;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
 
 .eventConfig {
   border-radius: 3px;
@@ -155,15 +155,14 @@ body {
 }
 
 .streamDisplay_header {
-    background-color: white;
-    border-radius: 3px;
-    padding: 10px;
+  background-color: white;
+  border-radius: 3px;
+  padding: 10px;
 }
 
 .streamDisplay_container {
   background-color: white;
   border-radius: 3px;
-  
   padding: 10px;
 }
 
@@ -171,17 +170,17 @@ body {
   margin-top: 5px;
   flex: 1
 }
+
 .streamDisplay_inputContainer {
   flex: .2
 }
 
 .streamDisplay_inputbox {
-  margin-top: 10px;
-  height: 100px;
+  margin-top: 11px;
+  height: 22px;
   width: 100%;
   border-radius: 3px 3px 3px 0px;
   border: 2px $base_teal3 solid;
-  
   background-color: $terminal_black;
 }
 
@@ -191,7 +190,7 @@ body {
   width: 100%;
   border-radius: 3px 3px 3px 0px;
   border: 2px $base_teal3 solid;
- 
+
   background-color: $terminal_black;
 }
 
