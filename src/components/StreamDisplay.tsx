@@ -23,9 +23,6 @@ function StreamDisplay() {
         <br />
         <div className="streamDisplay_outputbox">
 
-          <button onClick = {()=>{console.log(outputStream)}} >console log data stream</button>
-          <button onClick = {()=>{console.log(currentServerId)}}>console log current server id</button>
-
           {currentServerId && outputStream[currentServerId].map((code: string) => (
             <div className="code" key={counter++}>
               {code}

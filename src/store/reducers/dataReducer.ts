@@ -25,7 +25,7 @@ const dataReducer = (state = initialState, action: any) => {
     case types.LOG_MESSAGE: {
         const {id, message} = action.payload
      
-        // const stream = JSON.parse(JSON.stringify(state.streams[id]))
+        
         //grab the stream array of messages to corresponding server_id
         const stream = state.streams[id]
         
