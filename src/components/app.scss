@@ -1,10 +1,18 @@
-$base_teal3: rgb(27, 118, 121);
-$base_teal2: rgb(147, 188, 189);
-$base_teal1: rgb(236, 245, 245);
+$base_teal3:#1b1b2d;
+$base_teal2: rgb(204, 204, 204);
+$base_teal1 :#f79f3b;
 $base_grey: rgb(234, 236, 238);
 $terminal_black: rgb(226, 226, 226);
-$terminal_orange: rgb(170, 132, 62);
-$terminal_black2: rgb(31, 30, 30);
+$terminal_orange: rgb(212, 147, 24);
+$terminal_black2: rgb(11, 14, 17);
+
+// $base_teal3: rgb(27, 118, 121);
+// $base_teal2: rgb(147, 188, 189);
+// $base_teal1: rgb(236, 245, 245);
+// $base_grey: rgb(234, 236, 238);
+// $terminal_black: rgb(226, 226, 226);
+// $terminal_orange: rgb(170, 132, 62);
+// $terminal_black2: rgb(31, 30, 30);
 
 html,
 body {
@@ -143,6 +151,10 @@ body {
   cursor: pointer;
 }
 
+.sidebar_title {
+  color:rgb(226, 226, 226);
+}
+
 .streamDisplay {
   background-color: $base_grey;
   flex: 2;
@@ -202,6 +214,7 @@ body {
 
 .window_title {
   font-weight: bold;
+  color:rgb(212, 147, 24)
 }
 
 .planned-response-container {

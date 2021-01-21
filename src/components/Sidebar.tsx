@@ -13,7 +13,11 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      <b>Servers</b>
+      <h3><b>socketcast.</b></h3>
+      <br/>
+      <br/>
+      <br/>
+      <div className = "sidebar_title">Servers</div>
       <div className="sidebar_container">
         {Object.values(servers).map((item: any) => (
           <div
@@ -23,7 +27,7 @@ function Sidebar() {
             className="sidebar_server"
             key={item.name}
           >
-            {item.name}
+            &gt;{item.name}
           </div>
         ))}
       </div>

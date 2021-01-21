@@ -5,7 +5,7 @@ function ServerForm() {
  
   return (
     <div className="eventConfig">
-      <div className = "window_title">Event Form</div>
+      <div className = "window_title">Add Event Streams </div>
 
         <br/>
       <form className="serverForm_form">
