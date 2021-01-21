@@ -188,7 +188,7 @@ body {
   width: 100%;
   border-radius: 3px 3px 3px 0px;
   border: 2px $base_teal3 solid;
-
+  overflow-y: scroll;
   background-color: $terminal_black;
 }
 
