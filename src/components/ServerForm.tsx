@@ -1,3 +1,8 @@
+/**
+ * @parentComponent ServerConfig
+ * @description Holds functionality to create a new server and update server config
+ */
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { serverManagerCreateServer } from '@/store/actions';

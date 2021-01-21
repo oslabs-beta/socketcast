@@ -1,7 +1,8 @@
 export interface PlannedResponseUnit {
   type: PlannedResponseUnitType,
   time?: number,
-  message?: string
+  message?: string,
+  id?: string
 }
 
 export enum PlannedResponseUnitType {

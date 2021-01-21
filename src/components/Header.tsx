@@ -1,3 +1,7 @@
+/**
+ * @description Top pane of application
+ */
+
 import React from 'react';
 
 function Header() {
