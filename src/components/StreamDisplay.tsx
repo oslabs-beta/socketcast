@@ -22,7 +22,7 @@ function StreamDisplay() {
     <div className="streamDisplay">
       <StreamInput />
       <div className="streamDisplay_container streamDisplay_outputContainer">
-        <div>Stream Output</div>
+        <div className = "window_title" >Stream Output</div>
         <br />
         <div className="streamDisplay_outputbox">
 

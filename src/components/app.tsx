@@ -13,7 +13,7 @@ import StreamDisplay from './StreamDisplay';
 
 const App = () => (
   <div className="app">
-    <Header />
+    {/* <Header /> */}
     <div className="app_container">
       <Sidebar />
       <ServerTab />
