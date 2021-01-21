@@ -4,7 +4,6 @@ import { setCurrentServerId } from "@/store/actions";
 
 function Sidebar() {
   const dispatch = useDispatch();
-
   // @ts-ignore
   const servers = useSelector((store) => store.serversReducer.servers);
 

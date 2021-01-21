@@ -1,27 +1,33 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentEventId } from '@/store/actions';
 
 function EventConfig() {
-  const events = [
-    { name: 'Event1' },
-    { name: 'Event2' },
-    { name: 'Event3' },
-  ];
-  return (
-    <div className="eventConfig">
-      <div>Events</div>
-      <br />
-      {events.map((event) => (
-        <div className="event_container" key={event.name}>
+  const dispatch = useDispatch();
+  // @ts-ignore
+  const currentServerID = useSelector((store) => store.serversReducer.currentServerId);
+  // @ts-ignore
+  const currentServer = useSelector((store) => store.serversReducer.servers[currentServerID]);
+  const eventsArray: any = [];
+  if (currentServer) {
+    currentServer.events.map((event: any) => {
+      eventsArray.push(
+        <div className="event_container" key={event.eventName} onClick={() => { dispatch(setCurrentEventId(event)) }}>
           <button className="event_button" type="button">
-            {' '}
-            {event.name}
-            {'>'}
+            {event.eventName}
           </button>
           <div className="event">
             <div className="code">Event = (name: string, serial: int, message: string)</div>
           </div>
         </div>
-      ))}
+      )
+    })
+  }
+  return (
+    <div className="eventConfig">
+      <div>Events</div>
+      <br />
+      {eventsArray}
     </div>
   );
 }
