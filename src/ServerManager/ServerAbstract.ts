@@ -10,13 +10,16 @@ class ServerAbstract {
 
   id: string
 
+  port: number
+
   constructor(server: WebSocket.Server,
     { broadcast }: { broadcast: any },
-    name: string, id: string) {
+    name: string, id: string, port: number) {
     this.id = id;
     this.server = server;
     this.broadcast = broadcast;
     this.name = name
+    this.port = port
   }
 
   broadcastToAll = (message: any) => this.broadcast(message);

@@ -25,7 +25,7 @@ function EventConfig() {
   }
   return (
     <div className="eventConfig">
-      <div>Events</div>
+      <div className = "window_title">Events</div>
       <br />
       {eventsArray}
     </div>

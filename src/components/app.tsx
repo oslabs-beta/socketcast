@@ -3,7 +3,7 @@ import './app.scss';
 
 import Header from './Header';
 // import PlannedResponseCreator from './PlannedResponseCreator/PlannedResponseCreator';
-import ServerConfig from './ServerConfig';
+import ServerTab from './ServerTab';
 import Sidebar from './Sidebar';
 import StreamDisplay from './StreamDisplay';
 
@@ -12,7 +12,7 @@ const App = () => (
     <Header />
     <div className="app_container">
       <Sidebar />
-      <ServerConfig />
+      <ServerTab />
       <StreamDisplay />
       {/* <PlannedResponseCreator /> */}
     </div>

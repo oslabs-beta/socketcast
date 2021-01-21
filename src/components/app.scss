@@ -1,6 +1,6 @@
-$base_teal3: rgb(33, 132, 136);
-$base_teal2: rgb(97, 155, 156);
-$base_teal1: rgb(195, 212, 212);
+$base_teal3: rgb(27, 118, 121);
+$base_teal2: rgb(147, 188, 189);
+$base_teal1: rgb(236, 245, 245);
 $base_grey: rgb(234, 236, 238);
 $terminal_black: rgb(226, 226, 226);
 $terminal_orange: rgb(170, 132, 62);
@@ -75,7 +75,7 @@ body {
   display: flex;
 }
 
-.serverConfig {
+.serverTab {
   background-color: $base_grey;
   flex: 1;
   display: flex;
@@ -197,6 +197,10 @@ body {
   color: white;
   border-radius: 0px 0px 3px 3px;
   border: 2px $base_teal3 solid;
+  font-weight: bold;
+}
+
+.window_title {
   font-weight: bold;
 }
 
