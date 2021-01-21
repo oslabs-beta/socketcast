@@ -53,6 +53,10 @@ export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<voi
   ServerManager.createServer(config)
     .then((data: any) => {
       dispatch(createServer(data));
+
+      //dispatch action to create data stream for this server
+      dispatch(createStream(data.id))
+
     }).catch((err: any) => {
       console.log(err);
     });
@@ -65,9 +69,23 @@ export const serverManagerBroadcastAll = (id: string, message: string): ThunkAct
      * However, it is an asynchronous action and Redux will "complain" if we do not
      * write this in thunk format.
      */
-  ServerManager.broadcastToAll(id, message);
+  ServerManager.broadcastToAll(id, message)
   /**
      * After calling the above broadcastToAll() method, dispatch some action
      * that adds to our store's state that keeps track of messages.
      */
+  
+  //once broadcasttoall gets promisified and we can guarantee message emission
+  //call this dispatch to add the message to correct data storage (based on server_id)
+  dispatch(logMessage(id, message))
 };
+
+export const createStream = (id: string) => ({
+  type: types.CREATE_STREAM,
+  payload: id
+})
+
+export const logMessage = (id: any, message: string) => ({
+  type: types.LOG_MESSAGE,
+  payload: {id, message}
+})
