@@ -1,3 +1,8 @@
+/**
+ * @parentComponent StreamDisplay
+ * @description Conditionally rendered based on active event in state. Functionality to emit improvised and planned responses from port of active server
+ */
+
 import { RootState } from '@/store/reducers';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
