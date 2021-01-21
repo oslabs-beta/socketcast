@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { examplePlayback } from './utils';
+import { examplePlayback, playbackResponseUnits } from './utils';
 import { PlannedResponseUnit, PlannedResponseUnitType } from './type';
 
 const PlannedResponseCreator = () => {
@@ -20,8 +20,9 @@ const PlannedResponseCreator = () => {
       }
       <div>
         <button type="button" onClick={() => addMessageHandler('Test message')}>Add Message</button>
-        <button type="button" onClick={() => addDelayHandler(2000)}>Add Delay</button>
-        <button type="button" onClick={examplePlayback}>Play this back</button>
+        <button type="button" onClick={() => addDelayHandler(2000)}>Add 2 Second Delay</button>
+        <button type="button" onClick={() => playbackResponseUnits(plannedResponse, { onMessage: (msg: string) => { console.log(`${msg} is being emitted`); } })}>Play Back</button>
+        <button type="button" onClick={examplePlayback}>Play Example (see console)</button>
       </div>
     </div>
   );
