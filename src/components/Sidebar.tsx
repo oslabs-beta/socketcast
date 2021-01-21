@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentServerId } from '@/store/actions';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentServerId } from "@/store/actions";
 
 function Sidebar() {
   const dispatch = useDispatch();
