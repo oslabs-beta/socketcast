@@ -2,6 +2,7 @@ import React from 'react';
 import './app.scss';
 
 import Header from './Header';
+import PlannedResponseCreator from './PlannedResponseCreator/PlannedResponseCreator';
 import ServerConfig from './ServerConfig';
 import Sidebar from './Sidebar';
 import StreamDisplay from './StreamDisplay';
@@ -13,6 +14,7 @@ const App = () => (
       <Sidebar />
       <ServerConfig />
       <StreamDisplay />
+      {/* <PlannedResponseCreator /> */}
     </div>
   </div>
 );

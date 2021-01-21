@@ -5,7 +5,8 @@ Developers working on real-time data applications and services may need to rapid
 
 ## Features
 * Configure and launch multiple WebSocket servers
-* Send improvised and planned responses to clients
+* Send improvised responses to clients
+* Plan out responses with delays to send back to clients 
 
 ## Getting Started
 
@@ -26,6 +27,7 @@ socketcast has the ability to launch multiple WebSocket servers and it does so t
 * Expand the protocol selection to Server Sent Events (SSE) and socket.io
 * Create the ability to build URL paths for the client application to subscribe selectively to events
 * Incorporate authentication
+* Design input boxes to validate JSON
 
 ## Authors
 * Will Bladon [whbladon](https://github.com/whbladon)
