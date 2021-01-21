@@ -6,7 +6,7 @@ import { serverManagerBroadcastAll } from '../store/actions';
 function StreamInput() {
   const dispath = useDispatch();
   // @ts-ignore
-  const currentServerID = useSelector((store) => store.serversReducer.currentServerId);
+  const currentServerId = useSelector((store) => store.serversReducer.currentServerId);
   // @ts-ignore
   const currentEvent = useSelector((store) => store.serversReducer.currentEvent);
   // const currentMessage = currentEvent ? currentEvent.eventMessage : '';
@@ -26,7 +26,7 @@ function StreamInput() {
         <button
           className="streamDisplay_button"
           type="button"
-          onClick={() => dispath(serverManagerBroadcastAll(currentServerID, message))}
+          onClick={() => dispath(serverManagerBroadcastAll(currentServerId, message))}
         >
           emit improvised response
         </button>
