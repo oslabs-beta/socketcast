@@ -23,15 +23,6 @@ function ServerForm() {
           Create Server
         </button>
         <button className="serverForm_button" type="button">Stop Server</button>
-        <button
-          onClick={() => {
-            console.log(dispatch(getServers()));
-          }}
-          className="serverForm_button"
-          type="button"
-        >
-          Log Servers
-        </button>
       </div>
 
       {/* FORM */}
