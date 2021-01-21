@@ -16,6 +16,8 @@ const createWindow = (): void => {
 
       // allows us to actually do stuff from this file
       nodeIntegration: true,
+      // enables electron store to be used in renderer process
+      enableRemoteModule: true,
     },
   });
 
