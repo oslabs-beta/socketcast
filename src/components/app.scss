@@ -201,3 +201,11 @@ body {
   border: 2px $base_teal3 solid;
   font-weight: bold;
 }
+
+.planned-response-container {
+  flex: 2;
+  padding: 5px 10px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
