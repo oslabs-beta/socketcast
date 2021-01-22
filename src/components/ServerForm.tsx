@@ -1,6 +1,11 @@
+/**
+ * @parentComponent ServerConfig
+ * @description Holds functionality to create a new server and update server config
+ */
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { serverManagerCreateServer, getServers } from '@/store/actions';
+import { serverManagerCreateServer } from '@/store/actions';
 
 function ServerForm() {
   const [port, updatePort] = useState('3000');
@@ -9,7 +14,7 @@ function ServerForm() {
 
   return (
     <div className="serverForm">
-      <div>Server Form</div>
+      <div className = "window_title">Server Form</div>
 
       <br />
       <div>
@@ -22,7 +27,6 @@ function ServerForm() {
         >
           Create Server
         </button>
-        <button className="serverForm_button" type="button">Stop Server</button>
       </div>
 
       {/* FORM */}

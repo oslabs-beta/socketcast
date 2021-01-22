@@ -11,7 +11,7 @@ let mainWindow: Electron.BrowserWindow | null;
 const createWindow = (): void => {
   mainWindow = new BrowserWindow({
     width: 1400,
-    height: 900,
+    height: 809,
     webPreferences: {
 
       // allows us to actually do stuff from this file

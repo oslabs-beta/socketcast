@@ -1,6 +1,9 @@
+/**
+ * @description Right pane of application. Displays input and output streams
+ */
+
 import React from 'react';
 import StreamInput from './StreamInput';
-// may use for conditional rendering in future
 import { useSelector } from 'react-redux';
 
 function StreamDisplay() {
@@ -11,7 +14,7 @@ function StreamDisplay() {
   const currentServerId = useSelector(store => store.serversReducer.currentServerId)
   // @ts-ignore
   const outputStream = useSelector(store => store.dataReducer.streams);
-  
+
   let counter = 0
 
 
@@ -19,7 +22,7 @@ function StreamDisplay() {
     <div className="streamDisplay">
       <StreamInput />
       <div className="streamDisplay_container streamDisplay_outputContainer">
-        <div>Stream Output</div>
+        <div className = "window_title" >Stream Output</div>
         <br />
         <div className="streamDisplay_outputbox">
 
