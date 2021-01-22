@@ -19,11 +19,9 @@ function StreamDisplay() {
 
 
   return (
-    <div className="streamDisplay">
-      <StreamInput />
+    <div className="stream-column">
       <div className="streamDisplay_container streamDisplay_outputContainer">
-        <div className = "window_title" >Stream Output</div>
-        <br />
+        <div className="window_title" >CONSOLE</div>
         <div className="streamDisplay_outputbox">
 
           {currentServerId && outputStream[currentServerId].map((code: string) => (
@@ -35,6 +33,7 @@ function StreamDisplay() {
           ))}
         </div>
       </div>
+      <StreamInput />
     </div>
   );
 }
