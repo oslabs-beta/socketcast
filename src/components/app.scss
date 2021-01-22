@@ -1,4 +1,7 @@
+@import '../../node_modules/normalize.css/normalize.css';
+
 $base_teal3:#1b1b2d;
+$base_teal3_hover:#3a3a4e;
 $base_teal2: rgb(204, 204, 204);
 $base_teal1 :#f79f3b;
 $base_grey: rgb(234, 236, 238);
@@ -14,6 +17,12 @@ $terminal_black2: rgb(11, 14, 17);
 // $terminal_orange: rgb(170, 132, 62);
 // $terminal_black2: rgb(31, 30, 30);
 
+#root {
+  height: 100%;
+}
+
+
+
 html,
 body {
   height: 100%;
@@ -24,13 +33,19 @@ body {
 }
 
 .app {
+  height:100%;
+
   background-color: $base_grey;
 }
 
 .app_container {
-  display: flex;
   width: 100%;
-  height: 750px;
+  min-height: 750px;
+  height:100%;
+
+  display: flex;
+
+  background-color: $base_grey;
 }
 
 
@@ -41,12 +56,10 @@ body {
 }
 
 .eventConfig {
-  border-radius: 3px;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 10px;
+  padding: 15px 10px 20px 10px;
   flex: 1;
 }
 
@@ -83,37 +96,101 @@ body {
   display: flex;
 }
 
-.serverTab {
-  background-color: $base_grey;
-  flex: 1;
+.server-column {
+  background-color: #1F2933;
   display: flex;
+  flex: 1;  
   flex-direction: column;
-  padding: 5px 10px;
+
+  border-left-color: #323f4b;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: #323f4b;
+  border-right-style: solid;
+  border-right-width: 1px;
+
+  .input-container {
+    .label {
+      color: #F5F7FA;
+    }
+
+    label {
+      color: #F5F7FA;
+    }
+  }
+
 }
 
-.serverForm {
+.server-configuration {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 10px;
-  border-radius: 3px;
-  flex: .75;
+  padding: 15px 10px 20px 10px;
+
+  border-bottom-color: #323f4b;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }
 
-.serverForm_container {
+.input-container {
   margin-top: 5px;
+
+  .label {
+    font-variant: all-petite-caps;
+  }
+
+  label {
+    font-variant: all-petite-caps;
+  }
 }
 
-.serverForm_form {
+.form-container {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  background-color: white;
 }
 
-.serverForm_input {
-  width: 95%;
+.serverForm_label {
+  font-size: 16px;
+  font-variant: all-petite-caps;
+}
+
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 9px;
+
+  border-radius: 5px;
+  border-width: 1px;
+
+  font-size: 14px;
+
+}
+
+.button {
+  background-color: $base_teal3;
+  color: white;
+
+  font-size: 12px;
+  font-weight: lighter;
+  
+  padding: 10px;
+  height: 30px;
+
+  border-radius: 5px;
+  border-width: 0px;
+
+  .primary {
+    background-color: $base_teal3;
+    color: white;
+  }
+
+  .secondary {
+    background-color: $base_teal2;
+    color: white;
+  }
+
 }
 
 .serverForm_button {
@@ -129,18 +206,91 @@ body {
 
 .sidebar {
   background-color: $base_teal3;
-  color: $base_teal1;
-  flex: 0.3;
-  padding: 5px 10px;
-  margin-right: 10px;
+  flex: 0.4;
+
+  .sidebar-container {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .sidebar-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+  }
+
+  .filter-container {
+    padding: 20px 0;
+  }
+
+  .brand {
+    font-variant: small-caps;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    color: $base_teal1;
+
+    padding: 20px 10px;
+
+  }
+
+  .filter-name {
+    font-size: 15px;
+    color: $base_teal1;
+
+    padding: 10px;
+  }
+
+  .muted-info {
+    color: $base_grey;
+    font-size: 12px;
+  
+    color: #eaecee;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  .server-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+
+    &:hover {
+      background-color: $base_teal3_hover;
+    }
+
+    .display-name {
+      max-width: 175px;
+
+      color: white;
+      font-size: 14px;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .port {
+      padding: 0 0 0 10px;
+
+      color: grey;
+      font-size: 14px;
+    }
+  }
 }
 
-.sidebar_container {
-  margin-left: 15px;
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-}
+
+
+
 
 .sidebar_server {
   color: $base_teal2;
@@ -155,11 +305,10 @@ body {
   color:rgb(226, 226, 226);
 }
 
-.streamDisplay {
-  background-color: $base_grey;
+.stream-column {
+  background-color: #1F2933;
   flex: 2;
   padding: 5px 10px;
-  border-radius: 3px;
   display: flex;
   flex-direction: column;
 }
@@ -171,7 +320,6 @@ body {
 }
 
 .streamDisplay_container {
-  background-color: white;
   border-radius: 3px;
   padding: 10px;
 }
