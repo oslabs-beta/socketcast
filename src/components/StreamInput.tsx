@@ -36,10 +36,10 @@ function StreamInput() {
 
   return (
     <div className="streamDisplay_container streamDisplay_inputContainer">
-      <div className = "window_title">INPUT</div>
+      <div className="window_title">INPUT</div>
       <div style={{ display: 'flex' }}>
-        <input
-          className="streamDisplay_inputbox"
+        <textarea
+          className="code-textarea"
           placeholder="Message"
           value={message}
           onChange={(e) => updateMessage(e.target.value)}

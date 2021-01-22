@@ -57,17 +57,17 @@ function ServerForm() {
         <div className="input-container">
           <span className="label">Protocol</span>
           <div className="input-container">
-            <input type="radio" id="websocket" />
+            <input name="protocol" type="radio" id="websocket" />
             <label htmlFor="websocket">WebSocket</label>
           </div>
           <div className="input-container">
-            <input type="radio" id="sse" />
-            <label>Server Side Events (SSE)</label>
+            <input name="protocol" type="radio" id="sse" />
+            <label htmlFor="sse">Server Side Events (SSE)</label>
           </div>
           <div className="input-container">
 
-            <input type="radio" id="socketio" />
-            <label>socket.io</label>
+            <input name="protocol" type="radio" id="socketio" />
+            <label htmlFor="socketio">socket.io</label>
           </div>
         </div>
       </form>
