@@ -36,7 +36,7 @@ function StreamInput() {
 
   return (
     <div className="streamDisplay_container streamDisplay_inputContainer">
-      <div className = "window_title">Stream Input</div>
+      <div className = "window_title">INPUT</div>
       <div style={{ display: 'flex' }}>
         <input
           className="streamDisplay_inputbox"

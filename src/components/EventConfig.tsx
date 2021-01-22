@@ -31,7 +31,6 @@ function EventConfig() {
   return (
     <div className="eventConfig">
       <div className = "window_title">Event Stream Manager</div>
-      <br />
       {eventsArray}
     </div>
   );

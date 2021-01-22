@@ -1,10 +1,10 @@
 /**
- * @description Left pane of application. Displays list of active/inactive servers and holds functionality to set active server in state 
+ * @description Left pane of application. Displays list of active/inactive servers and holds functionality to set active server in state
  */
 
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentServerId } from "@/store/actions";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentServerId } from '@/store/actions';
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -13,27 +13,64 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      <h3><b>socketcast.</b></h3>
-      <br/>
-      <br/>
-      <br/>
-      <div className = "sidebar_title">Servers</div>
-      <div className="sidebar_container">
-        {Object.values(servers).map((item: any) => (
-          <div
-            onClick={() => {
-              dispatch(setCurrentServerId(item.id));
-            }}
-            className="sidebar_server"
-            key={item.name}
-          >
-            &gt;{item.name}
+      <div className="sidebar-container">
+        <div className="top">
+          <div className="sidebar-buttons">
+            <button
+              className="button secondary"
+              onClick={() => {
+                dispatch(setCurrentServerId(''));
+              }}
+            >
+              + New Server
+            </button>
           </div>
-        ))}
+          <div className="server-container">
+            <div className="filter-container">
+              <div className="filter-name">Running</div>
+              {/* Conditionally render the below if there are no running servers */}
+
+              {
+              Object.values(servers).length
+                ? Object.values(servers).filter((item: any) => item.status === 'RUNNING').map((item: any) => (
+                  <div
+                    className="server-info"
+                    key={item.id}
+                    onClick={() => { dispatch(setCurrentServerId(item.id)); }}
+                  >
+                    <span className="display-name">{item.name}</span>
+                    <span className="port">{item.port}</span>
+                  </div>
+                )) : <span className="muted-info">You have no running servers.</span>
+                }
+            </div>
+            <div className="filter-container">
+              <div className="filter-name">Stopped</div>
+              {/* Conditionally render the below if there are no stopped servers. */}
+              {/* <span className="muted-info">You have no stopped servers.</span> */}
+              <div className="server-info">
+                <span className="display-name">chat</span>
+                <span className="port">3000</span>
+              </div>
+              <div className="server-info">
+                <span className="display-name">metrics</span>
+                <span className="port">3000</span>
+              </div>
+              <div className="server-info">
+                <span className="display-name">ws://localhost/testing-a-really-long-path</span>
+                <span className="port">3000</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div className="bottom">
+          <div className="brand">
+            socketcast.
+          </div>
+        </div>
       </div>
-      <div className = "sidebar_server" onClick = {()=> {
-        dispatch(setCurrentServerId(''))
-      }} >+New Server</div>
     </div>
   );
 }

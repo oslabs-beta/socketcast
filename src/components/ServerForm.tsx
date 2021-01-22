@@ -13,13 +13,13 @@ function ServerForm() {
   const dispatch = useDispatch();
 
   return (
-    <div className="serverForm">
-      <div className = "window_title">Server Form</div>
+    <div className="server-configuration">
+      <div className="window_title">SERVER CONFIGURATION</div>
 
       <br />
       <div>
         <button
-          className="serverForm_button"
+          className="button primary"
           onClick={() => {
             dispatch(serverManagerCreateServer({ port: +port, name }));
           }}
@@ -30,34 +30,45 @@ function ServerForm() {
       </div>
 
       {/* FORM */}
-      <form className="serverForm_form">
-        <div className="serverForm_container">
-          Name:
+      <form className="form-container">
+        <div className="input-container">
+          <span className="label">Name</span>
           {' '}
           <input
+            type="text"
             value={name}
             onChange={(e) => updateName(e.target.value)}
-            className="serverForm_input"
           />
         </div>
-        <div className="serverForm_container">
-          Endpoint:
+        <div className="input-container">
+          <span className="label">Endpoint</span>
           {' '}
-          <input className="serverForm_input" />
+          <input type="text" />
         </div>
-        <div className="serverForm_container">
-          Port:
+        <div className="input-container">
+          <span className="label">Port</span>
           {' '}
           <input
             value={port}
             onChange={(e) => updatePort(e.target.value)}
-            className="serverForm_input"
+            type="text"
           />
         </div>
-        <div className="serverForm_container">
-          Protocol:
-          {' '}
-          <button className="serverForm_button" type="button">X</button>
+        <div className="input-container">
+          <span className="label">Protocol</span>
+          <div className="input-container">
+            <input type="radio" id="websocket" />
+            <label htmlFor="websocket">WebSocket</label>
+          </div>
+          <div className="input-container">
+            <input type="radio" id="sse" />
+            <label>Server Side Events (SSE)</label>
+          </div>
+          <div className="input-container">
+
+            <input type="radio" id="socketio" />
+            <label>socket.io</label>
+          </div>
         </div>
       </form>
     </div>

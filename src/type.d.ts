@@ -3,7 +3,7 @@ interface ServerConfig {
   name: string,
   port: number,
   onConnection?: Function,
-  onMessage?: Function
+  onMessage?(message: string)
   onError?: Function
 }
 

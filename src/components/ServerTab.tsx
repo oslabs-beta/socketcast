@@ -9,7 +9,7 @@ function ServerTab() {
   // @ts-ignore
   const currentServerId = useSelector((store) => store.serversReducer.currentServerId);
   return (
-    <div className="serverTab">
+    <div className="server-column">
       {currentServerId === "" ? (
         <>
           <ServerForm />
