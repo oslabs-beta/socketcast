@@ -15,7 +15,6 @@ function ServerForm() {
 
   return (
     <div className="server-configuration">
-      <div className="window_title">SERVER CONFIGURATION</div>
 
       <div>
         <button
