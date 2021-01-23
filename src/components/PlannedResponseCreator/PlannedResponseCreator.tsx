@@ -24,7 +24,7 @@ const PlannedResponseCreator = (props:any) => {
       </div>
      
       <div>
-        <button className = "button button_special" onClick = {()=>{examplePlayback()}} >Emit Message Stream</button>
+        <button className = "button button_special" onClick = {()=>{props.emitPlannedResponse(plannedResponse)}} >Emit Message Stream</button>
         <button className = "button primary" type="button" onClick={() => addMessageHandler(props.message)}>Add Message</button>
         <button className = "button primary" type="button" onClick={() => addDelayHandler(delay*1000)}>Add Delay</button>
         <input className = "PRC-input" value={delay} onChange = {(e:any)=>{setDelay(e.target.value)}} type="number"></input>
