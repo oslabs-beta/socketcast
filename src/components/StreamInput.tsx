@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { serverManagerBroadcastAll } from "../store/actions";
 import PlannedResponseCreator from "./PlannedResponseCreator/PlannedResponseCreator";
+import { playbackResponseUnits } from './PlannedResponseCreator/utils'
 
 function StreamInput() {
   const dispatch = useDispatch();
@@ -17,12 +18,20 @@ function StreamInput() {
   const [message, updateMessage] = useState("");
   const [toggle, updateToggle] = useState(false);
 
+  const emitPlannedResponse = (prus:any) => {
+    playbackResponseUnits(prus, {
+      onMessage: (msg: string) => {
+        dispatch(serverManagerBroadcastAll(currentServerId, msg));
+      },
+    });
+  };
+
   return (
     
       
         <div className="streamDisplay_container streamDisplay_inputContainer">
 
-          {toggle && <PlannedResponseCreator message = {message} />}
+          {toggle && <PlannedResponseCreator message = {message} emitPlannedResponse = {emitPlannedResponse} />}
 
           <div style={{ display: "flex" }}>
             <textarea
