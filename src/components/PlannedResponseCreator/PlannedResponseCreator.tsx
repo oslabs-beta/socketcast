@@ -3,8 +3,9 @@ import { examplePlayback, playbackResponseUnits } from './utils';
 import { PlannedResponseUnit, PlannedResponseUnitType } from './type';
 import PRUnit from './PRUnit';
 
-const PlannedResponseCreator = () => {
+const PlannedResponseCreator = (props:any) => {
   const [plannedResponse, setPlannedResponse] = useState<PlannedResponseUnit[]>([]);
+  const [delay, setDelay] = useState(1)
 
   const addDelayHandler = (ms: number): void => {
     setPlannedResponse([...plannedResponse, { type: PlannedResponseUnitType.DELAY, time: ms }]);
@@ -17,18 +18,20 @@ const PlannedResponseCreator = () => {
   const resetPlannedResponse = () => setPlannedResponse([]);
 
   return (
-    <div className="planned-response-container">
-      {
-        plannedResponse.map((curr) => <PRUnit index={1} pru={curr} onMoveDown={() => {}} onMoveUp={() => {}} onRemove={() => {}} />)
-      }
-      <div>
-        <button type="button" onClick={() => addMessageHandler('Test message')}>Add Message</button>
-        <button type="button" onClick={() => addDelayHandler(2000)}>Add 2 Second Delay</button>
-        <button type="button" onClick={resetPlannedResponse}>Reset Configuration</button>
-        <button type="button" onClick={() => playbackResponseUnits(plannedResponse, { onMessage: (msg: string) => { console.log(`${msg} is being emitted`); } })}>Play Back</button>
-        <button type="button" onClick={examplePlayback}>Play Example (see console)</button>
+    <>
+      <div className = "planned-response-playground">
+        {plannedResponse.map((curr) => <PRUnit index={1} pru={curr} onMoveDown={() => {}} onMoveUp={() => {}} onRemove={() => {}} />)}
       </div>
-    </div>
+     
+      <div>
+        <button className = "button button_special" onClick = {()=>{examplePlayback()}} >Emit Message Stream</button>
+        <button className = "button primary" type="button" onClick={() => addMessageHandler(props.message)}>Add Message</button>
+        <button className = "button primary" type="button" onClick={() => addDelayHandler(delay*1000)}>Add Delay</button>
+        <input className = "PRC-input" value={delay} onChange = {(e:any)=>{setDelay(e.target.value)}} type="number"></input>
+        <button className = "button primary" type="button" onClick={resetPlannedResponse}>Clear</button>
+        <button className = "button primary" type="button" onClick={() => playbackResponseUnits(plannedResponse, { onMessage: (msg: string) => { console.log(`${msg} is being emitted`); } })}>Play Back</button>
+      </div>
+    </>
   );
 };
 
