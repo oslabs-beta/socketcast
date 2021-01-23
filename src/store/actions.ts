@@ -4,6 +4,7 @@
 
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
+import { v4 as uuidv4 } from 'uuid';
 import ServerManager from '../ServerManager/ServerManager';
 import { RootState } from './reducers';
 import * as types from './actions/actionTypes';
@@ -52,9 +53,11 @@ export const stopAndRemoveServer = (id: Number) => ({
 export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
   ServerManager.createServer({
     ...config,
-    onMessage: (message) => {
+    id: uuidv4(),
+    onMessage: (message, id) => {
       // dispatch(logMessage(id, message));
-      console.log(`from client: ${message}`);
+      console.log(`from client to ${id} server: ${message}`);
+      dispatch(logMessage(id, message));
     },
   })
     .then((data: any) => {
