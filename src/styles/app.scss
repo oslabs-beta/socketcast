@@ -1,4 +1,5 @@
 @import '../../node_modules/normalize.css/normalize.css';
+@import './hack-font/hack.css';
 
 $base_teal3:#1b1b2d;
 $base_teal3_hover:#3a3a4e;
@@ -99,7 +100,7 @@ body {
 .server-column {
   background-color: #1F2933;
   display: flex;
-  flex: 1;  
+  flex: 0.7;  
   flex-direction: column;
 
   border-left-color: #323f4b;
@@ -266,6 +267,7 @@ input[type="text"] {
 
     &:hover {
       background-color: $base_teal3_hover;
+      cursor: pointer;
     }
 
     .display-name {
@@ -333,23 +335,27 @@ input[type="text"] {
   flex: .2
 }
 
-.streamDisplay_inputbox {
+.code-textarea {
   margin-top: 11px;
-  height: 22px;
   width: 100%;
-  border-radius: 3px 3px 3px 0px;
-  border: 2px $base_teal3 solid;
-  background-color: $terminal_black;
+  border-radius: 5px;
+  background-color: #1b1b2d;
+  color: white;
+  font-family: 'Hack';
 }
 
 .streamDisplay_outputbox {
   margin-top: 10px;
   height: 90%;
   width: 100%;
-  border-radius: 3px 3px 3px 0px;
+  border-radius: 5px;
   border: 2px $base_teal3 solid;
   overflow-y: scroll;
-  background-color: $terminal_black;
+  font-family: 'Hack';
+  color: white;
+  background-color: #1b1b2d;
+
+
 }
 
 .streamDisplay_button {

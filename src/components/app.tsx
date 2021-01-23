@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import './app.scss';
+import '../styles/app.scss';
 
 import Header from './Header';
 // import PlannedResponseCreator from './PlannedResponseCreator/PlannedResponseCreator';
