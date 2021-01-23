@@ -12,7 +12,7 @@ function Sidebar() {
   const servers = useSelector((store) => store.serversReducer.servers);
 
   return (
-    <div className="sidebar">
+    <div className="sidebar-column">
       <div className="sidebar-container">
         <div className="top">
           <div className="sidebar-buttons">
@@ -28,13 +28,14 @@ function Sidebar() {
           <div className="server-container">
             <div className="filter-container">
               <div className="filter-name">Running</div>
-              {/* Conditionally render the below if there are no running servers */}
-
               {
               Object.values(servers).length
                 ? Object.values(servers).filter((item: any) => item.status === 'RUNNING').map((item: any) => (
                   <div
                     className="server-info"
+                    role="button"
+                    tabIndex={0}
+                    title={item.name}
                     key={item.id}
                     onClick={() => { dispatch(setCurrentServerId(item.id)); }}
                   >
@@ -48,15 +49,12 @@ function Sidebar() {
               <div className="filter-name">Stopped</div>
               {/* Conditionally render the below if there are no stopped servers. */}
               {/* <span className="muted-info">You have no stopped servers.</span> */}
-              <div className="server-info">
-                <span className="display-name">chat</span>
-                <span className="port">3000</span>
-              </div>
-              <div className="server-info">
-                <span className="display-name">metrics</span>
-                <span className="port">3000</span>
-              </div>
-              <div className="server-info">
+              <div
+                className="server-info"
+                role="button"
+                tabIndex={0}
+                title="ws://localhost/testing-a-really-long-path"
+              >
                 <span className="display-name">ws://localhost/testing-a-really-long-path</span>
                 <span className="port">3000</span>
               </div>
