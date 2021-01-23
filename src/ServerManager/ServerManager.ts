@@ -65,11 +65,11 @@ class ServerManager {
        */
   createServer = (config: ServerConfig): Promise<ServerRecord | Error> => {
     const {
-      name, port, onConnection, onMessage, onError,
+      name, port, onConnection, onMessage, onError, id
     } = config;
     const app = express();
     const server = new http.Server(app);
-    const id = uuidv4();
+    const serverId = id || uuidv4();
     app.use(cors());
 
     const wss = new WebSocket.Server({ server });
@@ -77,7 +77,7 @@ class ServerManager {
     wss.on('connection', (ws: any, req: object) => {
       if (onConnection) onConnection();
       ws.on('message', (msg: string) => {
-        if (onMessage) onMessage(msg);
+        if (onMessage) onMessage(msg, serverId);
       });
     });
 
@@ -93,7 +93,7 @@ class ServerManager {
       });
     };
 
-    this.servers[id] = new ServerAbstract(wss, { broadcast }, name, id, port);
+    this.servers[serverId] = new ServerAbstract(wss, { broadcast }, name, serverId, port);
 
     /**
              * We return a promise, but we _cannot_ ever reject this promise because any errors
