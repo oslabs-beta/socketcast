@@ -1,20 +1,20 @@
 @import '../../node_modules/normalize.css/normalize.css';
+@import './hack-font/hack.css';
 
-$base_teal3:#1b1b2d;
-$base_teal3_hover:#3a3a4e;
+$primary-background:#1b1b2d;
+$primary-background_hover:#3a3a4e; // For sidebar
 $base_teal2: rgb(204, 204, 204);
-$base_teal1 :#f79f3b;
 $base_grey: rgb(234, 236, 238);
 $terminal_black: rgb(226, 226, 226);
-$terminal_orange: rgb(212, 147, 24);
+$primary-font-color: rgb(212, 147, 24);
 $terminal_black2: rgb(11, 14, 17);
 
-// $base_teal3: rgb(27, 118, 121);
+// $primary-background: rgb(27, 118, 121);
 // $base_teal2: rgb(147, 188, 189);
 // $base_teal1: rgb(236, 245, 245);
 // $base_grey: rgb(234, 236, 238);
 // $terminal_black: rgb(226, 226, 226);
-// $terminal_orange: rgb(170, 132, 62);
+// $primary-font-color: rgb(170, 132, 62);
 // $terminal_black2: rgb(31, 30, 30);
 
 #root {
@@ -50,7 +50,7 @@ body {
 
 
 .code {
-  color: $terminal_orange;
+  color: $primary-font-color;
   margin-bottom: 5px;
   margin-left: 10px;
 }
@@ -67,7 +67,7 @@ body {
   width: 100%;
   height: 100px;
   border-radius: 0px 3px 3px 3px;
-  border: 2px $base_teal3 solid;
+  border: 2px $primary-background solid;
   background-color: $terminal_black;
 }
 
@@ -77,7 +77,7 @@ body {
 
 
 .event_button {
-  background-color: $base_teal3;
+  background-color: $primary-background;
   color: white;
   border-radius: 3px 3px 0px 0px;
   border: none;
@@ -99,7 +99,7 @@ body {
 .server-column {
   background-color: #1F2933;
   display: flex;
-  flex: 1;  
+  flex: 0.7;  
   flex-direction: column;
 
   border-left-color: #323f4b;
@@ -131,7 +131,17 @@ body {
   border-bottom-width: 1px;
 }
 
+.input-container .radio {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-left: 5px;
+  }
+}
+
 .input-container {
+
   margin-top: 5px;
 
   .label {
@@ -169,7 +179,7 @@ input[type="text"] {
 }
 
 .button {
-  background-color: $base_teal3;
+  background-color: $primary-background;
   color: white;
 
   font-size: 12px;
@@ -182,7 +192,7 @@ input[type="text"] {
   border-width: 0px;
 
   .primary {
-    background-color: $base_teal3;
+    background-color: $primary-background;
     color: white;
   }
 
@@ -197,15 +207,15 @@ input[type="text"] {
   color: white;
   border-radius: 3px;
   font-weight: bold;
-  background-color: $base_teal3;
+  background-color: $primary-background;
   padding: 4px;
   width: 100px;
   border: none;
   margin-right: 5px;
 }
 
-.sidebar {
-  background-color: $base_teal3;
+.sidebar-column {
+  background-color: $primary-background;
   flex: 0.4;
 
   .sidebar-container {
@@ -234,7 +244,7 @@ input[type="text"] {
     display: flex;
     justify-content: center;
 
-    color: $base_teal1;
+    color: $primary-font-color;
 
     padding: 20px 10px;
 
@@ -242,7 +252,7 @@ input[type="text"] {
 
   .filter-name {
     font-size: 15px;
-    color: $base_teal1;
+    color: $primary-font-color;
 
     padding: 10px;
   }
@@ -265,7 +275,8 @@ input[type="text"] {
     padding: 10px 15px;
 
     &:hover {
-      background-color: $base_teal3_hover;
+      background-color: $primary-background_hover;
+      cursor: pointer;
     }
 
     .display-name {
@@ -297,7 +308,7 @@ input[type="text"] {
 }
 
 .sidebar_server:hover {
-  color: $base_teal1;
+  color: $primary-font-color;
   cursor: pointer;
 }
 
@@ -333,30 +344,34 @@ input[type="text"] {
   flex: .2
 }
 
-.streamDisplay_inputbox {
+.code-textarea {
   margin-top: 11px;
-  height: 22px;
   width: 100%;
-  border-radius: 3px 3px 3px 0px;
-  border: 2px $base_teal3 solid;
-  background-color: $terminal_black;
+  border-radius: 5px;
+  background-color: $primary-background;
+  color: white;
+  font-family: 'Hack';
 }
 
 .streamDisplay_outputbox {
   margin-top: 10px;
   height: 90%;
   width: 100%;
-  border-radius: 3px 3px 3px 0px;
-  border: 2px $base_teal3 solid;
+  border-radius: 5px;
+  border: 2px $primary-background solid;
   overflow-y: scroll;
-  background-color: $terminal_black;
+  font-family: 'Hack';
+  color: white;
+  background-color: $primary-background;
+
+
 }
 
 .streamDisplay_button {
-  background-color: $base_teal3;
+  background-color: $primary-background;
   color: white;
   border-radius: 0px 0px 3px 3px;
-  border: 2px $base_teal3 solid;
+  border: 2px $primary-background solid;
   font-weight: bold;
 }
 

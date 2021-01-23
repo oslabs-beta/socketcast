@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { serverManagerCreateServer } from '@/store/actions';
+import InputText from './input/InputText';
 
 function ServerForm() {
   const [port, updatePort] = useState('3000');
@@ -16,7 +17,6 @@ function ServerForm() {
     <div className="server-configuration">
       <div className="window_title">SERVER CONFIGURATION</div>
 
-      <br />
       <div>
         <button
           className="button primary"
@@ -31,43 +31,32 @@ function ServerForm() {
 
       {/* FORM */}
       <form className="form-container">
-        <div className="input-container">
-          <span className="label">Name</span>
-          {' '}
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => updateName(e.target.value)}
-          />
-        </div>
-        <div className="input-container">
-          <span className="label">Endpoint</span>
-          {' '}
-          <input type="text" />
-        </div>
-        <div className="input-container">
-          <span className="label">Port</span>
-          {' '}
-          <input
-            value={port}
-            onChange={(e) => updatePort(e.target.value)}
-            type="text"
-          />
-        </div>
+        <InputText
+          label="Name"
+          value={name}
+          onChange={(e: any) => updateName(e.target.value)}
+        />
+        <InputText
+          label="Endpoint"
+        />
+        <InputText
+          label="Port"
+          value={port}
+          onChange={(e: any) => updatePort(e.target.value)}
+        />
         <div className="input-container">
           <span className="label">Protocol</span>
-          <div className="input-container">
-            <input type="radio" id="websocket" />
+          <div className="input-container radio">
+            <input name="protocol" type="radio" id="websocket" checked />
             <label htmlFor="websocket">WebSocket</label>
           </div>
-          <div className="input-container">
-            <input type="radio" id="sse" />
-            <label>Server Side Events (SSE)</label>
+          <div className="input-container radio">
+            <input name="protocol" type="radio" id="sse" />
+            <label htmlFor="sse">Server Side Events (SSE)</label>
           </div>
-          <div className="input-container">
-
-            <input type="radio" id="socketio" />
-            <label>socket.io</label>
+          <div className="input-container radio">
+            <input name="protocol" type="radio" id="socketio" />
+            <label htmlFor="socketio">socket.io</label>
           </div>
         </div>
       </form>
