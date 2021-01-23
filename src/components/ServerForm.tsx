@@ -18,7 +18,7 @@ function ServerForm() {
 
       <div>
         <button
-          className="button primary"
+          className="button button_special"
           onClick={() => {
             dispatch(serverManagerCreateServer({ port: +port, name }));
           }}

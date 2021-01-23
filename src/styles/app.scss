@@ -6,7 +6,7 @@ $primary-background_hover:#3a3a4e; // For sidebar
 $base_teal2: rgb(204, 204, 204);
 $base_grey: rgb(234, 236, 238);
 $terminal_black: rgb(226, 226, 226);
-$primary-font-color: rgb(212, 147, 24);
+$primary-font-color: rgb(221, 133, 18);
 $terminal_black2: rgb(11, 14, 17);
 
 // $primary-background: rgb(27, 118, 121);
@@ -153,6 +153,8 @@ body {
   }
 }
 
+
+
 .form-container {
   margin-top: 5px;
   display: flex;
@@ -168,14 +170,34 @@ body {
 input[type="text"] {
   width: 100%;
   box-sizing: border-box;
-
+  background-color: #323f4b;
+  border: 1px solid #636267;
   padding: 9px;
-
+  color: white;
   border-radius: 5px;
   border-width: 1px;
 
   font-size: 14px;
 
+}
+
+.planned-response-container {
+  flex: .6;
+  padding: 10px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.planned-response-playground {
+  height: 200px;
+  max-height: 400px;
+  overflow-y: scroll;
+  color: white;
+  width: 100%;
+  background-color: $primary-background;
+  border: 2px $primary-background solid;
+  margin-top: 10px;
 }
 
 .button {
@@ -201,7 +223,21 @@ input[type="text"] {
     color: white;
   }
 
+  
+  
+
 }
+
+.button_special {
+  background-color: $primary-font-color;
+  color: black;
+}
+
+.button_code {
+  background-color: #1F2933;
+}
+
+
 
 .serverForm_button {
   color: white;
@@ -275,7 +311,7 @@ input[type="text"] {
     padding: 10px 15px;
 
     &:hover {
-      background-color: $primary-background_hover;
+      background-color: #1F2933;
       cursor: pointer;
     }
 
@@ -300,7 +336,14 @@ input[type="text"] {
 }
 
 
-
+.PRC-input {
+  width: 30px;
+  background-color: #1b1b2d;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+}
 
 
 .sidebar_server {
@@ -355,7 +398,7 @@ input[type="text"] {
 
 .streamDisplay_outputbox {
   margin-top: 10px;
-  height: 90%;
+  height: 100%;
   width: 100%;
   border-radius: 5px;
   border: 2px $primary-background solid;
@@ -383,10 +426,18 @@ input[type="text"] {
   color:rgb(212, 147, 24)
 }
 
-.planned-response-container {
-  flex: 2;
-  padding: 5px 10px;
-  border-radius: 3px;
+.PRUnit {
+  width: 100%;
+  margin-bottom: 5px;
+  border: 1px $primary-background_hover
+}
+
+.top-section {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-type {
+  color:  rgb(204, 204, 204)
 }

@@ -2,10 +2,14 @@
     width: 400px;
     height: 100px;
     background-color: gainsboro;
+}
 
-    .top-section {
-        display: flex;
-        justify-content: space-between;
-    }
+.top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.title-type {
+    color:  rgb(204, 204, 204);
 }
