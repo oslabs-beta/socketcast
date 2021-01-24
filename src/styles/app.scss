@@ -25,14 +25,6 @@ body {
   background-color: $base_grey;
 }
 
-// .app_container {
-//   width: 100%;
-//   min-height: 750px;
-//   height: 100%;
-//   display: flex;
-//   background-color: $base_grey;
-// }
-
 #root {
   height: 100%;
 }
@@ -41,10 +33,52 @@ body {
 /* ---------------  GENERAL  -------------- */
 /* ---------------------------------------- */
 
+.button {
+  background-color: $primary-background;
+  color: white;
+  font-size: 12px;
+  font-weight: lighter;
+  padding: 10px;
+  height: 30px;
+  border-radius: 5px;
+  border-width: 0px;
+
+  .primary {
+    background-color: $primary-background;
+    color: white;
+  }
+
+  .secondary {
+    background-color: $base_teal2;
+    color: white;
+  }
+}
+
+.button_special {
+  background-color: $primary-font-color;
+  color: black;
+}
+
+.button_code {
+  background-color: #1F2933;
+}
+
 .code {
   color: $primary-font-color;
   margin-bottom: 5px;
   margin-left: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #323f4b;
+  border: 1px solid #636267;
+  padding: 9px;
+  color: white;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 14px;
 }
 
 /* ---------------------------------------- */
@@ -141,6 +175,35 @@ body {
 /* -------------  MIDDLE PANE  ------------ */
 /* ---------------------------------------- */
 
+.event {
+  width: 100%;
+  height: 100px;
+  border-radius: 0px 3px 3px 3px;
+  border: 2px $primary-background solid;
+  background-color: $terminal_black;
+}
+
+.event_container {
+  margin-top: 5px;
+}
+
+
+.event_button {
+  background-color: $primary-background;
+  color: white;
+  border-radius: 3px 3px 0px 0px;
+  border: none;
+  font-weight: bold;
+}
+
+.eventConfig {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 10px 20px 10px;
+  flex: 1;
+}
+
 .input-container {
   margin-top: 5px;
 
@@ -194,38 +257,20 @@ body {
   border-bottom-width: 1px;
 }
 
+.serverForm_button {
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: $primary-background;
+  padding: 4px;
+  width: 100px;
+  border: none;
+  margin-right: 5px;
+}
+
 /* ---------------------------------------- */
 /* -------------  RIGHT PANE  ------------- */
 /* ---------------------------------------- */
-
-.eventConfig {
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 10px 20px 10px;
-  flex: 1;
-}
-
-.event {
-  width: 100%;
-  height: 100px;
-  border-radius: 0px 3px 3px 3px;
-  border: 2px $primary-background solid;
-  background-color: $terminal_black;
-}
-
-.event_container {
-  margin-top: 5px;
-}
-
-
-.event_button {
-  background-color: $primary-background;
-  color: white;
-  border-radius: 3px 3px 0px 0px;
-  border: none;
-  font-weight: bold;
-}
 
 .header {
   background-color: white;
@@ -239,12 +284,6 @@ body {
   display: flex;
 }
 
-
-
-
-
-
-
 .form-container {
   margin-top: 5px;
   display: flex;
@@ -257,17 +296,7 @@ body {
   font-variant: all-petite-caps;
 }
 
-input[type="text"] {
-  width: 100%;
-  box-sizing: border-box;
-  background-color: #323f4b;
-  border: 1px solid #636267;
-  padding: 9px;
-  color: white;
-  border-radius: 5px;
-  border-width: 1px;
-  font-size: 14px;
-}
+
 
 .planned-response-container {
   flex: .6;
@@ -288,55 +317,7 @@ input[type="text"] {
   margin-top: 10px;
 }
 
-.button {
-  background-color: $primary-background;
-  color: white;
 
-  font-size: 12px;
-  font-weight: lighter;
-
-  padding: 10px;
-  height: 30px;
-
-  border-radius: 5px;
-  border-width: 0px;
-
-  .primary {
-    background-color: $primary-background;
-    color: white;
-  }
-
-  .secondary {
-    background-color: $base_teal2;
-    color: white;
-  }
-
-
-
-
-}
-
-.button_special {
-  background-color: $primary-font-color;
-  color: black;
-}
-
-.button_code {
-  background-color: #1F2933;
-}
-
-
-
-.serverForm_button {
-  color: white;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: $primary-background;
-  padding: 4px;
-  width: 100px;
-  border: none;
-  margin-right: 5px;
-}
 
 
 
@@ -349,9 +330,6 @@ input[type="text"] {
   padding: 5px;
   border-radius: 3px;
 }
-
-
-
 
 .stream-column {
   background-color: #1F2933;
@@ -400,8 +378,6 @@ input[type="text"] {
   font-family: 'Hack';
   color: white;
   background-color: $primary-background;
-
-
 }
 
 .streamDisplay_button {
