@@ -9,51 +9,194 @@ $terminal_black: rgb(226, 226, 226);
 $primary-font-color: rgb(221, 133, 18);
 $terminal_black2: rgb(11, 14, 17);
 
-// $primary-background: rgb(27, 118, 121);
-// $base_teal2: rgb(147, 188, 189);
-// $base_teal1: rgb(236, 245, 245);
-// $base_grey: rgb(234, 236, 238);
-// $terminal_black: rgb(226, 226, 226);
-// $primary-font-color: rgb(170, 132, 62);
-// $terminal_black2: rgb(31, 30, 30);
+html,
+body {
+  height: 100%;
+  margin: 0;
+  //min-height: 450px;
+  //min-width: 800px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: $base_grey;
+}
+
+// .app_container {
+//   width: 100%;
+//   min-height: 750px;
+//   height: 100%;
+//   display: flex;
+//   background-color: $base_grey;
+// }
 
 #root {
   height: 100%;
 }
 
-
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  min-height: 450px;
-  min-width: 800px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.app {
-  height:100%;
-
-  background-color: $base_grey;
-}
-
-.app_container {
-  width: 100%;
-  min-height: 750px;
-  height:100%;
-
-  display: flex;
-
-  background-color: $base_grey;
-}
-
+/* ---------------------------------------- */
+/* ---------------  GENERAL  -------------- */
+/* ---------------------------------------- */
 
 .code {
   color: $primary-font-color;
   margin-bottom: 5px;
   margin-left: 10px;
 }
+
+/* ---------------------------------------- */
+/* --------------  LEFT PANE  ------------- */
+/* ---------------------------------------- */
+
+.brand {
+  font-variant: small-caps;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: $primary-font-color;
+  padding: 20px 10px;
+}
+
+.filter-container {
+  padding: 20px 0;
+}
+
+.filter-name {
+  font-size: 15px;
+  color: $primary-font-color;
+  padding: 10px;
+}
+
+.muted-info {
+  color: $base_grey;
+  font-size: 12px;
+  color: #eaecee;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.server-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+
+  &:hover {
+    background-color: #1F2933;
+    cursor: pointer;
+  }
+
+  .display-name {
+    max-width: 175px;
+    color: white;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .port {
+    padding: 0 0 0 10px;
+
+    color: grey;
+    font-size: 14px;
+  }
+}
+
+.sidebar_server {
+  color: $base_teal2;
+}
+
+.sidebar_server:hover {
+  color: $primary-font-color;
+  cursor: pointer;
+}
+
+.sidebar_title {
+  color: rgb(226, 226, 226);
+}
+
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  background-color: $primary-background;
+  flex: 0.4;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ---------------------------------------- */
+/* -------------  MIDDLE PANE  ------------ */
+/* ---------------------------------------- */
+
+.input-container {
+  margin-top: 5px;
+
+  .label {
+    font-variant: all-petite-caps;
+  }
+
+  label {
+    font-variant: all-petite-caps;
+  }
+}
+
+.input-container .radio {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-left: 5px;
+  }
+}
+
+.server-column {
+  background-color: #1F2933;
+  display: flex;
+  flex: 0.7;
+  flex-direction: column;
+  border-left-color: #323f4b;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: #323f4b;
+  border-right-style: solid;
+  border-right-width: 1px;
+
+  .input-container {
+    .label {
+      color: #F5F7FA;
+    }
+
+    label {
+      color: #F5F7FA;
+    }
+  }
+}
+
+.server-configuration {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 10px 20px 10px;
+  border-bottom-color: #323f4b;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+/* ---------------------------------------- */
+/* -------------  RIGHT PANE  ------------- */
+/* ---------------------------------------- */
 
 .eventConfig {
   margin-top: 5px;
@@ -96,62 +239,9 @@ body {
   display: flex;
 }
 
-.server-column {
-  background-color: #1F2933;
-  display: flex;
-  flex: 0.7;  
-  flex-direction: column;
 
-  border-left-color: #323f4b;
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-right-color: #323f4b;
-  border-right-style: solid;
-  border-right-width: 1px;
 
-  .input-container {
-    .label {
-      color: #F5F7FA;
-    }
 
-    label {
-      color: #F5F7FA;
-    }
-  }
-
-}
-
-.server-configuration {
-  display: flex;
-  flex-direction: column;
-  padding: 15px 10px 20px 10px;
-
-  border-bottom-color: #323f4b;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-}
-
-.input-container .radio {
-  display: flex;
-  align-items: center;
-
-  label {
-    margin-left: 5px;
-  }
-}
-
-.input-container {
-
-  margin-top: 5px;
-
-  .label {
-    font-variant: all-petite-caps;
-  }
-
-  label {
-    font-variant: all-petite-caps;
-  }
-}
 
 
 
@@ -176,9 +266,7 @@ input[type="text"] {
   color: white;
   border-radius: 5px;
   border-width: 1px;
-
   font-size: 14px;
-
 }
 
 .planned-response-container {
@@ -206,7 +294,7 @@ input[type="text"] {
 
   font-size: 12px;
   font-weight: lighter;
-  
+
   padding: 10px;
   height: 30px;
 
@@ -223,8 +311,8 @@ input[type="text"] {
     color: white;
   }
 
-  
-  
+
+
 
 }
 
@@ -250,90 +338,7 @@ input[type="text"] {
   margin-right: 5px;
 }
 
-.sidebar-column {
-  background-color: $primary-background;
-  flex: 0.4;
 
-  .sidebar-container {
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .sidebar-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-  }
-
-  .filter-container {
-    padding: 20px 0;
-  }
-
-  .brand {
-    font-variant: small-caps;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
-    color: $primary-font-color;
-
-    padding: 20px 10px;
-
-  }
-
-  .filter-name {
-    font-size: 15px;
-    color: $primary-font-color;
-
-    padding: 10px;
-  }
-
-  .muted-info {
-    color: $base_grey;
-    font-size: 12px;
-  
-    color: #eaecee;
-    font-size: 12px;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-  }
-
-  .server-info {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-
-    &:hover {
-      background-color: #1F2933;
-      cursor: pointer;
-    }
-
-    .display-name {
-      max-width: 175px;
-
-      color: white;
-      font-size: 14px;
-
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .port {
-      padding: 0 0 0 10px;
-
-      color: grey;
-      font-size: 14px;
-    }
-  }
-}
 
 
 .PRC-input {
@@ -346,18 +351,7 @@ input[type="text"] {
 }
 
 
-.sidebar_server {
-  color: $base_teal2;
-}
 
-.sidebar_server:hover {
-  color: $primary-font-color;
-  cursor: pointer;
-}
-
-.sidebar_title {
-  color:rgb(226, 226, 226);
-}
 
 .stream-column {
   background-color: #1F2933;
@@ -423,7 +417,7 @@ input[type="text"] {
 }
 
 .header-primary {
-  color:rgb(212, 147, 24)
+  color: rgb(212, 147, 24)
 }
 
 .PRUnit {
@@ -439,5 +433,5 @@ input[type="text"] {
 }
 
 .title-type {
-  color:  rgb(204, 204, 204)
+  color: rgb(204, 204, 204)
 }
