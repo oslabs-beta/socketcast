@@ -63,12 +63,6 @@ body {
   background-color: #1F2933;
 }
 
-.code {
-  color: $primary-font-color;
-  margin-bottom: 5px;
-  margin-left: 10px;
-}
-
 input[type="text"] {
   width: 100%;
   box-sizing: border-box;
@@ -268,20 +262,28 @@ input[type="text"] {
   margin-right: 5px;
 }
 
+.serverForm_label {
+  font-size: 16px;
+  font-variant: all-petite-caps;
+}
+
 /* ---------------------------------------- */
 /* -------------  RIGHT PANE  ------------- */
 /* ---------------------------------------- */
 
-.header {
-  background-color: white;
-  font-weight: bold;
-  width: 100%;
-  height: 50px;
+.code {
+  color: $primary-font-color;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 
-.mainContainer {
-  flex: 2;
-  display: flex;
+.code-textarea {
+  margin-top: 11px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: $primary-background;
+  color: white;
+  font-family: 'Hack';
 }
 
 .form-container {
@@ -291,12 +293,63 @@ input[type="text"] {
   padding: 10px;
 }
 
-.serverForm_label {
-  font-size: 16px;
-  font-variant: all-petite-caps;
+.stream-column {
+  background-color: #1F2933;
+  flex: 2;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
 }
 
+.streamDisplay_button {
+  background-color: $primary-background;
+  color: white;
+  border-radius: 0px 0px 3px 3px;
+  border: 2px $primary-background solid;
+  font-weight: bold;
+}
 
+.streamDisplay_header {
+  background-color: white;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.streamDisplay_container {
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.streamDisplay_button {
+  background-color: $primary-background;
+  color: white;
+  border-radius: 0px 0px 3px 3px;
+  border: 2px $primary-background solid;
+  font-weight: bold;
+}
+
+.streamDisplay_outputContainer {
+  margin-top: 5px;
+  flex: 1
+}
+
+.streamDisplay_inputContainer {
+  flex: .2
+}
+
+.streamDisplay_outputbox {
+  margin-top: 10px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px $primary-background solid;
+  overflow-y: scroll;
+  font-family: 'Hack';
+  color: white;
+  background-color: $primary-background;
+}
+
+/* Planned Response */
 
 .planned-response-container {
   flex: .6;
@@ -317,11 +370,6 @@ input[type="text"] {
   margin-top: 10px;
 }
 
-
-
-
-
-
 .PRC-input {
   width: 30px;
   background-color: #1b1b2d;
@@ -329,71 +377,6 @@ input[type="text"] {
   border: none;
   padding: 5px;
   border-radius: 3px;
-}
-
-.stream-column {
-  background-color: #1F2933;
-  flex: 2;
-  padding: 5px 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.streamDisplay_header {
-  background-color: white;
-  border-radius: 3px;
-  padding: 10px;
-}
-
-.streamDisplay_container {
-  border-radius: 3px;
-  padding: 10px;
-}
-
-.streamDisplay_outputContainer {
-  margin-top: 5px;
-  flex: 1
-}
-
-.streamDisplay_inputContainer {
-  flex: .2
-}
-
-.code-textarea {
-  margin-top: 11px;
-  width: 100%;
-  border-radius: 5px;
-  background-color: $primary-background;
-  color: white;
-  font-family: 'Hack';
-}
-
-.streamDisplay_outputbox {
-  margin-top: 10px;
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  border: 2px $primary-background solid;
-  overflow-y: scroll;
-  font-family: 'Hack';
-  color: white;
-  background-color: $primary-background;
-}
-
-.streamDisplay_button {
-  background-color: $primary-background;
-  color: white;
-  border-radius: 0px 0px 3px 3px;
-  border: 2px $primary-background solid;
-  font-weight: bold;
-}
-
-.header-container {
-  padding: 5px;
-}
-
-.header-primary {
-  color: rgb(212, 147, 24)
 }
 
 .PRUnit {
