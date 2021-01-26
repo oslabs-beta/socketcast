@@ -9,59 +9,165 @@ $terminal_black: rgb(226, 226, 226);
 $primary-font-color: rgb(221, 133, 18);
 $terminal_black2: rgb(11, 14, 17);
 
-// $primary-background: rgb(27, 118, 121);
-// $base_teal2: rgb(147, 188, 189);
-// $base_teal1: rgb(236, 245, 245);
-// $base_grey: rgb(234, 236, 238);
-// $terminal_black: rgb(226, 226, 226);
-// $primary-font-color: rgb(170, 132, 62);
-// $terminal_black2: rgb(31, 30, 30);
+html,
+body {
+  height: 100%;
+  margin: 0;
+  //min-height: 450px;
+  //min-width: 800px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: $base_grey;
+}
 
 #root {
   height: 100%;
 }
 
+/* ---------------------------------------- */
+/* ---------------  GENERAL  -------------- */
+/* ---------------------------------------- */
 
+.button {
+  background-color: $primary-background;
+  color: white;
+  font-size: 12px;
+  font-weight: lighter;
+  padding: 10px;
+  height: 30px;
+  border-radius: 5px;
+  border-width: 0px;
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  min-height: 450px;
-  min-width: 800px;
-  font-family: Arial, Helvetica, sans-serif;
+  .primary {
+    background-color: $primary-background;
+    color: white;
+  }
+
+  .secondary {
+    background-color: $base_teal2;
+    color: white;
+  }
 }
 
-.app {
-  height:100%;
-
-  background-color: $base_grey;
+.button_special {
+  background-color: $primary-font-color;
+  color: black;
 }
 
-.app_container {
+.button_code {
+  background-color: #1F2933;
+}
+
+input[type="text"] {
   width: 100%;
-  min-height: 750px;
-  height:100%;
-
-  display: flex;
-
-  background-color: $base_grey;
+  box-sizing: border-box;
+  background-color: #323f4b;
+  border: 1px solid #636267;
+  padding: 9px;
+  color: white;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 14px;
 }
 
+/* ---------------------------------------- */
+/* --------------  LEFT PANE  ------------- */
+/* ---------------------------------------- */
 
-.code {
+.brand {
+  font-variant: small-caps;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   color: $primary-font-color;
-  margin-bottom: 5px;
-  margin-left: 10px;
+  padding: 20px 10px;
 }
 
-.eventConfig {
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 10px 20px 10px;
-  flex: 1;
+.filter-container {
+  padding: 20px 0;
 }
+
+.filter-name {
+  font-size: 15px;
+  color: $primary-font-color;
+  padding: 10px;
+}
+
+.muted-info {
+  color: $base_grey;
+  font-size: 12px;
+  color: #eaecee;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.server-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+
+  &:hover {
+    background-color: #1F2933;
+    cursor: pointer;
+  }
+
+  .display-name {
+    max-width: 175px;
+    color: white;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .port {
+    padding: 0 0 0 10px;
+
+    color: grey;
+    font-size: 14px;
+  }
+}
+
+.sidebar_server {
+  color: $base_teal2;
+}
+
+.sidebar_server:hover {
+  color: $primary-font-color;
+  cursor: pointer;
+}
+
+.sidebar_title {
+  color: rgb(226, 226, 226);
+}
+
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  background-color: $primary-background;
+  flex: 0.4;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ---------------------------------------- */
+/* -------------  MIDDLE PANE  ------------ */
+/* ---------------------------------------- */
 
 .event {
   width: 100%;
@@ -84,24 +190,40 @@ body {
   font-weight: bold;
 }
 
-.header {
-  background-color: white;
-  font-weight: bold;
-  width: 100%;
-  height: 50px;
+.eventConfig {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 10px 20px 10px;
+  flex: 1;
 }
 
-.mainContainer {
-  flex: 2;
+.input-container {
+  margin-top: 5px;
+
+  .label {
+    font-variant: all-petite-caps;
+  }
+
+  label {
+    font-variant: all-petite-caps;
+  }
+}
+
+.input-container .radio {
   display: flex;
+  align-items: center;
+
+  label {
+    margin-left: 5px;
+  }
 }
 
 .server-column {
   background-color: #1F2933;
   display: flex;
-  flex: 0.7;  
+  flex: 0.7;
   flex-direction: column;
-
   border-left-color: #323f4b;
   border-left-style: solid;
   border-left-width: 1px;
@@ -118,42 +240,51 @@ body {
       color: #F5F7FA;
     }
   }
-
 }
 
 .server-configuration {
   display: flex;
   flex-direction: column;
   padding: 15px 10px 20px 10px;
-
   border-bottom-color: #323f4b;
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
-.input-container .radio {
-  display: flex;
-  align-items: center;
-
-  label {
-    margin-left: 5px;
-  }
+.serverForm_button {
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: $primary-background;
+  padding: 4px;
+  width: 100px;
+  border: none;
+  margin-right: 5px;
 }
 
-.input-container {
-
-  margin-top: 5px;
-
-  .label {
-    font-variant: all-petite-caps;
-  }
-
-  label {
-    font-variant: all-petite-caps;
-  }
+.serverForm_label {
+  font-size: 16px;
+  font-variant: all-petite-caps;
 }
 
+/* ---------------------------------------- */
+/* -------------  RIGHT PANE  ------------- */
+/* ---------------------------------------- */
 
+.code {
+  color: $primary-font-color;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.code-textarea {
+  margin-top: 11px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: $primary-background;
+  color: white;
+  font-family: 'Hack';
+}
 
 .form-container {
   margin-top: 5px;
@@ -162,24 +293,63 @@ body {
   padding: 10px;
 }
 
-.serverForm_label {
-  font-size: 16px;
-  font-variant: all-petite-caps;
+.stream-column {
+  background-color: #1F2933;
+  flex: 2;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-input[type="text"] {
-  width: 100%;
-  box-sizing: border-box;
-  background-color: #323f4b;
-  border: 1px solid #636267;
-  padding: 9px;
+.streamDisplay_button {
+  background-color: $primary-background;
   color: white;
-  border-radius: 5px;
-  border-width: 1px;
-
-  font-size: 14px;
-
+  border-radius: 0px 0px 3px 3px;
+  border: 2px $primary-background solid;
+  font-weight: bold;
 }
+
+.streamDisplay_header {
+  background-color: white;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.streamDisplay_container {
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.streamDisplay_button {
+  background-color: $primary-background;
+  color: white;
+  border-radius: 0px 0px 3px 3px;
+  border: 2px $primary-background solid;
+  font-weight: bold;
+}
+
+.streamDisplay_outputContainer {
+  margin-top: 5px;
+  flex: 1
+}
+
+.streamDisplay_inputContainer {
+  flex: .2
+}
+
+.streamDisplay_outputbox {
+  margin-top: 10px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px $primary-background solid;
+  overflow-y: scroll;
+  font-family: 'Hack';
+  color: white;
+  background-color: $primary-background;
+}
+
+/* Planned Response */
 
 .planned-response-container {
   flex: .6;
@@ -200,142 +370,6 @@ input[type="text"] {
   margin-top: 10px;
 }
 
-.button {
-  background-color: $primary-background;
-  color: white;
-
-  font-size: 12px;
-  font-weight: lighter;
-  
-  padding: 10px;
-  height: 30px;
-
-  border-radius: 5px;
-  border-width: 0px;
-
-  .primary {
-    background-color: $primary-background;
-    color: white;
-  }
-
-  .secondary {
-    background-color: $base_teal2;
-    color: white;
-  }
-
-  
-  
-
-}
-
-.button_special {
-  background-color: $primary-font-color;
-  color: black;
-}
-
-.button_code {
-  background-color: #1F2933;
-}
-
-
-
-.serverForm_button {
-  color: white;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: $primary-background;
-  padding: 4px;
-  width: 100px;
-  border: none;
-  margin-right: 5px;
-}
-
-.sidebar-column {
-  background-color: $primary-background;
-  flex: 0.4;
-
-  .sidebar-container {
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .sidebar-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-  }
-
-  .filter-container {
-    padding: 20px 0;
-  }
-
-  .brand {
-    font-variant: small-caps;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
-    color: $primary-font-color;
-
-    padding: 20px 10px;
-
-  }
-
-  .filter-name {
-    font-size: 15px;
-    color: $primary-font-color;
-
-    padding: 10px;
-  }
-
-  .muted-info {
-    color: $base_grey;
-    font-size: 12px;
-  
-    color: #eaecee;
-    font-size: 12px;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-  }
-
-  .server-info {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-
-    &:hover {
-      background-color: #1F2933;
-      cursor: pointer;
-    }
-
-    .display-name {
-      max-width: 175px;
-
-      color: white;
-      font-size: 14px;
-
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .port {
-      padding: 0 0 0 10px;
-
-      color: grey;
-      font-size: 14px;
-    }
-  }
-}
-
-
 .PRC-input {
   width: 30px;
   background-color: #1b1b2d;
@@ -343,87 +377,6 @@ input[type="text"] {
   border: none;
   padding: 5px;
   border-radius: 3px;
-}
-
-
-.sidebar_server {
-  color: $base_teal2;
-}
-
-.sidebar_server:hover {
-  color: $primary-font-color;
-  cursor: pointer;
-}
-
-.sidebar_title {
-  color:rgb(226, 226, 226);
-}
-
-.stream-column {
-  background-color: #1F2933;
-  flex: 2;
-  padding: 5px 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.streamDisplay_header {
-  background-color: white;
-  border-radius: 3px;
-  padding: 10px;
-}
-
-.streamDisplay_container {
-  border-radius: 3px;
-  padding: 10px;
-}
-
-.streamDisplay_outputContainer {
-  margin-top: 5px;
-  flex: 1
-}
-
-.streamDisplay_inputContainer {
-  flex: .2
-}
-
-.code-textarea {
-  margin-top: 11px;
-  width: 100%;
-  border-radius: 5px;
-  background-color: $primary-background;
-  color: white;
-  font-family: 'Hack';
-}
-
-.streamDisplay_outputbox {
-  margin-top: 10px;
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  border: 2px $primary-background solid;
-  overflow-y: scroll;
-  font-family: 'Hack';
-  color: white;
-  background-color: $primary-background;
-
-
-}
-
-.streamDisplay_button {
-  background-color: $primary-background;
-  color: white;
-  border-radius: 0px 0px 3px 3px;
-  border: 2px $primary-background solid;
-  font-weight: bold;
-}
-
-.header-container {
-  padding: 5px;
-}
-
-.header-primary {
-  color:rgb(212, 147, 24)
 }
 
 .PRUnit {
@@ -439,5 +392,5 @@ input[type="text"] {
 }
 
 .title-type {
-  color:  rgb(204, 204, 204)
+  color: rgb(204, 204, 204)
 }
