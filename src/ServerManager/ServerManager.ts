@@ -113,9 +113,6 @@ class ServerManager {
     });
   };
 
-  createSSEServer = (config: ServerConfig): Promise<ServerRecord | Error>  => {
-
-  }
 
   // TODO Promisify this.
   /**
