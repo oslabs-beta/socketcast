@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import cors from 'cors';
 import * as WebSocket from 'ws';
 
+import { ServerConfig, ServerRecord } from './type';
 import ServerAbstract from './ServerAbstract';
 
 enum ServerStatus {
@@ -65,7 +66,7 @@ class ServerManager {
        */
   createServer = (config: ServerConfig): Promise<ServerRecord | Error> => {
     const {
-      name, port, onConnection, onMessage, onError, id
+      name, port, onConnection, onMessage, onError, id,
     } = config;
     const app = express();
     const server = new http.Server(app);
@@ -111,6 +112,10 @@ class ServerManager {
       }));
     });
   };
+
+  createSSEServer = (config: ServerConfig): Promise<ServerRecord | Error>  => {
+
+  }
 
   // TODO Promisify this.
   /**

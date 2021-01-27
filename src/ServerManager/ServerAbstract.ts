@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/semi */
-import WebSocket from 'ws';
-
 class ServerAbstract {
-  server: any
+  public server: any;
 
-  broadcast: any
+  private broadcast: any
 
-  name: string
+  public name: string
 
-  id: string
+  public id: string
 
-  port: number
+  public port: number
 
-  constructor(server: WebSocket.Server,
+  constructor(server: any,
     { broadcast }: { broadcast: any },
     name: string, id: string, port: number) {
     this.id = id;

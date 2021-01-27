@@ -6,6 +6,7 @@
  ***     streams: {[server_id]: {[event_id]: stream[]}}
  */
 
+import { DataReducerState } from "@/ServerManager/type";
 import * as types from "../actions/actionTypes";
 
 const initialState: DataReducerState = {

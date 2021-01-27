@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ServerManager from '../ServerManager/ServerManager';
 import { RootState } from './reducers';
 import * as types from './actions/actionTypes';
+import { ServerConfig } from '../ServerManager/type';
 
 export const createServer = (data: any) => ({
   type: types.CREATE_SERVER,
