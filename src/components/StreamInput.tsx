@@ -42,7 +42,7 @@ function StreamInput() {
             />
           </div>
 
-          <div style={{ float: "right" }}>
+          <div style={{ float: "right"}} className = "streamInput_buttons">
             
             <button className = "button primary"   onClick={() => { updateToggle(!toggle) }} >
                 Toggle Planner

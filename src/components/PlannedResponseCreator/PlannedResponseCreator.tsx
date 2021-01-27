@@ -38,7 +38,7 @@ const PlannedResponseCreator = (props:any) => {
   return (
     <>
       <div className = "planned-response-playground">
-        {plannedResponse.map((curr) => <PRUnit index={1} pru={curr} onMoveDown={()=>{onMoveDown(plannedResponse, curr)}} onMoveUp={() => {onMoveUp(plannedResponse, curr)}} onRemove={() => {onRemove(plannedResponse, curr)}} />)}
+        {plannedResponse.map((curr, count=0) => <PRUnit key = {count++} index={1} pru={curr} onMoveDown={()=>{onMoveDown(plannedResponse, curr)}} onMoveUp={() => {onMoveUp(plannedResponse, curr)}} onRemove={() => {onRemove(plannedResponse, curr)}} />)}
       </div>
      
       <div>

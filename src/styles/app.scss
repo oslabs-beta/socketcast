@@ -54,13 +54,29 @@ body {
   }
 }
 
+.button:hover{
+  background-color:$primary-font-color;
+  color: black;
+  cursor: pointer;
+}
+
 .button_special {
   background-color: $primary-font-color;
   color: black;
 }
 
+.button_special:hover {
+  cursor: pointer;
+}
+
 .button_code {
   background-color: #1F2933;
+}
+
+.button_code:hover {
+  background-color:rgb(221, 133, 18);
+  color: black;
+  cursor: pointer;
 }
 
 input[type="text"] {
@@ -334,7 +350,7 @@ input[type="text"] {
 }
 
 .streamDisplay_inputContainer {
-  flex: .2
+  flex: .1
 }
 
 .streamDisplay_outputbox {
@@ -347,6 +363,10 @@ input[type="text"] {
   font-family: 'Hack';
   color: white;
   background-color: $primary-background;
+}
+
+.streamInput_buttons {
+  margin-bottom: 10px;
 }
 
 /* Planned Response */
@@ -393,4 +413,26 @@ input[type="text"] {
 
 .title-type {
   color: rgb(204, 204, 204)
+}
+
+
+/* Styled Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background:  #323f4b
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary-background;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-font-color;
 }
