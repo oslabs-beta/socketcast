@@ -34,12 +34,10 @@ body {
 /* ---------------------------------------- */
 
 .button {
-  background-color: $primary-background;
   color: white;
   font-size: 12px;
   font-weight: lighter;
   padding: 10px;
-  height: 30px;
   border-radius: 5px;
   border-width: 0px;
 
@@ -79,6 +77,59 @@ input[type="text"] {
 /* --------------  LEFT PANE  ------------- */
 /* ---------------------------------------- */
 
+.sidebar {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+  background-color: $primary-background;
+
+  .buttons-display {
+    align-self: center;
+    padding: 20px;
+
+    .button {
+      background-color: $primary-font-color
+    }
+  }
+
+  .servers-display {
+    padding: 20px 0;
+
+    .server {
+      align-self: center;
+      padding: 10px 15px;
+
+      &:hover {
+        background-color: #1F2933;
+        cursor: pointer;
+      }
+
+      .name {
+        max-width: 175px;
+        color: white;
+        font-size: 14px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .port {
+        padding: 0 0 0 10px;
+        color: grey;
+        font-size: 14px;
+      }
+    }
+
+    .title {
+      font-size: 26px;
+      color: $primary-font-color;
+      padding: 0 10px;
+    }
+  }
+}
+
 .brand {
   font-variant: small-caps;
   align-items: center;
@@ -86,16 +137,6 @@ input[type="text"] {
   justify-content: center;
   color: $primary-font-color;
   padding: 20px 10px;
-}
-
-.filter-container {
-  padding: 20px 0;
-}
-
-.filter-name {
-  font-size: 15px;
-  color: $primary-font-color;
-  padding: 10px;
 }
 
 .muted-info {
@@ -109,32 +150,7 @@ input[type="text"] {
   padding: 20px;
 }
 
-.server-info {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
 
-  &:hover {
-    background-color: #1F2933;
-    cursor: pointer;
-  }
-
-  .display-name {
-    max-width: 175px;
-    color: white;
-    font-size: 14px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .port {
-    padding: 0 0 0 10px;
-
-    color: grey;
-    font-size: 14px;
-  }
-}
 
 .sidebar_server {
   color: $base_teal2;
@@ -147,22 +163,6 @@ input[type="text"] {
 
 .sidebar_title {
   color: rgb(226, 226, 226);
-}
-
-.sidebar-container {
-  height: 100%;
-  display: flex;
-  background-color: $primary-background;
-  flex: 0.4;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.sidebar-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
 }
 
 /* ---------------------------------------- */
