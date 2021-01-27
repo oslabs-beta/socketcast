@@ -1,10 +1,10 @@
-
 interface ServerConfig {
   name: string,
   port: number,
   onConnection?: Function,
-  onMessage?(message: string)
-  onError?: Function
+  onMessage?(message: string, id?: string),
+  onError?: Function,
+  id?: string
 }
 
 interface ServerRecord {
@@ -16,4 +16,3 @@ interface ServerRecord {
 interface DataReducerState {
   streams?: any
 }
-

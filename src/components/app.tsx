@@ -8,16 +8,14 @@ import '../styles/app.scss';
 // import PlannedResponseCreator from './PlannedResponseCreator/PlannedResponseCreator';
 import ServerTab from './ServerTab';
 import Sidebar from './Sidebar';
-import StreamDisplay from './StreamDisplay';
+import StreamTab from './StreamTab';
 
 const App = () => (
   <div className="app">
-    <div className="app_container">
-      <Sidebar />
-      <ServerTab />
-      <StreamDisplay />
-      {/* <PlannedResponseCreator /> */}
-    </div>
+    <Sidebar />
+    <ServerTab />
+    <StreamTab />
+    {/* <PlannedResponseCreator /> */}
   </div>
 );
 

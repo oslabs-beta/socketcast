@@ -4,7 +4,6 @@ function ServerForm() {
   return (
     <div className="eventConfig">
       <div className="window_title">EVENT STREAMS</div>
-
       <br />
       <form className="form-container">
         <input type="text" />

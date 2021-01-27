@@ -44,8 +44,8 @@ const example: PlannedResponseUnit[] = [
   { type: PlannedResponseUnitType.MESSAGE, message: 'Message 6 (1 second later)' },
 ];
 
-export const examplePlayback = () => {
-  playbackResponseUnits(example, {
+export const examplePlayback = (plannedResponse: any) => {
+  playbackResponseUnits(plannedResponse, {
     beforeDelay: (ms: number) => {
       // console.log(`delaying by ${ms}`);
     },

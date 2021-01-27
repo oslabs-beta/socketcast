@@ -15,11 +15,9 @@ function ServerForm() {
 
   return (
     <div className="server-configuration">
-      <div className="window_title">SERVER CONFIGURATION</div>
-
       <div>
         <button
-          className="button primary"
+          className="button button_special"
           onClick={() => {
             dispatch(serverManagerCreateServer({ port: +port, name }));
           }}
