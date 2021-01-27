@@ -17,10 +17,28 @@ const PlannedResponseCreator = (props:any) => {
 
   const resetPlannedResponse = () => setPlannedResponse([]);
 
+  const onMoveUp = (arr: any, ele: object) => {
+    let index = arr.indexOf(ele)
+    if (index<1) return
+    [arr[index-1], arr[index]] = [arr[index], arr[index-1]]
+    setPlannedResponse(arr.slice())
+  }
+  const onMoveDown = (arr: any, ele: object) => {
+    let index = arr.indexOf(ele)
+    if (index === arr.length - 1) return
+    [arr[index+1], arr[index]] = [arr[index], arr[index+1]]
+    setPlannedResponse(arr.slice())
+  }
+  const onRemove = (arr:any, ele: object) => {
+    let index = arr.indexOf(ele)
+    arr.splice(index, 1)
+    setPlannedResponse(arr.slice())
+  }
+
   return (
     <>
       <div className = "planned-response-playground">
-        {plannedResponse.map((curr) => <PRUnit index={1} pru={curr} onMoveDown={() => {}} onMoveUp={() => {}} onRemove={() => {}} />)}
+        {plannedResponse.map((curr) => <PRUnit index={1} pru={curr} onMoveDown={()=>{onMoveDown(plannedResponse, curr)}} onMoveUp={() => {onMoveUp(plannedResponse, curr)}} onRemove={() => {onRemove(plannedResponse, curr)}} />)}
       </div>
      
       <div>

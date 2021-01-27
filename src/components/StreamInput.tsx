@@ -47,9 +47,6 @@ function StreamInput() {
             <button className = "button primary"   onClick={() => { updateToggle(!toggle) }} >
                 Toggle Planner
             </button>
-            <button className = "button primary" >
-              Emit Message Stream
-            </button>
             <button
               className="button button_special"
               type="button"
