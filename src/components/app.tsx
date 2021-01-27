@@ -12,12 +12,10 @@ import StreamTab from './StreamTab';
 
 const App = () => (
   <div className="app">
-    <div className="app_container">
-      <Sidebar />
-      <ServerTab />
-      <StreamTab />
-      {/* <PlannedResponseCreator /> */}
-    </div>
+    <Sidebar />
+    <ServerTab />
+    <StreamTab />
+    {/* <PlannedResponseCreator /> */}
   </div>
 );
 
