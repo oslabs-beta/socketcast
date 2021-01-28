@@ -5,49 +5,31 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 import { v4 as uuidv4 } from 'uuid';
-import ServerManager from '../ServerManager/ServerManager';
-import { RootState } from './reducers';
-import * as types from './actions/actionTypes';
+import ServerManager from '../../ServerManager/ServerManager';
+import { RootState } from '../reducers';
+import * as types from './actionTypes';
+import { ServerConfig, ServerState } from '../../ServerManager/type';
+import { createStream, logMessage } from './messagesActions';
 
-export const createServer = (data: any) => ({
+export const createServer = (data: ServerState) => ({
   type: types.CREATE_SERVER,
   payload: data,
 });
 
-export const getServer = (id: Number) => ({
-  type: types.GET_SERVER,
-  payload: id,
+export const updateServerState = (serverState: ServerState) => ({
+  type: types.UPDATE_SERVER_STATE,
+  payload: serverState,
 });
 
-export const getServers = () => ({
-  type: types.GET_SERVERS,
-  payload: null,
-});
-
-export const modifyServer = (id: Number, config: Object) => ({
-  type: types.MODIFY_SERVER,
-  payload: { id, config },
-});
-
-export const setCurrentEventId = (event: object) => ({
-  type: types.SET_CURRENT_EVENT,
-  payload: event,
-});
-
-export const setCurrentServerId = (id: string) => ({
-  type: types.SET_CURRENT_SERVER_ID,
-  payload: id,
-});
-
-export const stopAll = () => ({
-  type: types.STOP_ALL,
-  payload: null,
-});
-
-export const stopAndRemoveServer = (id: Number) => ({
+export const stopAndRemoveServer = (id: number) => ({
   type: types.STOP_AND_REMOVE_SERVER,
   payload: id,
 });
+
+// eslint-disable-next-line max-len
+export const serverManagerStopServer = (id: number): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+  ServerManager.stopServer(id);
+};
 
 // eslint-disable-next-line max-len
 export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
@@ -55,19 +37,34 @@ export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<voi
     ...config,
     id: uuidv4(),
     onMessage: (message, id) => {
-      // dispatch(logMessage(id, message));
       console.log(`from client to ${id} server: ${message}`);
       dispatch(logMessage(id, message));
+    },
+    onServerClose: (serverState: ServerState) => {
+      dispatch(updateServerState(serverState));
     },
   })
     .then((data: any) => {
       dispatch(createServer(data));
-
       // dispatch action to create data stream for this server
       dispatch(createStream(data.id));
     }).catch((err: any) => {
       console.log(err);
     });
+};
+
+// eslint-disable-next-line max-len
+export const serverManagerCreateSSEServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+  ServerManager.createSSEServer({
+    ...config,
+    id: uuidv4(),
+    onServerClose: (serverState: ServerState) => {
+      dispatch(updateServerState(serverState));
+    },
+  }).then((data: any) => {
+    dispatch(createServer(data));
+    dispatch(createStream(data.id));
+  });
 };
 
 // eslint-disable-next-line max-len
@@ -87,13 +84,3 @@ export const serverManagerBroadcastAll = (id: string, message: string): ThunkAct
   // call this dispatch to add the message to correct data storage (based on server_id)
   dispatch(logMessage(id, message));
 };
-
-export const createStream = (id: string) => ({
-  type: types.CREATE_STREAM,
-  payload: id,
-});
-
-export const logMessage = (id: any, message: string) => ({
-  type: types.LOG_MESSAGE,
-  payload: { id, message },
-});

@@ -3,23 +3,18 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/reducers';
 import ServerForm from './ServerForm';
 import ServerConfig from './ServerConfig';
-import EventForm from './EventForm';
-import EventConfig from './EventConfig';
 
 function ServerTab() {
-  const currentServerId = useSelector((store: RootState) => store.serversReducer.currentServerId);
+  const currentServerId = useSelector((store: RootState) => store.navigation.currentServerId);
   return (
     <div className="server-column">
-
-      {currentServerId === '' ? (
+      {currentServerId === null ? (
         <>
           <ServerForm />
-          <EventForm />
         </>
       ) : (
         <>
           <ServerConfig />
-          <EventConfig />
         </>
       )}
     </div>

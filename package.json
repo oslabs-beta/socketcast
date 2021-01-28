@@ -1,5 +1,5 @@
 {
-  "name": "electron_ts_react_boilerplate",
+  "name": "socketcast",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,10 +9,12 @@
     "test": "jest",
     "eslint": "npx eslint ./src --ext .js,.jsx,.ts,.tsx"
   },
-  "keywords": [],
+  "keywords": ["websocket", "websockets"],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "cors": "^2.8.5",
     "electron": "^11.1.1",
     "electron-store": "^6.0.1",

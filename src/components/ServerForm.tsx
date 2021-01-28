@@ -5,22 +5,29 @@
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { serverManagerCreateServer } from '@/store/actions';
+import { serverManagerCreateServer, serverManagerCreateSSEServer } from '@/store/actions/serversActions';
 import InputText from './input/InputText';
 
 function ServerForm() {
-  const [port, updatePort] = useState('3000');
+  const [port, updatePort] = useState(3000);
   const [name, updateName] = useState('server1');
+  const [protocol, updateProtocol] = useState('websocket');
   const dispatch = useDispatch();
+
+  const createServerHandler = () => {
+    if (protocol === 'websocket') {
+      dispatch(serverManagerCreateServer({ port: +port, name }));
+    } else if (protocol === 'sse') {
+      dispatch(serverManagerCreateSSEServer({ port: +port, name }));
+    }
+  };
 
   return (
     <div className="server-configuration">
       <div>
         <button
           className="button button_special"
-          onClick={() => {
-            dispatch(serverManagerCreateServer({ port: +port, name }));
-          }}
+          onClick={createServerHandler}
           type="button"
         >
           Create Server
@@ -45,16 +52,12 @@ function ServerForm() {
         <div className="input-container">
           <span className="label">Protocol</span>
           <div className="input-container radio">
-            <input name="protocol" type="radio" id="websocket" checked />
+            <input name="protocol" type="radio" id="websocket" checked={protocol === 'websocket'} onClick={() => updateProtocol('websocket')} />
             <label htmlFor="websocket">WebSocket</label>
           </div>
           <div className="input-container radio">
-            <input name="protocol" type="radio" id="sse" />
+            <input name="protocol" type="radio" id="sse" checked={protocol === 'sse'} onClick={() => updateProtocol('sse')} />
             <label htmlFor="sse">Server Side Events (SSE)</label>
-          </div>
-          <div className="input-container radio">
-            <input name="protocol" type="radio" id="socketio" />
-            <label htmlFor="socketio">socket.io</label>
           </div>
         </div>
       </form>

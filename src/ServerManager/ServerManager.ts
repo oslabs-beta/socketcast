@@ -1,9 +1,10 @@
 import http from 'http';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import cors from 'cors';
 import * as WebSocket from 'ws';
 
+import { ServerConfig, ServerState } from './type';
 import ServerAbstract from './ServerAbstract';
 
 enum ServerStatus {
@@ -21,7 +22,7 @@ class ServerManager {
   /**
        * Returns an object containing our servers. The keys are the
        * ID of the server within ServerManager.
-       * @returns {Array.<ServerRecord>}
+       * @returns {Array.<ServerState>}
        */
   getServers = () => Object.keys(this.servers).map((currentKey: string) => ({
     id: this.servers[currentKey].id,
@@ -63,9 +64,9 @@ class ServerManager {
        * server. The error will be the only parameter of the callback.
        * @returns {Promise}
        */
-  createServer = (config: ServerConfig): Promise<ServerRecord | Error> => {
+  createServer = (config: ServerConfig): Promise<ServerState | Error> => {
     const {
-      name, port, onConnection, onMessage, onError, id
+      name, port, onConnection, onMessage, id, onServerClose,
     } = config;
     const app = express();
     const server = new http.Server(app);
@@ -93,7 +94,24 @@ class ServerManager {
       });
     };
 
-    this.servers[serverId] = new ServerAbstract(wss, { broadcast }, name, serverId, port);
+    const stopServer = () => {
+      wss.clients.forEach((ws) => {
+        ws.terminate();
+      });
+      server.close().once('close', () => {
+        if (onServerClose) {
+          onServerClose({
+            id: serverId,
+            name,
+            port,
+            status: ServerStatus.STOPPED,
+          });
+        }
+      });
+    };
+
+    // eslint-disable-next-line max-len
+    this.servers[serverId] = new ServerAbstract(wss, { broadcast, stopServer }, name, serverId, port);
 
     /**
              * We return a promise, but we _cannot_ ever reject this promise because any errors
@@ -105,6 +123,69 @@ class ServerManager {
     return new Promise((resolve: Function, reject) => {
       server.listen(port || 3000, () => resolve({
         id,
+        name,
+        port,
+        status: ServerStatus.RUNNING,
+      }));
+    });
+  };
+
+  createSSEServer = (config: ServerConfig): Promise<ServerState | Error> => {
+    const {
+      name, port, onConnection, onError, id, endpoint, onServerClose,
+    } = config;
+    const app = express();
+    const server = new http.Server(app);
+    const serverId = id || uuidv4();
+    let clients: any[] = [];
+
+    app.use(cors());
+
+    const sseEndpointHandler = (req: Request, res: Response) => {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        Connection: 'keep-alive',
+        'Cache-Control': 'no-cache',
+      });
+
+      const clientId = uuidv4();
+      clients.push({
+        id: clientId,
+        res,
+      });
+
+      req.on('close', () => {
+        clients = clients.filter((client) => client.id !== clientId);
+      });
+    };
+
+    const broadcast = (message: string) => {
+      clients.forEach((client) => client.res.write(message));
+    };
+
+    // To stop a server, all connections to clients must be closed. Then, you can close the actual server.
+    const stopServer = () => {
+      clients.forEach((client) => client.res.end());
+      server.close().once('close', () => {
+        if (onServerClose) {
+          onServerClose({
+            id: serverId,
+            name,
+            port,
+            status: ServerStatus.STOPPED,
+          });
+        }
+      });
+    };
+
+    app.use((endpoint || '/'), sseEndpointHandler);
+
+    // eslint-disable-next-line max-len
+    this.servers[serverId] = new ServerAbstract(server, { broadcast, stopServer }, name, serverId, port);
+
+    return new Promise((resolve: Function, reject) => {
+      server.listen(port || 3000, () => resolve({
+        id: serverId,
         name,
         port,
         status: ServerStatus.RUNNING,
@@ -130,10 +211,10 @@ class ServerManager {
        * @param id
        * @returns {Promise}
        */
-  stopServer = (id: string) => {
+  stopServer = (id: number) => {
     // Close all connections to the sockets
     // call server.stop()
-    this.servers[id].server.stop();
+    this.servers[id].stop();
   };
 }
 

@@ -2,17 +2,16 @@
  * @description Right pane of application. Displays input and output streams
  */
 
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/reducers";
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/reducers';
 
 function StreamDisplay() {
   const currentServerId = useSelector(
-    (store: RootState) => store.serversReducer.currentServerId
+    (store: RootState) => store.navigation.currentServerId,
   );
   const outputStream = useSelector(
-    (store: RootState) => store.dataReducer.streams
+    (store: RootState) => store.messages.streams,
   );
 
   let counter = 0;
@@ -20,8 +19,8 @@ function StreamDisplay() {
   return (
     <div className="streamDisplay_container streamDisplay_outputContainer">
       <div className="streamDisplay_outputbox">
-        {currentServerId &&
-          outputStream[currentServerId].map((code: string) => (
+        {currentServerId
+          && outputStream[currentServerId].map((code: string) => (
             <div className="code" key={counter++}>
               {code}
             </div>
