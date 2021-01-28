@@ -59,10 +59,6 @@ function ServerForm() {
             <input name="protocol" type="radio" id="sse" checked={protocol === 'sse'} onClick={() => updateProtocol('sse')} />
             <label htmlFor="sse">Server Side Events (SSE)</label>
           </div>
-          <div className="input-container radio">
-            <input name="protocol" type="radio" id="socketio" checked={protocol === 'socketio'} onClick={() => updateProtocol('socketio')} />
-            <label htmlFor="socketio">socket.io</label>
-          </div>
         </div>
       </form>
     </div>
