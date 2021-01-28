@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { serverManagerCreateServer, serverManagerCreateSSEServer } from '@/store/actions';
+import { serverManagerCreateServer, serverManagerCreateSSEServer } from '@/store/actions/serversActions';
 import InputText from './input/InputText';
 
 function ServerForm() {

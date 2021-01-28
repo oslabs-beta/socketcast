@@ -4,12 +4,12 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentServerId } from '@/store/actions';
+import { setCurrentServerId } from '@/store/actions/navigationActions';
 
 function Sidebar() {
   const dispatch = useDispatch();
   // @ts-ignore
-  const servers = useSelector((store) => store.serversReducer.servers);
+  const servers = useSelector((store) => store.servers.servers);
 
   return (
     <div className="sidebar-container">

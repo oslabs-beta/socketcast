@@ -16,7 +16,7 @@ export interface ServerState {
   status: string
 }
 
-export interface DataReducerState {
+export interface MessagesReducerState {
   streams?: any
 }
 

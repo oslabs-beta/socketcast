@@ -8,10 +8,10 @@ import { RootState } from '@/store/reducers';
 
 function StreamDisplay() {
   const currentServerId = useSelector(
-    (store: RootState) => store.serversReducer.currentServerId,
+    (store: RootState) => store.navigation.currentServerId,
   );
   const outputStream = useSelector(
-    (store: RootState) => store.dataReducer.streams,
+    (store: RootState) => store.messages.streams,
   );
 
   let counter = 0;

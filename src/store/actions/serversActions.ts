@@ -5,46 +5,16 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 import { v4 as uuidv4 } from 'uuid';
-import ServerManager from '../ServerManager/ServerManager';
-import { RootState } from './reducers';
-import * as types from './actions/actionTypes';
-import { ServerConfig, ServerState } from '../ServerManager/type';
+import ServerManager from '../../ServerManager/ServerManager';
+import { RootState } from '../reducers';
+import * as types from './actionTypes';
+import { ServerConfig, ServerState } from '../../ServerManager/type';
+import { createStream, logMessage } from './messagesActions';
 
 export const createServer = (data: ServerState) => ({
   type: types.CREATE_SERVER,
   payload: data,
 });
-
-export const getServer = (id: Number) => ({
-  type: types.GET_SERVER,
-  payload: id,
-});
-
-export const getServers = () => ({
-  type: types.GET_SERVERS,
-  payload: null,
-});
-
-export const modifyServer = (id: Number, config: Object) => ({
-  type: types.MODIFY_SERVER,
-  payload: { id, config },
-});
-
-export const setCurrentEventId = (event: object) => ({
-  type: types.SET_CURRENT_EVENT,
-  payload: event,
-});
-
-export const setCurrentServerId = (id: string) => ({
-  type: types.SET_CURRENT_SERVER_ID,
-  payload: id,
-});
-
-export const stopAll = () => ({
-  type: types.STOP_ALL,
-  payload: null,
-});
-
 
 export const updateServerState = (serverState: ServerState) => ({
   type: types.UPDATE_SERVER_STATE,
@@ -114,13 +84,3 @@ export const serverManagerBroadcastAll = (id: string, message: string): ThunkAct
   // call this dispatch to add the message to correct data storage (based on server_id)
   dispatch(logMessage(id, message));
 };
-
-export const createStream = (id: string) => ({
-  type: types.CREATE_STREAM,
-  payload: id,
-});
-
-export const logMessage = (id: any, message: string) => ({
-  type: types.LOG_MESSAGE,
-  payload: { id, message },
-});
