@@ -4,11 +4,13 @@
 
 import { combineReducers } from 'redux';
 import serversReducer from './serversReducer';
-import dataReducer from './dataReducer'
+import messagesReducer from './messagesReducer';
+import navigationReducer from './navigationReducer';
 
 const reducers = combineReducers({
-  serversReducer,
-  dataReducer,
+  servers: serversReducer,
+  messages: messagesReducer,
+  navigation: navigationReducer,
 });
 
 export default reducers;

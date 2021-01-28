@@ -5,14 +5,14 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentEventId } from '@/store/actions';
+import { setCurrentEventId } from '@/store/actions/navigationActions';
 
 function EventConfig() {
   const dispatch = useDispatch();
   // @ts-ignore
-  const currentServerID = useSelector((store) => store.serversReducer.currentServerId);
+  const currentServerID = useSelector((store) => store.navigation.currentServerId);
   // @ts-ignore
-  const currentServer = useSelector((store) => store.serversReducer.servers[currentServerID]);
+  const currentServer = useSelector((store) => store.servers.servers[currentServerID]);
   const eventsArray: any = [];
   if (currentServer) {
     currentServer.events.map((event: any) => {
