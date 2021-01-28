@@ -5,67 +5,49 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentServerId } from '@/store/actions';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import { green, red } from '@material-ui/core/colors';
 
 function Sidebar() {
   const dispatch = useDispatch();
   // @ts-ignore
   const servers = useSelector((store) => store.serversReducer.servers);
 
-  return (
-    <div className="sidebar-container">
-      <div className="top">
-        <div className="sidebar-buttons">
-          <button
-            className="button secondary"
-            onClick={() => {
-              dispatch(setCurrentServerId(''));
-            }}
-          >
-            + New Server
-            </button>
+  const displayServers = Object.values(servers).map((server: any) => {
+    const status = server.status === "RUNNING" ? green[500] : red[500];
+    return (
+      <div className="server" key={server.id} onClick={() => dispatch(setCurrentServerId(server.id))}>
+        <div>
+          <span className="name">{server.name}</span>
+          <span className="port">:{server.port}</span>
         </div>
-        <div className="server-container">
-          <div className="filter-container">
-            <div className="filter-name">Running</div>
-            {
-              Object.values(servers).length
-                ? Object.values(servers).filter((item: any) => item.status === 'RUNNING').map((item: any) => (
-                  <div
-                    className="server-info"
-                    role="button"
-                    tabIndex={0}
-                    title={item.name}
-                    key={item.id}
-                    onClick={() => { dispatch(setCurrentServerId(item.id)); }}
-                  >
-                    <span className="display-name">{item.name}</span>
-                    <span className="port">{item.port}</span>
-                  </div>
-                )) : <span className="muted-info">You have no running servers.</span>
-            }
-          </div>
-          <div className="filter-container">
-            <div className="filter-name">Stopped</div>
-            {/* Conditionally render the below if there are no stopped servers. */}
-            {/* <span className="muted-info">You have no stopped servers.</span> */}
-            <div
-              className="server-info"
-              role="button"
-              tabIndex={0}
-              title="ws://localhost/testing-a-really-long-path"
-            >
-              <span className="display-name">ws://localhost/testing-a-really-long-path</span>
-              <span className="port">3000</span>
-            </div>
-          </div>
-
-        </div>
+        <FiberManualRecordIcon style={{ color: status }} />
       </div>
+    )
+  });
 
-      <div className="bottom">
-        <div className="brand">
-          socketcast.
-          </div>
+  return (
+    <div className="sidebar">
+      <div className="buttons-display">
+        <button
+          className="button"
+          onClick={() => {
+            dispatch(setCurrentServerId(''));
+          }}
+        >
+          + New Server
+        </button>
+      </div>
+      <div className="servers-display">
+        <div className="title">Servers</div>
+        {
+          displayServers.length
+            ? displayServers
+            : <div className="message"><span>No configured servers</span></div>
+        }
+      </div>
+      <div className="brand">
+        socketcast.
       </div>
     </div>
   );
