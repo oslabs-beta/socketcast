@@ -1,6 +1,6 @@
 import http from 'http';
-import express from 'express';
-import { v4 as uuidv4 } from 'uuid';
+import express, { NextFunction, Request, Response } from 'express';
+import { v4 as uuidv4, v4 } from 'uuid';
 import cors from 'cors';
 import * as WebSocket from 'ws';
 
@@ -113,6 +113,52 @@ class ServerManager {
     });
   };
 
+  createSSEServer = (config: ServerConfig): Promise<ServerRecord | Error> => {
+    const {
+      name, port, onConnection, onError, id, endpoint,
+    } = config;
+    const app = express();
+    const server = new http.Server(app);
+    const serverId = id || uuidv4();
+    let clients: any[] = [];
+
+    app.use(cors());
+
+    const sseEndpointHandler = (req: Request, res: Response, next: NextFunction) => {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        Connection: 'keep-alive',
+        'Cache-Control': 'no-cache',
+      });
+
+      const clientId = v4();
+      clients.push({
+        id: clientId,
+        res,
+      });
+
+      req.on('close', () => {
+        clients = clients.filter((client) => client.id !== clientId);
+      });
+    };
+
+    const broadcast = (message: string) => {
+      clients.forEach((client) => client.res.write(message));
+    };
+
+    app.use((endpoint || '/'), sseEndpointHandler);
+
+    this.servers[serverId] = new ServerAbstract(server, { broadcast }, name, serverId, port);
+
+    return new Promise((resolve: Function, reject) => {
+      server.listen(port || 3000, () => resolve({
+        id,
+        name,
+        port,
+        status: ServerStatus.RUNNING,
+      }));
+    });
+  };
 
   // TODO Promisify this.
   /**

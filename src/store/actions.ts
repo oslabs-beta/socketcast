@@ -56,19 +56,28 @@ export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<voi
     ...config,
     id: uuidv4(),
     onMessage: (message, id) => {
-      // dispatch(logMessage(id, message));
       console.log(`from client to ${id} server: ${message}`);
       dispatch(logMessage(id, message));
     },
   })
     .then((data: any) => {
       dispatch(createServer(data));
-
       // dispatch action to create data stream for this server
       dispatch(createStream(data.id));
     }).catch((err: any) => {
       console.log(err);
     });
+};
+
+// eslint-disable-next-line max-len
+export const serverManagerCreateSSEServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+  ServerManager.createSSEServer({
+    ...config,
+    id: uuidv4(),
+  }).then((data: any) => {
+    dispatch(createServer(data));
+    dispatch(createStream(data.id));
+  });
 };
 
 // eslint-disable-next-line max-len
