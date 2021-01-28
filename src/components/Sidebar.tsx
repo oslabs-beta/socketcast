@@ -46,7 +46,6 @@ function Sidebar() {
             : <div className="message"><span>No configured servers</span></div>
         }
       </div>
-
       <div className="brand">
         socketcast.
       </div>

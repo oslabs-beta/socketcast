@@ -95,12 +95,13 @@ input[type="text"] {
   }
 
   .servers-display {
+    flex-grow: 1;
     padding: 20px 0;
 
     .title {
       font-size: 26px;
       color: $primary-font-color;
-      padding: 0 20px;
+      padding-left: 10px;
       margin-bottom: 10px;
     }
 
@@ -138,27 +139,12 @@ input[type="text"] {
     }
   }
 
-
-}
-
-.brand {
-  font-variant: small-caps;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  color: $primary-font-color;
-  padding: 20px 10px;
-}
-
-.muted-info {
-  color: $base_grey;
-  font-size: 12px;
-  color: #eaecee;
-  font-size: 12px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
+  .brand {
+    font-variant: small-caps;
+    align-self: center;
+    color: $primary-font-color;
+    padding: 20px 10px;
+  }
 }
 
 /* ---------------------------------------- */
