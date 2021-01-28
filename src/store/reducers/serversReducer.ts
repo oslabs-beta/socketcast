@@ -23,6 +23,17 @@ const serversReducer = (state = initialState, action: any) => {
         },
       };
     }
+    case types.UPDATE_SERVER_STATE: {
+      return {
+        ...state,
+        servers: {
+          ...state.servers,
+          [action.payload.id]: {
+            ...action.payload,
+          },
+        },
+      };
+    }
     case types.GET_SERVER: {
       const id = action.payload;
       return { ...state };

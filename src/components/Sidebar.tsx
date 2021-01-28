@@ -22,7 +22,7 @@ function Sidebar() {
             }}
           >
             + New Server
-            </button>
+          </button>
         </div>
         <div className="server-container">
           <div className="filter-container">
@@ -46,9 +46,24 @@ function Sidebar() {
           </div>
           <div className="filter-container">
             <div className="filter-name">Stopped</div>
-            {/* Conditionally render the below if there are no stopped servers. */}
-            {/* <span className="muted-info">You have no stopped servers.</span> */}
-            <div
+            {
+              Object.values(servers).length
+                ? Object.values(servers).filter((item: any) => item.status === 'STOPPED').map((item: any) => (
+                  <div
+                    className="server-info"
+                    role="button"
+                    tabIndex={0}
+                    title={item.name}
+                    key={item.id}
+                    onClick={() => { dispatch(setCurrentServerId(item.id)); }}
+                  >
+                    <span className="display-name">{item.name}</span>
+                    <span className="port">{item.port}</span>
+                  </div>
+                )) : <span className="muted-info">You have no stopped servers.</span>
+
+            }
+            {/* <div
               className="server-info"
               role="button"
               tabIndex={0}
@@ -56,7 +71,7 @@ function Sidebar() {
             >
               <span className="display-name">ws://localhost/testing-a-really-long-path</span>
               <span className="port">3000</span>
-            </div>
+            </div> */}
           </div>
 
         </div>
@@ -65,7 +80,7 @@ function Sidebar() {
       <div className="bottom">
         <div className="brand">
           socketcast.
-          </div>
+        </div>
       </div>
     </div>
   );

@@ -3,14 +3,16 @@ export interface ServerConfig {
   port: number,
   onConnection?: Function,
   onMessage?(message: string, id?: string): void,
+  onServerClose?(record: ServerState): void,
   onError?: Function,
   id?: string
   endpoint?: string
 }
 
-export interface ServerRecord {
+export interface ServerState {
   id: string,
   name: string,
+  port: number,
   status: string
 }
 

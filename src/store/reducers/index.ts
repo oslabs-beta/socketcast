@@ -4,7 +4,7 @@
 
 import { combineReducers } from 'redux';
 import serversReducer from './serversReducer';
-import dataReducer from './dataReducer'
+import dataReducer from './dataReducer';
 
 const reducers = combineReducers({
   serversReducer,
