@@ -14,12 +14,12 @@ function ServerTab() {
       {currentServerId === '' ? (
         <>
           <ServerForm />
-          <EventForm />
+          {/* <EventForm /> */}
         </>
       ) : (
         <>
           <ServerConfig />
-          <EventConfig />
+          {/* <EventConfig /> */}
         </>
       )}
     </div>

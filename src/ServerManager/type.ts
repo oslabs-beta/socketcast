@@ -5,6 +5,7 @@ export interface ServerConfig {
   onMessage?(message: string, id?: string): void,
   onError?: Function,
   id?: string
+  endpoint?: string
 }
 
 export interface ServerRecord {
