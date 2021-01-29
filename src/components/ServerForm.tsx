@@ -4,14 +4,16 @@
  */
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { serverManagerCreateServer, serverManagerCreateSSEServer } from '@/store/actions/serversActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { serverManagerCreateServer, serverManagerCreateSSEServer, serverManagerStopServer } from '@/store/actions/serversActions';
 import InputText from './input/InputText';
+import { RootState } from '@/store/reducers';
 
 function ServerForm() {
   const [port, updatePort] = useState(3000);
-  const [name, updateName] = useState('server1');
+  const [name, updateName] = useState('Server1');
   const [protocol, updateProtocol] = useState('websocket');
+  const currentServerId = useSelector((store: RootState) => store.navigation.currentServerId);
   const dispatch = useDispatch();
 
   const createServerHandler = () => {
@@ -31,6 +33,12 @@ function ServerForm() {
           type="button"
         >
           Create Server
+        </button>
+        <button
+          className="button button_special"
+          onClick={() => { dispatch(serverManagerStopServer(currentServerId)) }}
+        >
+          Stop Server
         </button>
       </div>
 
