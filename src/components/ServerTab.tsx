@@ -7,17 +7,7 @@ import ServerConfig from './ServerConfig';
 function ServerTab() {
   const currentServerId = useSelector((store: RootState) => store.navigation.currentServerId);
   return (
-    <div className="server-column">
-      {currentServerId === null ? (
-        <>
-          <ServerForm />
-        </>
-      ) : (
-        <>
-          <ServerConfig />
-        </>
-      )}
-    </div>
+    <ServerForm />
   );
 }
 
