@@ -5,7 +5,6 @@
 import React from 'react';
 import { PlannedResponseUnit, PlannedResponseUnitType } from './type';
 
-
 const PRUnit = ({
   pru, index, onMoveUp, onMoveDown, onRemove,
 }: { pru: PlannedResponseUnit, index: number, onMoveUp: any, onMoveDown: any, onRemove: any }) => {
@@ -23,11 +22,11 @@ const PRUnit = ({
         </span>
 
         <div>
-          <button className = "button button_code" type="button" onClick={onRemove}>Remove</button>
-          <button className = "button button_code" type="button" onClick={onMoveUp}>Up</button>
-          <button className = "button button_code" type="button" onClick={onMoveDown}>Down</button>
+          <button className="button button_code" type="button" onClick={onRemove}>Remove</button>
+          <button className="button button_code" type="button" onClick={onMoveUp}>Up</button>
+          <button className="button button_code" type="button" onClick={onMoveDown}>Down</button>
         </div>
-        
+
       </div>
       <div className="message-section">{pru.type === PlannedResponseUnitType.MESSAGE ? pru.message : pru.time}</div>
     </div>
