@@ -10,8 +10,6 @@ import InputText from './input/InputText';
 import { RootState } from '@/store/reducers';
 
 function ServerForm() {
-
-
   const [port, updatePort] = useState(3000);
   const [name, updateName] = useState('Server1');
   const [protocol, updateProtocol] = useState('websocket');
@@ -21,17 +19,47 @@ function ServerForm() {
 
   const createServerHandler = () => {
     dispatch(serverManagerCreateServer({ port: +port, name, protocol: protocol }));
-    updateName('')
-    updatePort(port)
+    updateName('New Server');
+    updatePort(3000);
   };
 
   const startServerHandler = () => {
     if (!currentServerId) return
-    dispatch(serverManagerStartServer({...servers[currentServerId]}, currentServerId))
+    dispatch(serverManagerStartServer({ ...servers[currentServerId] }, currentServerId))
   }
 
   return (
     <div className="server-configuration">
+      <form className="server-form">
+        <InputText
+          label="Name"
+          value={currentServerId ? servers[currentServerId].name : name}
+          onChange={(e: any) => updateName(e.target.value)}
+        />
+        <InputText
+          label="Port"
+          value={currentServerId ? servers[currentServerId].port : port}
+          onChange={(e: any) => updatePort(e.target.value)}
+        />
+        <div className="radio-container">
+          <span className="title">Protocol</span>
+          <div className="radio">
+            <input
+              name="protocol" type="radio" id="websocket"
+              checked={currentServerId ? servers[currentServerId].protocol === "websocket" : protocol === 'websocket'} onChange={() => updateProtocol('websocket')}
+            />
+            <label htmlFor="websocket">WebSocket</label>
+          </div>
+          <div className="radio">
+            <input name="protocol" type="radio" id="sse"
+              checked={currentServerId ? servers[currentServerId].protocol === "sse" : protocol === 'sse'}
+              onChange={() => updateProtocol('sse')}
+            />
+            <label htmlFor="sse">Server Side Events (SSE)</label>
+          </div>
+        </div>
+      </form>
+
       <div>
         <button
           className="button button_special"
@@ -46,38 +74,10 @@ function ServerForm() {
         >
           Stop Server
         </button>
-        <button className = "button button_special" onClick={startServerHandler}>
+        <button className="button button_special" onClick={startServerHandler}>
           Start Server
         </button>
       </div>
-
-      {/* FORM */}
-      <form className="form-container">
-        <InputText
-          label="Name"
-          value={currentServerId ? servers[currentServerId].name : name}
-          onChange={(e: any) => updateName(e.target.value)}
-        />
-        <InputText
-          label="Endpoint"
-        />
-        <InputText
-          label="Port"
-          value={currentServerId ? servers[currentServerId].port : port}
-          onChange={(e: any) => updatePort(e.target.value)}
-        />
-        <div className="input-container">
-          <span className="label">Protocol</span>
-          <div className="input-container radio">
-            <input name="protocol" type="radio" id="websocket" checked={currentServerId ? servers[currentServerId].protocol === "websocket" : protocol === 'websocket'} onChange={() => updateProtocol('websocket')} />
-            <label htmlFor="websocket">WebSocket</label>
-          </div>
-          <div className="input-container radio">
-            <input name="protocol" type="radio" id="sse" checked={currentServerId ? servers[currentServerId].protocol === "sse" : protocol === 'sse'} onChange={() => updateProtocol('sse')} />
-            <label htmlFor="sse">Server Side Events (SSE)</label>
-          </div>
-        </div>
-      </form>
     </div>
   );
 }
