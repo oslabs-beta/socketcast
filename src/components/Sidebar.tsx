@@ -12,6 +12,8 @@ function Sidebar() {
   const dispatch = useDispatch();
   // @ts-ignore
   const servers = useSelector((store) => store.servers.servers);
+  // @ts-ignore
+  const store = useSelector(store => store)
 
   const displayServers = Object.values(servers).map((server: any) => {
     const status = server.status === "RUNNING" ? green[500] : red[500];
@@ -46,6 +48,9 @@ function Sidebar() {
             : <div className="message"><span>No configured servers</span></div>
         }
       </div>
+
+      <button onClick = {()=>{window.localStorage.clear()}}>Clear local storage</button>
+
       <div className="brand">
         socketcast.
       </div>

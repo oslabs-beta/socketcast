@@ -5,12 +5,18 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  servers: {},
+  servers: (window.localStorage.store ? JSON.parse(window.localStorage.store).servers : {}),
 };
 
 const serversReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case types.CREATE_SERVER: {
+
+      //--Persistent Data Storage--
+      let data = JSON.parse(JSON.stringify({...state, servers: {...state.servers,[action.payload.id]: {...action.payload}}}))
+      Object.values(data.servers).map((server: any) => server.status = "STOPPED")
+      window.localStorage.setItem("store", JSON.stringify(data))
+
       return {
         ...state,
         servers: {
