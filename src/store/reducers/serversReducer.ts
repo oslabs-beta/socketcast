@@ -12,13 +12,10 @@ const serversReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case types.CREATE_SERVER: {
 
-    
-      ///PERSISTENT SERVER CONFIGS
-      //deep copy of state, map over it to set STOPPED, save on local storage
-      let data = JSON.parse(JSON.stringify({...state, servers: {...state.servers,[action.payload.id]: {...action.payload,},},}))
-      Object.values(data.servers).map((value: any) => value.status = "STOPPED")
+      //--Persistent Data Storage--
+      let data = JSON.parse(JSON.stringify({...state, servers: {...state.servers,[action.payload.id]: {...action.payload}}}))
+      Object.values(data.servers).map((server: any) => server.status = "STOPPED")
       window.localStorage.setItem("store", JSON.stringify(data))
-      console.log("Local Storage: ", data)
 
       return {
         ...state,

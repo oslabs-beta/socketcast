@@ -74,67 +74,62 @@ class ServerManager {
     app.use(cors());
 
 
-    if (protocol === "websocket") {
-
-        
+    if (protocol === "websocket") {  
       const wss = new WebSocket.Server({ server });
 
-    wss.on('connection', (ws: any, req: object) => {
-      if (onConnection) onConnection();
-      ws.on('message', (msg: string) => {
-        if (onMessage) onMessage(msg, serverId);
+      wss.on('connection', (ws: any, req: object) => {
+       if (onConnection) onConnection();
+        ws.on('message', (msg: string) => {
+         if (onMessage) onMessage(msg, serverId);
+        });
       });
-    });
 
-    /**
+        /**
          * TODO Promisify this somehow. The complication is promisifying it is that we
          * need to wait messages to be sent to ALL clients. If we don't do this, we assume
          * that the message is always successfully emitted at the time it displays on the UI
          * (which may not be true)
          */
-    const broadcast = (message: string) => {
-      wss.clients.forEach((client: any) => {
-        client.send(message);
-      });
-    };
 
-    const stopServer = () => {
-      wss.clients.forEach((ws) => {
-        ws.terminate();
-      });
-      server.close().once('close', () => {
-        if (onServerClose) {
-          onServerClose({
-            id: serverId,
-            name,
-            port,
-            protocol: protocol,
-            status: ServerStatus.STOPPED,
-          });
-        }
-      });
-    };
-    
-    // eslint-disable-next-line max-len
-    this.servers[serverId] = new ServerAbstract(wss, { broadcast, stopServer }, name, serverId, port, protocol);
+      const broadcast = (message: string) => {
+        wss.clients.forEach((client: any) => {
+          client.send(message);
+        });
+      };
 
-      }
-      else {
-        let clients: any[] = [];
-        const sseEndpointHandler = (req: Request, res: Response) => {
-          res.writeHead(200, {
-            'Content-Type': 'text/event-stream',
-            Connection: 'keep-alive',
-            'Cache-Control': 'no-cache',
-          });
+      const stopServer = () => {
+        wss.clients.forEach((ws) => {
+          ws.terminate();
+        });
+        server.close().once('close', () => {
+          if (onServerClose) {
+            onServerClose({
+              id: serverId,
+              name,
+              port,
+              protocol: protocol,
+              status: ServerStatus.STOPPED,
+            });
+          }
+        });
+      };
     
-          const clientId = uuidv4();
-          clients.push({
-            id: clientId,
-            res,
-          });
+      // eslint-disable-next-line max-len
+      this.servers[serverId] = new ServerAbstract(wss, { broadcast, stopServer }, name, serverId, port, protocol);
+
+    } else {
+      let clients: any[] = [];
+      const sseEndpointHandler = (req: Request, res: Response) => {
+        res.writeHead(200, {
+          'Content-Type': 'text/event-stream',
+          Connection: 'keep-alive',
+          'Cache-Control': 'no-cache',
+        });
+
+        const clientId = uuidv4();
+        clients.push({ id: clientId, res });
     
-          req.on('close', () => {
+        req.on('close', () => {
             clients = clients.filter((client) => client.id !== clientId);
           });
         };
@@ -158,14 +153,10 @@ class ServerManager {
             }
           });
         };
-    
-        app.use((endpoint || '/'), sseEndpointHandler);
-    
-        // eslint-disable-next-line max-len
-        this.servers[serverId] = new ServerAbstract(server, { broadcast, stopServer }, name, serverId, port);
-    
-
-      }
+      app.use((endpoint || '/'), sseEndpointHandler);
+      // eslint-disable-next-line max-len
+      this.servers[serverId] = new ServerAbstract(server, { broadcast, stopServer }, name, serverId, port);
+    }
     
 
 
