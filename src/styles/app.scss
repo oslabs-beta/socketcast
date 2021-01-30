@@ -131,8 +131,8 @@ body {
         max-width: 175px;
         color: white;
         font-size: 16px;
-        //white-space: nowrap;
-        //text-overflow: ellipsis;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         overflow: hidden;
       }
 
@@ -162,9 +162,6 @@ body {
   border-bottom-color: #323f4b;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  // border-right-color: $primary-background;
-  // border-right-style: solid;
-  // border-right-width: 1px;
   background-color: #1F2933;
   color: white;
 
@@ -199,11 +196,11 @@ body {
 
       .title {
         font-variant: all-petite-caps;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
       }
 
       .radio {
-        margin-bottom: 5px;
+        margin-bottom: 7px;
 
         label {
           margin-left: 10px;

@@ -10,6 +10,7 @@ import { RootState } from '../reducers';
 import * as types from './actionTypes';
 import { ServerConfig, ServerState } from '../../ServerManager/type';
 import { createStream, logMessage } from './messagesActions';
+import { setCurrentServerId } from './navigationActions';
 
 export const createServer = (data: ServerState) => ({
   type: types.CREATE_SERVER,
@@ -44,13 +45,12 @@ export const serverManagerStartServer = (config: ServerConfig, id: any): ThunkAc
       dispatch(updateServerState(serverState));
     },
   })
-  .then((data: any) => {
-    dispatch(createServer(data));
-    // dispatch action to create data stream for this server
-    dispatch(createStream(data.id));
-  }).catch((err: any) => {
-    console.log(err);
-  });
+    .then((data: any) => {
+      dispatch(createServer(data));
+      dispatch(createStream(data.id));
+    }).catch((err: any) => {
+      console.log(err);
+    });
 }
 
 // eslint-disable-next-line max-len
@@ -68,7 +68,7 @@ export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<voi
   })
     .then((data: any) => {
       dispatch(createServer(data));
-      // dispatch action to create data stream for this server
+      dispatch(setCurrentServerId(data.id));
       dispatch(createStream(data.id));
     }).catch((err: any) => {
       console.log(err);
