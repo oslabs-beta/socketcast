@@ -15,11 +15,6 @@ function Sidebar() {
   // @ts-ignore
   const store = useSelector(store => store)
 
-  const stopAndStringifyServers = (store:any) => {
-    Object.values(store.servers.servers).map((value: any) => value.status = "STOPPED")
-    return JSON.stringify(store)
-  }
-
   const displayServers = Object.values(servers).map((server: any) => {
     const status = server.status === "RUNNING" ? green[500] : red[500];
     return (
@@ -54,7 +49,6 @@ function Sidebar() {
         }
       </div>
 
-      {/* PERSISTENT DATA BUTTONS */}
       <button onClick = {()=>{window.localStorage.clear()}}>Clear local storage</button>
 
       <div className="brand">
