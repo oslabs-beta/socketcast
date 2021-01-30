@@ -10,8 +10,8 @@ import InputText from './input/InputText';
 import { RootState } from '@/store/reducers';
 
 function ServerForm() {
+  const [name, updateName] = useState('New Server');
   const [port, updatePort] = useState(3000);
-  const [name, updateName] = useState('Server1');
   const [protocol, updateProtocol] = useState('websocket');
   const currentServerId = useSelector((store: RootState) => store.navigation.currentServerId);
   const servers = useSelector((store: RootState) => store.servers.servers)
@@ -60,7 +60,7 @@ function ServerForm() {
         </div>
       </form>
 
-      <div>
+      <div className="button-container">
         <button
           className="button button_special"
           onClick={createServerHandler}

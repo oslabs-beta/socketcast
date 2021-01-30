@@ -162,6 +162,9 @@ body {
   border-bottom-color: #323f4b;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  // border-right-color: $primary-background;
+  // border-right-style: solid;
+  // border-right-width: 1px;
   background-color: #1F2933;
   color: white;
 
@@ -208,6 +211,16 @@ body {
       }
     }
   }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    button {
+      margin-bottom: 5px;
+    }
+  }
 }
 
 /* ---------------------------------------- */
@@ -232,7 +245,7 @@ body {
 .stream-column {
   background-color: #1F2933;
   flex: 2;
-  padding: 5px 10px;
+  padding: 5px 10px 5px 0;
   display: flex;
   flex-direction: column;
 }
