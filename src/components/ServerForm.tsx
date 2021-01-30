@@ -28,8 +28,9 @@ function ServerForm() {
     dispatch(serverManagerStartServer({ ...servers[currentServerId] }, currentServerId))
   }
 
-  const buttonDisplay = !currentServerId
-    ? (
+  const buttonDisplay: any = [];
+  if (!currentServerId) {
+    buttonDisplay.push(
       <button
         type="button"
         className="button button_special"
@@ -37,8 +38,9 @@ function ServerForm() {
         Create Server
       </button>
     )
-    : servers[currentServerId].status === "RUNNING"
-      ? (
+  } else {
+    if (servers[currentServerId].status === "RUNNING") {
+      buttonDisplay.push(
         <button
           className="button button_special"
           onClick={() => { dispatch(serverManagerStopServer(currentServerId)) }}
@@ -46,11 +48,18 @@ function ServerForm() {
           Stop Server
         </button>
       )
-      : (
+    } else {
+      buttonDisplay.push(
         <button className="button button_special" onClick={startServerHandler}>
           Start Server
         </button>
       )
+      buttonDisplay.push(
+        <button className="button remove">
+          Remove Server
+      </button>)
+    }
+  }
 
   return (
     <div className="server-configuration">
@@ -86,22 +95,6 @@ function ServerForm() {
 
       <div className="button-container">
         {buttonDisplay}
-        {/* <button
-          className="button button_special"
-          onClick={createServerHandler}
-          type="button"
-        >
-          Create Server
-        </button>
-        <button
-          className="button button_special"
-          onClick={() => { dispatch(serverManagerStopServer(currentServerId)) }}
-        >
-          Stop Server
-        </button>
-        <button className="button button_special" onClick={startServerHandler}>
-          Start Server
-        </button> */}
       </div>
     </div>
   );

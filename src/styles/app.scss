@@ -217,6 +217,12 @@ body {
     button {
       margin-bottom: 5px;
     }
+
+    .remove {
+      background-color: transparent;
+      color: red;
+      font-weight: bold;
+    }
   }
 }
 
