@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { serverManagerCreateServer, serverManagerStopServer, serverManagerStartServer } from '@/store/actions/serversActions';
+import { serverManagerCreateServer, serverManagerStopServer, serverManagerStartServer, removeServer } from '@/store/actions/serversActions';
 import InputText from './input/InputText';
 import { RootState } from '@/store/reducers';
 
@@ -14,6 +14,7 @@ function ServerForm() {
   const [port, updatePort] = useState(3000);
   const [protocol, updateProtocol] = useState('websocket');
   const currentServerId = useSelector((store: RootState) => store.navigation.currentServerId);
+  // @ts-ignore
   const servers = useSelector((store: RootState) => store.servers.servers)
   const dispatch = useDispatch();
 
@@ -55,7 +56,7 @@ function ServerForm() {
         </button>
       )
       buttonDisplay.push(
-        <button className="button remove">
+        <button className="button remove" onClick={() => { dispatch(removeServer(currentServerId)) }}>
           Remove Server
       </button>)
     }

@@ -13,10 +13,10 @@ const serversReducer = (state = initialState, action: any) => {
     case types.CREATE_SERVER: {
 
       //--Persistent Data Storage--
-      let data = JSON.parse(JSON.stringify({...state, servers: {...state.servers,[action.payload.id]: {...action.payload}}}))
+      //let data = { ...state, servers: { ...state.servers, [action.payload.id]: { ...action.payload } } };
+      let data = JSON.parse(JSON.stringify({ ...state, servers: { ...state.servers, [action.payload.id]: { ...action.payload } } }))
       Object.values(data.servers).map((server: any) => server.status = "STOPPED")
       window.localStorage.setItem("store", JSON.stringify(data))
-
       return {
         ...state,
         servers: {
@@ -26,6 +26,21 @@ const serversReducer = (state = initialState, action: any) => {
           },
         },
       };
+    }
+    case types.REMOVE_SERVER: {
+      let newState = { ...state }
+      delete newState.servers[action.payload];
+
+      //--Persistent Data Storage--
+      const storage = JSON.parse(JSON.stringify({ ...newState }));
+      Object.values(storage.servers).map((server: any) => server.status = "STOPPED");
+      window.localStorage.setItem("store", JSON.stringify(storage));
+
+      return newState;
+    }
+    case types.SET_CURRENT_EVENT: {
+      const currentEvent = action.payload;
+      return { ...state, currentEvent };
     }
     case types.UPDATE_SERVER_STATE: {
       return {
@@ -38,10 +53,7 @@ const serversReducer = (state = initialState, action: any) => {
         },
       };
     }
-    case types.SET_CURRENT_EVENT: {
-      const currentEvent = action.payload;
-      return { ...state, currentEvent };
-    }
+
     default: {
       return state;
     }

@@ -22,6 +22,11 @@ export const updateServerState = (serverState: ServerState) => ({
   payload: serverState,
 });
 
+export const removeServer = (id: number) => ({
+  type: types.REMOVE_SERVER,
+  payload: id,
+});
+
 export const stopAndRemoveServer = (id: number) => ({
   type: types.STOP_AND_REMOVE_SERVER,
   payload: id,
