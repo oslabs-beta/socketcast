@@ -7,13 +7,15 @@ export interface ServerConfig {
   onError?: Function,
   id?: string
   endpoint?: string
+  protocol?: string
 }
 
 export interface ServerState {
   id: string,
   name: string,
   port: number,
-  status: string
+  status: string,
+  protocol?: string,
 }
 
 export interface MessagesReducerState {

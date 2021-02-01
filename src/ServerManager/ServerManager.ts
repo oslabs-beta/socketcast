@@ -66,52 +66,100 @@ class ServerManager {
        */
   createServer = (config: ServerConfig): Promise<ServerState | Error> => {
     const {
-      name, port, onConnection, onMessage, id, onServerClose,
+      name, port, onConnection, onMessage, id, onServerClose, protocol, endpoint
     } = config;
     const app = express();
     const server = new http.Server(app);
     const serverId = id || uuidv4();
     app.use(cors());
 
-    const wss = new WebSocket.Server({ server });
 
-    wss.on('connection', (ws: any, req: object) => {
-      if (onConnection) onConnection();
-      ws.on('message', (msg: string) => {
-        if (onMessage) onMessage(msg, serverId);
+    if (protocol === "websocket") {  
+      const wss = new WebSocket.Server({ server });
+
+      wss.on('connection', (ws: any, req: object) => {
+       if (onConnection) onConnection();
+        ws.on('message', (msg: string) => {
+         if (onMessage) onMessage(msg, serverId);
+        });
       });
-    });
 
-    /**
+        /**
          * TODO Promisify this somehow. The complication is promisifying it is that we
          * need to wait messages to be sent to ALL clients. If we don't do this, we assume
          * that the message is always successfully emitted at the time it displays on the UI
          * (which may not be true)
          */
-    const broadcast = (message: string) => {
-      wss.clients.forEach((client: any) => {
-        client.send(message);
-      });
-    };
 
-    const stopServer = () => {
-      wss.clients.forEach((ws) => {
-        ws.terminate();
-      });
-      server.close().once('close', () => {
-        if (onServerClose) {
-          onServerClose({
-            id: serverId,
-            name,
-            port,
-            status: ServerStatus.STOPPED,
+      const broadcast = (message: string) => {
+        wss.clients.forEach((client: any) => {
+          client.send(message);
+        });
+      };
+
+      const stopServer = () => {
+        wss.clients.forEach((ws) => {
+          ws.terminate();
+        });
+        server.close().once('close', () => {
+          if (onServerClose) {
+            onServerClose({
+              id: serverId,
+              name,
+              port,
+              protocol: protocol,
+              status: ServerStatus.STOPPED,
+            });
+          }
+        });
+      };
+    
+      // eslint-disable-next-line max-len
+      this.servers[serverId] = new ServerAbstract(wss, { broadcast, stopServer }, name, serverId, port, protocol);
+
+    } else {
+      let clients: any[] = [];
+      const sseEndpointHandler = (req: Request, res: Response) => {
+        res.writeHead(200, {
+          'Content-Type': 'text/event-stream',
+          Connection: 'keep-alive',
+          'Cache-Control': 'no-cache',
+        });
+
+        const clientId = uuidv4();
+        clients.push({ id: clientId, res });
+    
+        req.on('close', () => {
+            clients = clients.filter((client) => client.id !== clientId);
           });
-        }
-      });
-    };
+        };
+    
+        const broadcast = (message: string) => {
+          clients.forEach((client) => client.res.write(message));
+        };
+    
+        // To stop a server, all connections to clients must be closed. Then, you can close the actual server.
+        const stopServer = () => {
+          clients.forEach((client) => client.res.end());
+          server.close().once('close', () => {
+            if (onServerClose) {
+              onServerClose({
+                id: serverId,
+                name,
+                port,
+                status: ServerStatus.STOPPED,
+                protocol: protocol
+              });
+            }
+          });
+        };
+      app.use((endpoint || '/'), sseEndpointHandler);
+      // eslint-disable-next-line max-len
+      this.servers[serverId] = new ServerAbstract(server, { broadcast, stopServer }, name, serverId, port);
+    }
+    
 
-    // eslint-disable-next-line max-len
-    this.servers[serverId] = new ServerAbstract(wss, { broadcast, stopServer }, name, serverId, port);
+
 
     /**
              * We return a promise, but we _cannot_ ever reject this promise because any errors
@@ -125,73 +173,74 @@ class ServerManager {
         id,
         name,
         port,
+        protocol,
         status: ServerStatus.RUNNING,
       }));
     });
   };
 
-  createSSEServer = (config: ServerConfig): Promise<ServerState | Error> => {
-    const {
-      name, port, onConnection, onError, id, endpoint, onServerClose,
-    } = config;
-    const app = express();
-    const server = new http.Server(app);
-    const serverId = id || uuidv4();
-    let clients: any[] = [];
+  // createSSEServer = (config: ServerConfig): Promise<ServerState | Error> => {
+  //   const {
+  //     name, port, onConnection, onError, id, endpoint, onServerClose,
+  //   } = config;
+  //   const app = express();
+  //   const server = new http.Server(app);
+  //   const serverId = id || uuidv4();
+  //   let clients: any[] = [];
 
-    app.use(cors());
+  //   app.use(cors());
 
-    const sseEndpointHandler = (req: Request, res: Response) => {
-      res.writeHead(200, {
-        'Content-Type': 'text/event-stream',
-        Connection: 'keep-alive',
-        'Cache-Control': 'no-cache',
-      });
+  //   const sseEndpointHandler = (req: Request, res: Response) => {
+  //     res.writeHead(200, {
+  //       'Content-Type': 'text/event-stream',
+  //       Connection: 'keep-alive',
+  //       'Cache-Control': 'no-cache',
+  //     });
 
-      const clientId = uuidv4();
-      clients.push({
-        id: clientId,
-        res,
-      });
+  //     const clientId = uuidv4();
+  //     clients.push({
+  //       id: clientId,
+  //       res,
+  //     });
 
-      req.on('close', () => {
-        clients = clients.filter((client) => client.id !== clientId);
-      });
-    };
+  //     req.on('close', () => {
+  //       clients = clients.filter((client) => client.id !== clientId);
+  //     });
+  //   };
 
-    const broadcast = (message: string) => {
-      clients.forEach((client) => client.res.write(message));
-    };
+  //   const broadcast = (message: string) => {
+  //     clients.forEach((client) => client.res.write(message));
+  //   };
 
-    // To stop a server, all connections to clients must be closed. Then, you can close the actual server.
-    const stopServer = () => {
-      clients.forEach((client) => client.res.end());
-      server.close().once('close', () => {
-        if (onServerClose) {
-          onServerClose({
-            id: serverId,
-            name,
-            port,
-            status: ServerStatus.STOPPED,
-          });
-        }
-      });
-    };
+  //   // To stop a server, all connections to clients must be closed. Then, you can close the actual server.
+  //   const stopServer = () => {
+  //     clients.forEach((client) => client.res.end());
+  //     server.close().once('close', () => {
+  //       if (onServerClose) {
+  //         onServerClose({
+  //           id: serverId,
+  //           name,
+  //           port,
+  //           status: ServerStatus.STOPPED,
+  //         });
+  //       }
+  //     });
+  //   };
 
-    app.use((endpoint || '/'), sseEndpointHandler);
+  //   app.use((endpoint || '/'), sseEndpointHandler);
 
-    // eslint-disable-next-line max-len
-    this.servers[serverId] = new ServerAbstract(server, { broadcast, stopServer }, name, serverId, port);
+  //   // eslint-disable-next-line max-len
+  //   this.servers[serverId] = new ServerAbstract(server, { broadcast, stopServer }, name, serverId, port);
 
-    return new Promise((resolve: Function, reject) => {
-      server.listen(port || 3000, () => resolve({
-        id: serverId,
-        name,
-        port,
-        status: ServerStatus.RUNNING,
-      }));
-    });
-  };
+  //   return new Promise((resolve: Function, reject) => {
+  //     server.listen(port || 3000, () => resolve({
+  //       id: serverId,
+  //       name,
+  //       port,
+  //       status: ServerStatus.RUNNING,
+  //     }));
+  //   });
+  // };
 
   // TODO Promisify this.
   /**

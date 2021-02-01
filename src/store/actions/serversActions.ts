@@ -10,6 +10,7 @@ import { RootState } from '../reducers';
 import * as types from './actionTypes';
 import { ServerConfig, ServerState } from '../../ServerManager/type';
 import { createStream, logMessage } from './messagesActions';
+import { setCurrentServerId } from './navigationActions';
 
 export const createServer = (data: ServerState) => ({
   type: types.CREATE_SERVER,
@@ -21,6 +22,11 @@ export const updateServerState = (serverState: ServerState) => ({
   payload: serverState,
 });
 
+export const removeServer = (id: number) => ({
+  type: types.REMOVE_SERVER,
+  payload: id,
+});
+
 export const stopAndRemoveServer = (id: number) => ({
   type: types.STOP_AND_REMOVE_SERVER,
   payload: id,
@@ -30,6 +36,27 @@ export const stopAndRemoveServer = (id: number) => ({
 export const serverManagerStopServer = (id: number): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
   ServerManager.stopServer(id);
 };
+// eslint-disable-next-line max-len
+export const serverManagerStartServer = (config: ServerConfig, id: any): ThunkAction<void, RootState, unknown, Action<string>> => dispatch => {
+
+  ServerManager.createServer({
+    ...config,
+    id: id,
+    onMessage: (message, id) => {
+      console.log(`from client to ${id} server: ${message}`);
+      dispatch(logMessage(id, message));
+    },
+    onServerClose: (serverState: ServerState) => {
+      dispatch(updateServerState(serverState));
+    },
+  })
+    .then((data: any) => {
+      dispatch(createServer(data));
+      dispatch(createStream(data.id));
+    }).catch((err: any) => {
+      console.log(err);
+    });
+}
 
 // eslint-disable-next-line max-len
 export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
@@ -46,7 +73,7 @@ export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<voi
   })
     .then((data: any) => {
       dispatch(createServer(data));
-      // dispatch action to create data stream for this server
+      dispatch(setCurrentServerId(data.id));
       dispatch(createStream(data.id));
     }).catch((err: any) => {
       console.log(err);
@@ -54,18 +81,18 @@ export const serverManagerCreateServer = (config: ServerConfig): ThunkAction<voi
 };
 
 // eslint-disable-next-line max-len
-export const serverManagerCreateSSEServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
-  ServerManager.createSSEServer({
-    ...config,
-    id: uuidv4(),
-    onServerClose: (serverState: ServerState) => {
-      dispatch(updateServerState(serverState));
-    },
-  }).then((data: any) => {
-    dispatch(createServer(data));
-    dispatch(createStream(data.id));
-  });
-};
+// export const serverManagerCreateSSEServer = (config: ServerConfig): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+//   ServerManager.createSSEServer({
+//     ...config,
+//     id: uuidv4(),
+//     onServerClose: (serverState: ServerState) => {
+//       dispatch(updateServerState(serverState));
+//     },
+//   }).then((data: any) => {
+//     dispatch(createServer(data));
+//     dispatch(createStream(data.id));
+//   });
+// };
 
 // eslint-disable-next-line max-len
 export const serverManagerBroadcastAll = (id: string, message: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {

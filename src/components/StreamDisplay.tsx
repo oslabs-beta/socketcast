@@ -19,7 +19,7 @@ function StreamDisplay() {
   return (
     <div className="streamDisplay_container streamDisplay_outputContainer">
       <div className="streamDisplay_outputbox">
-        {currentServerId
+        {currentServerId && outputStream[currentServerId]
           && outputStream[currentServerId].map((code: string) => (
             <div className="code" key={counter++}>
               {code}
