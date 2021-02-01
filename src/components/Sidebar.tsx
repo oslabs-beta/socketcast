@@ -48,9 +48,6 @@ function Sidebar() {
             : <div className="message"><span>No configured servers</span></div>
         }
       </div>
-
-      <button onClick = {()=>{window.localStorage.clear()}}>Clear local storage</button>
-
       <div className="brand">
         socketcast.
       </div>
