@@ -42,17 +42,17 @@ function StreamInput() {
       </div>
 
       <div style={{ float: 'right' }} className="streamInput_buttons">
-
-        <button className="button primary" onClick={() => { updateToggle(!toggle); }}>
-          Toggle Planner
-        </button>
-        <button
+      <button
           className="button button_special"
           type="button"
           onClick={() => dispatch(serverManagerBroadcastAll(currentServerId, message))}
         >
           Emit Message
         </button>
+        <button className="button primary" onClick={() => { updateToggle(!toggle); }}>
+          Toggle Planner
+        </button>
+      
       </div>
 
     </div>

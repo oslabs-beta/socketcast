@@ -32,7 +32,7 @@ function Sidebar() {
     <div className="sidebar">
       <div className="buttons-display">
         <button
-          className="button"
+          className="button_newServer"
           onClick={() => {
             dispatch(setCurrentServerId(''));
           }}
