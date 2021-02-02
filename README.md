@@ -1,4 +1,17 @@
-# socketcast
+
+<p align="center">
+<img 
+  align="center"
+  src = "./assets/socketcast_logo.png"
+/>
+</p>
+
+<p align="center">
+  <img alt="GitHub" src="https://img.shields.io/github/license/oslabs-beta/projectArtemis?color=blue">
+  <img alt="last commit" src="https://img.shields.io/github/last-commit/oslabs-beta/socketcast?color=%3327d3af">
+  <img alt="Repo stars" src="https://img.shields.io/github/stars/oslabs-beta/socketcast?logoColor=%2334495e&style=social"> 
+</p>
+
 
 ## Motivation
 Developers working on real-time data applications and services may need to rapidly test their client applications with WebSocket servers. socketcast allows developers to stub their responses in a WebSocket server.
@@ -11,7 +24,7 @@ Developers working on real-time data applications and services may need to rapid
 ## Getting Started
 
 ## Development
-### Overview
+### Built With
 * Electron
 * TypeScript
 * react
