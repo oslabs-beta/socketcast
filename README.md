@@ -17,9 +17,9 @@
 Developers working on real-time data applications and services may need to rapidly test their client applications with WebSocket servers. socketcast allows developers to stub their responses in a WebSocket server.
 
 ## Features
-* Configure and launch multiple WebSocket servers
-* Send improvised responses to clients
-* Plan out responses with delays to send back to clients 
+* Configure, launch, and manage multiple WebSocket/SSE servers
+* Send improvised messages to clients
+* Plan out message stream with delay intervals to send clients 
 
 ## Getting Started
 
@@ -62,10 +62,9 @@ socketcast is an Electron cross platform desktop app. It is built with React.
 socketcast has the ability to launch multiple WebSocket servers and it does so through an abstraction called ServerManager. The client application should never manage any servers directly, but instead interact with ServerManager's exposed API through Redux actions. 
 
 ## Potential for Improvement
-* Expand the protocol selection to Server Sent Events (SSE) and socket.io
 * Create the ability to build URL paths for the client application to subscribe selectively to events
-* Incorporate authentication
 * Design input boxes to validate JSON
+* Add event/channel functionality to servers
 
 ## Authors
 * Will Bladon [whbladon](https://github.com/whbladon)
