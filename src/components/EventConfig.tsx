@@ -6,7 +6,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentEventId } from '@/store/actions/navigationActions';
-
 function EventConfig() {
   const dispatch = useDispatch();
   // @ts-ignore

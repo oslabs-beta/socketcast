@@ -32,41 +32,80 @@ body {
 /* ---------------------------------------- */
 
 .button {
-  color: white;
+  border: 1px solid rgb(221, 133, 18);
+  background-color: rgb(221, 133, 18);
+  color: #1F2933;
   font-size: 12px;
   font-weight: lighter;
   padding: 10px;
   border-radius: 5px;
-  border-width: 0px;
-
-  .primary {
-    background-color: $primary-background;
-    color: white;
-  }
-
-  .secondary {
-    background-color: $base_teal2;
-    color: white;
-  }
 }
 
 .button:hover {
-  background-color: $primary-font-color;
-  color: black;
+  background-color: #1F2933;
+  border: 1px solid rgb(221, 133, 18);
+  color: rgb(221, 133, 18);
   cursor: pointer;
 }
 
+.primary {
+  background-color: #0b5269;
+  border: 1px solid #0b5269;
+  color: #d1d4c9;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.primary:hover {
+  background-color: #0b5269;;
+  color: rgb(221, 133, 18);
+  border: 1px solid rgb(221, 133, 18);
+}
+
+.secondary {
+  background-color: $primary-background;
+  color: $primary-font-color;
+  margin: 5px;
+  padding: 5px
+}
+
+
 .button_special {
   background-color: $primary-font-color;
-  color: black;
+  border: 1px solid $primary-font-color;
+  color: #1F2933;
 }
 
 .button_special:hover {
+  background-color: #1F2933;
+  border: 1px solid rgb(221, 133, 18);
+  color: rgb(221, 133, 18);
+  cursor: pointer;
+}
+
+.button_newServer {
+  border: 1px solid rgb(221, 133, 18);
+  background-color: rgb(221, 133, 18);
+  color: #1F2933;
+  font-size: 12px;
+  font-weight: lighter;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button_newServer:hover {
+  background-color: #1F2933;
+  border: 1px solid rgb(221, 133, 18);
+  color: rgb(221, 133, 18);
   cursor: pointer;
 }
 
 .button_code {
   background-color: #1F2933;
+  color: rgb(221, 133, 18);
+  border: 1px solid rgb(221, 133, 18);
+  margin: 5px; 
+  padding: 5px;
 }
 
 .button_code:hover {
@@ -218,10 +257,17 @@ body {
 
     .remove {
       background-color: transparent;
+      color: rgb(221, 133, 18);;
+      font-weight: normal;
+    } 
+
+    .remove:hover {
+      background-color: transparent;
       color: red;
-      font-weight: bold;
+      font-weight: normal;
     }
   }
+  
 }
 
 /* ---------------------------------------- */
@@ -328,7 +374,7 @@ body {
   width: 30px;
   background-color: #1b1b2d;
   color: white;
-  border: none;
+  border: 1px solid rgb(221, 133, 18);
   padding: 5px;
   border-radius: 3px;
 }
