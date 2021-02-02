@@ -23,6 +23,31 @@ Developers working on real-time data applications and services may need to rapid
 
 ## Getting Started
 
+## Create Servers
+<img 
+  align="center"
+  src = "./assets/create_servers.gif"
+/>
+
+## Emit Messages
+<img 
+  align="center"
+  src = "./assets/emit_messages.gif"
+/>
+
+
+## Create and Emit Stream
+<img 
+  align="center"
+  src = "./assets/emit_stream.gif"
+/>
+
+## Stop, Start and Remove Servers
+<img 
+  align="center"
+  src = "./assets/delete_servers.gif"
+/>
+
 ## Development
 ### Built With
 * Electron
