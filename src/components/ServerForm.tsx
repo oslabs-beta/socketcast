@@ -35,6 +35,7 @@ function ServerForm() {
       <button
         type="button"
         className="button button_special"
+        key = '5'
         onClick={createServerHandler}>
         Create Server
       </button>
@@ -44,6 +45,7 @@ function ServerForm() {
       buttonDisplay.push(
         <button
           className="button button_special"
+          key = '6'
           onClick={() => { dispatch(serverManagerStopServer(currentServerId)) }}
         >
           Stop Server
@@ -51,12 +53,12 @@ function ServerForm() {
       )
     } else {
       buttonDisplay.push(
-        <button className="button button_special" onClick={startServerHandler}>
+        <button className="button button_special" key = '7' onClick={startServerHandler}>
           Start Server
         </button>
       )
       buttonDisplay.push(
-        <button className="button remove" onClick={() => { dispatch(removeServer(currentServerId)) }}>
+        <button className="button remove" key = '8' onClick={() => { dispatch(removeServer(currentServerId)) }}>
           Remove Server
       </button>)
     }
@@ -66,25 +68,27 @@ function ServerForm() {
     <div className="server-configuration">
       <form className="server-form">
         <InputText
+          key = '1'
           label="Name"
           value={currentServerId ? servers[currentServerId].name : name}
           onChange={(e: any) => updateName(e.target.value)}
         />
         <InputText
+          key = '2'
           label="Port"
           value={currentServerId ? servers[currentServerId].port : port}
           onChange={(e: any) => updatePort(e.target.value)}
         />
         <div className="radio-container">
           <span className="title">Protocol</span>
-          <div className="radio">
+          <div className="radio" key = '3' >
             <input
               name="protocol" type="radio" id="websocket"
               checked={currentServerId ? servers[currentServerId].protocol === "websocket" : protocol === 'websocket'} onChange={() => updateProtocol('websocket')}
             />
             <label htmlFor="websocket">WebSocket</label>
           </div>
-          <div className="radio">
+          <div className="radio" key = '4' >
             <input name="protocol" type="radio" id="sse"
               checked={currentServerId ? servers[currentServerId].protocol === "sse" : protocol === 'sse'}
               onChange={() => updateProtocol('sse')}
