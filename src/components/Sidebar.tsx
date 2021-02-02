@@ -49,7 +49,7 @@ function Sidebar() {
         }
       </div>
       <div className="brand">
-        <img src = '../assets/socketcast_logo.png' style = {{"width": "100%"}}/>
+        <img src = '../assets/socketcast_logo2.png' style = {{"width": "100%"}}/>
       </div>
     </div>
   );
