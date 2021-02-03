@@ -1,7 +1,7 @@
 /**
- * @parentComponent ServerConfig
+ * @parentComponent app
  * @description Holds functionality to create a new server and update server config
- */
+**/
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

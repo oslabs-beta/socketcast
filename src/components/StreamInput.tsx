@@ -1,6 +1,6 @@
 /**
- * @parentComponent StreamDisplay
- * @description Conditionally rendered based on active event in state. Functionality to emit improvised and planned responses from port of active server
+ * @parentComponent StreamTab
+ * @description Holds input boxes for emitting messages or message streams
  */
 
 import { RootState } from '@/store/reducers';

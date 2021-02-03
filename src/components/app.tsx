@@ -5,17 +5,15 @@
 import React from 'react';
 import '../styles/app.scss';
 
-// import PlannedResponseCreator from './PlannedResponseCreator/PlannedResponseCreator';
-import ServerTab from './ServerTab';
+import ServerForm from './ServerForm';
 import Sidebar from './Sidebar';
 import StreamTab from './StreamTab';
 
 const App = () => (
   <div className="app">
     <Sidebar />
-    <ServerTab />
+    <ServerForm />
     <StreamTab />
-    {/* <PlannedResponseCreator /> */}
   </div>
 );
 

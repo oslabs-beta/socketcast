@@ -26,12 +26,9 @@ const messagesReducer = (state = initialState, action: any) => {
     }
     case types.LOG_MESSAGE: {
       const { id, message } = action.payload;
-
-      // grab the stream array of messages to corresponding server_id
       const stream = state.streams[id];
-
-      // push message into correct stream
       stream.push(message);
+      
       return {
         ...state,
         streams: {

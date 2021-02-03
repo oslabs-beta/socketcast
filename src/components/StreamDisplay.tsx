@@ -1,6 +1,7 @@
 /**
- * @description Right pane of application. Displays input and output streams
- */
+ * @parentComponent StreamTab
+ * @description Display stream output field
+**/
 
 import React, {useEffect, useRef, useState} from 'react';
 import { useSelector } from 'react-redux';

@@ -1,4 +1,4 @@
-const SocketEvent = require('../SocketEvent');
+const SocketEvent = require('../../../src/ServerManager/SocketEvent');
 
 test('SocketEvent() takes a parameter String and parameter Function', () => {
   const myEvent = new SocketEvent('event name', () => { });

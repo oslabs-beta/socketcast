@@ -1,5 +1,6 @@
 /**
- * @description Right pane of application. Displays input and output streams
+ * @parentComponent StreamTab
+ * @description Right pane of application - holds stream input boxes and output display
  */
 
 import React from "react";
