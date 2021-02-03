@@ -5,6 +5,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/reducers';
+import Highlight from 'react-highlight'
+
 
 function StreamDisplay() {
   const currentServerId = useSelector(
@@ -22,7 +24,7 @@ function StreamDisplay() {
         {currentServerId && outputStream[currentServerId]
           && outputStream[currentServerId].map((code: string) => (
             <div className="code" key={counter++}>
-              {code}
+              <Highlight className = 'json'>{code.toString()}</Highlight>
             </div>
           ))}
       </div>

@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/semi */
 import React from 'react';
 import { PlannedResponseUnit, PlannedResponseUnitType } from './type';
+import Highlight from 'react-highlight'
 
 const PRUnit = ({
   pru, index, onMoveUp, onMoveDown, onRemove,
@@ -28,7 +29,12 @@ const PRUnit = ({
         </div>
 
       </div>
-      <div className="message-section">{pru.type === PlannedResponseUnitType.MESSAGE ? pru.message : pru.time}</div>
+      <div className="message-section">
+        {pru.type === PlannedResponseUnitType.MESSAGE ? 
+        // @ts-ignore
+        (<Highlight className = 'json'>{pru.message.toString()}</Highlight>) 
+        : pru.time}
+      </div>
     </div>
   );
 }
