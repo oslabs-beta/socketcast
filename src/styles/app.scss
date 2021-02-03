@@ -331,23 +331,40 @@ body {
 
 .streamDisplay_outputContainer {
   margin-top: 5px;
-  flex: 1
+  flex: 1;
+  max-height: 100%;
 }
 
 .streamDisplay_inputContainer {
   flex: .1
 }
 
-.streamDisplay_outputbox {
+.streamDisplay_outputboxLarge {
   margin-top: 10px;
-  height: 100%;
+  height: 77vh;
   width: 100%;
+  max-height:100%;
   border-radius: 5px;
   border: 2px $primary-background solid;
   overflow-y: scroll;
   font-family: 'Hack';
   color: white;
   background-color: $primary-background;
+  object-fit: contain;
+}
+
+.streamDisplay_outputboxSmall {
+  margin-top: 10px;
+  height: 43vh;
+  width: 100%;
+  max-height:100%;
+  border-radius: 5px;
+  border: 2px $primary-background solid;
+  overflow-y: scroll;
+  font-family: 'Hack';
+  color: white;
+  background-color: $primary-background;
+  object-fit: contain;
 }
 
 .streamInput_buttons {
@@ -365,8 +382,8 @@ body {
 }
 
 .planned-response-playground {
-  height: 200px;
-  max-height: 400px;
+  height: 26vh;
+  // max-height: 400px;
   overflow-y: scroll;
   color: white;
   width: 100%;
