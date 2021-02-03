@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { serverManagerBroadcastAll } from '../store/actions/serversActions';
 import PlannedResponseCreator from './PlannedResponseCreator/PlannedResponseCreator';
 import { playbackResponseUnits } from './PlannedResponseCreator/utils';
+import { togglePlannedResponse } from '../store/actions/navigationActions'
 
 function StreamInput() {
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ function StreamInput() {
     (store: RootState) => store.navigation.currentServerId,
   );
   const [message, updateMessage] = useState('');
-  const [toggle, updateToggle] = useState(false);
+
+  const plannedResponseBoolean = useSelector( (store: RootState) => store.navigation.plannedResponseBoolean)
 
   const emitPlannedResponse = (prus:any) => {
     playbackResponseUnits(prus, {
@@ -30,7 +32,7 @@ function StreamInput() {
 
     <div className="streamDisplay_container streamDisplay_inputContainer">
 
-      {toggle && <PlannedResponseCreator message={message} emitPlannedResponse={emitPlannedResponse} />}
+      {plannedResponseBoolean && <PlannedResponseCreator message={message} emitPlannedResponse={emitPlannedResponse} />}
 
       <div style={{ display: 'flex' }}>
         <textarea
@@ -49,7 +51,7 @@ function StreamInput() {
         >
           Emit Message
         </button>
-        <button className="button primary" onClick={() => { updateToggle(!toggle); }}>
+        <button className="button primary" onClick={() =>  dispatch(togglePlannedResponse()) }>
           Toggle Planner
         </button>
       

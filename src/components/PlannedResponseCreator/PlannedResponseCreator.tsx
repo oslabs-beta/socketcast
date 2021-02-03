@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { examplePlayback, playbackResponseUnits } from './utils';
+import { playbackResponseUnits } from './utils';
 import { PlannedResponseUnit, PlannedResponseUnitType } from './type';
 import PRUnit from './PRUnit';
+import ScrollAnchor from '../ScrollAnchor'
 
 const PlannedResponseCreator = (props:any) => {
   const [plannedResponse, setPlannedResponse] = useState<PlannedResponseUnit[]>([]);
@@ -38,7 +39,14 @@ const PlannedResponseCreator = (props:any) => {
   return (
     <>
       <div className = "planned-response-playground">
-        {plannedResponse.map((curr, count=0) => <PRUnit key = {count++} index={1} pru={curr} onMoveDown={()=>{onMoveDown(plannedResponse, curr)}} onMoveUp={() => {onMoveUp(plannedResponse, curr)}} onRemove={() => {onRemove(plannedResponse, curr)}} />)}
+        {plannedResponse.map((curr, count=0) => (
+          <PRUnit key = {count++} index={1} pru={curr}
+            onMoveDown={()=>{onMoveDown(plannedResponse, curr)}} 
+            onMoveUp={() => {onMoveUp(plannedResponse, curr)}} 
+            onRemove={() => {onRemove(plannedResponse, curr)}}
+          />))
+        }
+        <ScrollAnchor/>
       </div>
      
       <div>
