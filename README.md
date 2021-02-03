@@ -14,7 +14,7 @@
 
 
 ## Motivation
-Developers working on real-time data applications and services may need to rapidly test their client applications with WebSocket servers. socketcast allows developers to stub their responses in a WebSocket server.
+Developers working on real-time data applications and services may need to rapidly test their client applications with WebSocket or SSE servers. Socketcast provides developers with a tool to configure and run server instances that serve stub websocket and SSE data to connected clients.
 
 ## Features
 * Configure, launch, and manage multiple WebSocket/SSE servers
