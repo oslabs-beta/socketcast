@@ -7,10 +7,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    //typescript works for tsx
     "jsx": "react",
     "baseUrl": "./",
-    //important - we only apply typescript to src folders
     "paths": {
       "@/*": [
         "src/*"

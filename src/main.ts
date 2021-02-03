@@ -4,27 +4,20 @@ import { app, BrowserWindow } from 'electron';
 //   REACT_DEVELOPER_TOOLS,
 // } from 'electron-devtools-installer';
 
-// make mainWindow var (specify types: alive or dead)
 let mainWindow: Electron.BrowserWindow | null;
 
-// create window function (specify type of arguments)
 const createWindow = (): void => {
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 809,
     webPreferences: {
 
-      // allows us to actually do stuff from this file
       nodeIntegration: true,
-      // enables electron store to be used in renderer process
       enableRemoteModule: true,
     },
   });
 
-  // load html entry (hang react app off this file)
   mainWindow.loadFile('index.html');
-
-  // when you close mainWindow, process ends in your terminal
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -48,5 +41,4 @@ const onReady = (): void => {
 //     .catch((err) => console.log('An error occurred: ', err));
 // });
 
-// when app is 'ready' instantiate mainWindow with our function
 app.on('ready', onReady);

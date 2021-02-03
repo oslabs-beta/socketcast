@@ -1,3 +1,8 @@
+/**
+ * @parentComponent StreamDisplay, PlannedResponseCreator
+ * @description Respositions scrollbar to bottom whenever elements are added
+**/
+
 import React, { useRef, useEffect } from "react";
 
 const AlwaysScrollToBottom = () => {

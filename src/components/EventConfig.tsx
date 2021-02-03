@@ -1,6 +1,6 @@
 /**
  * @parentComponent ServerConfig
- * @description Holds functionality to configure events and set active event in state
+ * @description Unused component - added to configure events
  */
 
 import React from 'react';

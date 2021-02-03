@@ -14,7 +14,7 @@ const serversReducer = (state = initialState, action: any) => {
 
       //--Persistent Data Storage--
       //let data = { ...state, servers: { ...state.servers, [action.payload.id]: { ...action.payload } } };
-      let data = JSON.parse(JSON.stringify({ ...state, servers: { ...state.servers, [action.payload.id]: { ...action.payload } } }))
+      let data = JSON.parse(JSON.stringify({ ...state, servers: { ...state.servers, [action.payload.id]: { ...action.payload }}}))
       Object.values(data.servers).map((server: any) => server.status = "STOPPED")
       window.localStorage.setItem("store", JSON.stringify(data))
       return {
