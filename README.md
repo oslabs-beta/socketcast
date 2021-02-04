@@ -27,7 +27,7 @@ Developers working on real-time data applications and services may need to rapid
 ## Create Servers and Configure Server Instances
 <img 
   align="center"
-  src = "./assets/create_servers.gif"
+  src = "./assets/CreateStopStartDelete.gif"
 />
 
 ## Emit Data
@@ -40,7 +40,7 @@ Developers working on real-time data applications and services may need to rapid
 ## Create and send Data Streams
 <img 
   align="center"
-  src = "./assets/emit_stream.gif"
+  src = "./assets/PlannedResponse.gif"
 />
 
 ## Development
