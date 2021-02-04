@@ -20,32 +20,27 @@ Developers working on real-time data applications and services may need to rapid
 * Configure, launch, and manage multiple WebSocket/SSE servers
 * Send improvised messages to clients
 * Plan out message stream with delay intervals to send clients 
+* Persistent local storage of Server configurations
 
 ## Getting Started
 
-## Create Servers
+## Create Servers and Configure Server Instances
 <img 
   align="center"
   src = "./assets/create_servers.gif"
 />
 
-## Emit Messages
+## Emit Data
 <img 
   align="center"
   src = "./assets/emit_messages.gif"
 />
 
 
-## Create and Emit Stream
+## Create and send Data Streams
 <img 
   align="center"
   src = "./assets/emit_stream.gif"
-/>
-
-## Stop, Start and Remove Servers
-<img 
-  align="center"
-  src = "./assets/delete_servers.gif"
 />
 
 ## Development
@@ -59,12 +54,13 @@ Developers working on real-time data applications and services may need to rapid
 socketcast is an Electron cross platform desktop app. It is built with React.
 
 ### ServerManager
-socketcast has the ability to launch multiple WebSocket servers and it does so through an abstraction called ServerManager. The client application should never manage any servers directly, but instead interact with ServerManager's exposed API through Redux actions. 
+Socketcast has the ability to launch multiple WebSocket servers and it does so through an abstraction called ServerManager. The client application should never manage any servers directly, but instead interact with ServerManager's exposed API through Redux actions. 
 
 ## Potential for Improvement
 * Create the ability to build URL paths for the client application to subscribe selectively to events
-* Design input boxes to validate JSON
 * Add event/channel functionality to servers
+
+## Want to contribute?
 
 ## Authors
 * Will Bladon [whbladon](https://github.com/whbladon)
