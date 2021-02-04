@@ -50,6 +50,8 @@ npm start
 />
 
 ## Send Data
+- Insert data into message input
+- Emit data!
 <img 
   align="center"
   src = "./assets/EmitMessages.gif"
@@ -58,7 +60,8 @@ npm start
 
 ## Create and send Data Streams to Connected Clients
 - Connect a client application by opening a websocket connection to the specified port.
-- Plan out stream organizing messages with delay intervals
+- Open stream planner and construct stream with messages and delays.
+- Send the stream!
 
 <img 
   align="center"
