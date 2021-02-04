@@ -44,6 +44,7 @@ npm start
 - To create a server, simply click on the ‘+ new server’ button to initiate the process, give your server a unique name and specify the desired port you wish to ping.
 - Choose the WebSocket or Server Side Events (SSE) protocol to connect over. 
 - Click start server and voila! You have a functioning server to test your application.  
+
 <img 
   align="center"
   src = "./assets/CreateStopStartDelete.gif"
@@ -59,6 +60,7 @@ npm start
 ## Create and send Data Streams to Connected Clients
 - Connect a client application by opening a websocket connection to the specified port.
 - Plan out stream organizing messages with delay intervals
+
 <img 
   align="center"
   src = "./assets/PlannedResponse.gif"
