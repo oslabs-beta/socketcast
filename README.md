@@ -40,8 +40,7 @@ npm start
 ```
 
 ## Create Servers and Configure Server Instances
-- Socketcast provides the ability to create one or many stub servers to run in parallel to test your application.
-- To create a server, simply click on the ‘+ new server’ button to initiate the process, give your server a unique name and specify the desired port you wish to ping.
+- Create one or many stub servers to run in parallel to test your application.
 - Choose the WebSocket or Server Side Events (SSE) protocol to connect over. 
 - Click start server and voila! You have a functioning server to test your application.  
 
@@ -76,7 +75,6 @@ npm start
 * Websockets
 * Jest
 * Webpack
-* Material UI
 
 
 ### Client
@@ -88,7 +86,8 @@ Socketcast has the ability to launch multiple WebSocket servers and it does so t
 ## What's next?
 * Add support for other protocols such as HTTP2
 * Create the ability to build URL paths for the client application to subscribe selectively to events
-* Add event/channel functionality to servers
+* Add ability to parse authentication headers
+* Log debugging information from client
 
 ## Want to contribute?
 Socketcast encourages contributions to this product, pull requests are welcome.
