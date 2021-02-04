@@ -24,16 +24,31 @@ Developers working on real-time data applications and services may need to rapid
 
 ## Getting Started
 
+1. Fork and clone the Socketcast Repo
+2. Install node dependencies
+```bash
+npm i
+```
+3. Bundle the application
+```js
+npm run build
+```
+4. Start the application
+
+```bash
+npm start
+```
+
 ## Create Servers and Configure Server Instances
 <img 
   align="center"
   src = "./assets/CreateStopStartDelete.gif"
 />
 
-## Emit Data
+## Send Data
 <img 
   align="center"
-  src = "./assets/emit_messages.gif"
+  src = "./assets/EmitMessages.gif"
 />
 
 
@@ -51,16 +66,28 @@ Developers working on real-time data applications and services may need to rapid
 * redux-thunk
 
 ### Client
-socketcast is an Electron cross platform desktop app. It is built with React.
+Socketcast is an Electron cross platform desktop app. It is built with React.
 
 ### ServerManager
 Socketcast has the ability to launch multiple WebSocket servers and it does so through an abstraction called ServerManager. The client application should never manage any servers directly, but instead interact with ServerManager's exposed API through Redux actions. 
 
 ## Potential for Improvement
+* Add support for other protocols such as HTTP2
 * Create the ability to build URL paths for the client application to subscribe selectively to events
 * Add event/channel functionality to servers
 
 ## Want to contribute?
+Socketcast encourages contributions to this product, pull requests are welcome.
+
+Fork the repo and create a working branch from master.
+If you've added any code that requires testing, add tests.
+Check to ensure that all tests pass.
+Make sure code is formatted with prettier and follows the Airbnb React/JSX Style Guide.
+Create a pull request to master.
+
+Issues
+Please do not hesitate to file issues. Socketcast is based off of community feedback and is always looking for ways to get better. We are interested to hear about your experience and how we can improve Socketcast.
+
 
 ## Authors
 * Will Bladon [whbladon](https://github.com/whbladon)
@@ -69,3 +96,4 @@ Socketcast has the ability to launch multiple WebSocket servers and it does so t
 * Colin Vandergraaf [colinvandergraaf](https://github.com/colinvandergraaf)
 
 ## License
+[License](https://github.com/oslabs-beta/socketcast/LICENSE)
