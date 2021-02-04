@@ -52,7 +52,7 @@ npm start
 />
 
 
-## Create and send Data Streams
+## Create and send Data Streams to Connected Clients
 <img 
   align="center"
   src = "./assets/PlannedResponse.gif"
