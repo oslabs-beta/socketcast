@@ -17,10 +17,10 @@
 Developers working on real-time data applications and services may need to rapidly test their client applications with WebSocket or SSE servers. Socketcast provides developers with a tool to configure and run server instances that serve stub websocket and SSE data to connected clients.
 
 ## Features
-* Configure, launch, and manage multiple WebSocket/SSE servers
-* Send improvised messages to clients
-* Plan out message stream with delay intervals to send clients 
-* Persistent local storage of Server configurations
+* Configure, launch, and manage multiple WebSocket or SSE servers
+* Send data to connected clients
+* Plan out a data stream to send connected clients
+* Persistent local storage of server configurations
 
 ## Getting Started
 
