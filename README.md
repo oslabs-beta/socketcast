@@ -52,6 +52,7 @@ npm start
 ## Send Data
 - Insert data into message input
 - Emit data!
+
 <img 
   align="center"
   src = "./assets/EmitMessages.gif"
