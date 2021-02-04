@@ -71,7 +71,13 @@ npm start
 * Electron
 * TypeScript
 * React
+* Redux
 * Redux-thunk
+* Websockets
+* Jest
+* Webpack
+* Material UI
+
 
 ### Client
 Socketcast is an Electron cross platform desktop app. It is built with React.
@@ -79,7 +85,7 @@ Socketcast is an Electron cross platform desktop app. It is built with React.
 ### ServerManager
 Socketcast has the ability to launch multiple WebSocket servers and it does so through an abstraction called ServerManager. The client application should never manage any servers directly, but instead interact with ServerManager's exposed API through Redux actions. 
 
-## Potential for Improvement
+## What's next?
 * Add support for other protocols such as HTTP2
 * Create the ability to build URL paths for the client application to subscribe selectively to events
 * Add event/channel functionality to servers
